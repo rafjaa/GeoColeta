@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'moduloColeta.views.home', name='home'),
 	url(r'^medias/(.*)$', 'django.views.static.serve', {'document_root':settings.MEDIA_ROOT}),
+	url(r'^mapa$', 'moduloColeta.views.mapa'),
     # url(r'^geocoleta/', include('geocoleta.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

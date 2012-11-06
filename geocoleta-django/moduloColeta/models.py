@@ -6,7 +6,7 @@ from django.db import models
 class TiposColeta(models.Model):
 	tipo = models.CharField(max_length=30)
 	def __unicode__(self):
-		return self.tipo
+		return u'{0}'.format(self.tipo)
 
 class LocalColeta(models.Model):
 	latitude = models.CharField(max_length=100)
