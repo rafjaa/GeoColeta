@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block cabecalho %}
+<title>Página Principal</title>
+<style type="text/css">
+	img { position: relative; width:100%; }
+</style>
+{% endblock %}
+
+{% block corpo %}
+
+<div class="container">
+	<div class="row">
+		<img src="/medias/banner.png" />
+	</div>
+	<div class="row">
+		<div class="span4">Descrição do Projeto</div>
+		<div class="span4">Mapa</div>
+		<div class="span4">Coleta</div>
+	</div>
+</div>
+
+{% endblock %}
