@@ -2457,7 +2457,7 @@ span.ui-slider-label-b { z-index: 0; right: 0; text-indent: 1.5em;}
 }
 
 /* Brow button theme for JQuery Mobile
- * - Use data-theme="r" for red versions of the default JQuery Mobile Buttons.
+ * - Use data-theme="o" for brow versions of the default JQuery Mobile Buttons.
  ******************************************************************************************/
 
 .ui-btn-up-o {
@@ -2496,20 +2496,45 @@ span.ui-slider-label-b { z-index: 0; right: 0; text-indent: 1.5em;}
     border: 1px solid #772222;
     background: #C54E4E;
     font-weight: bold;
+    
+    
+/* Cinza button theme for JQuery Mobile
+ * - Use data-theme="p" for cinza versions of the default JQuery Mobile Buttons.
+ ******************************************************************************************/
+
+.ui-btn-up-p {
+    border: 1px solid #721414;
+    background: #5C3317;
+    font-weight: bold;
     color: #fff;
     text-shadow: 0 -1px 1px #000;
     background-image: -moz-linear-gradient(top, #5C3317, #5C3317);
     background-image: -webkit-gradient(linear,left top,left bottom,
         color-stop(0, #5C3317),
         color-stop(1, #5C3317));
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#9E3939', EndColorStr='#C54E4E')";
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#C54E4E', EndColorStr='#AB2525')";
 }
-.ui-btn-down-o a.ui-link-inherit {
+.ui-btn-up-p a.ui-link-inherit {
     color: #fff;
 }
-.ui-btn-up-o,
-.ui-btn-hover-o,
-.ui-btn-down-o {
-    font-family: Helvetica, Arial, sans-serif;
-    text-decoration: none;
+.ui-btn-hover-p {
+    border: 1px solid #6E0000;
+    background: #5C3317;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 -1px 1px #000;
+    background-image: -moz-linear-gradient(top, 
+        #5C3317, 
+        #5C3317);
+    background-image: -webkit-gradient(linear,left top,left bottom,
+        color-stop(0, #5C3317),
+        color-stop(1, #5C3317));
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#D47272', EndColorStr='#B64B4B')";
 }
+.ui-btn-hover-p a.ui-link-inherit {
+    color: #fff;
+}
+.ui-btn-down-p {
+    border: 1px solid #772222;
+    background: #C54E4E;
+    font-weight: bold;
