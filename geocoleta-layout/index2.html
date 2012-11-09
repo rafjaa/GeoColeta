@@ -3,8 +3,8 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>GeoColeta</title>title>
-		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+		<title>GeoColeta</title>
+		<link rel="stylesheet" href="jquery.mobile-1.2.0.css" />
 		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 
@@ -15,20 +15,21 @@
 
 			<div data-role="header">
 				<h1>GeoColeta</h1>
+				<a href="index.html" data-icon="refresh" data-iconpos="notext">Refresh</a>
 			</div>
 
 			<div data-role="content">
-				
+				<img src="https://maps.googleapis.com/maps/api/staticmap?center=Madison, WI&amp;zoom=14&amp;size=288x200&amp;markers=Madison, WI&amp;sensor=false" width="288" height="200" />
 			</div>
 
 			<div data-role="footer">
 				<div data-role="navbar">
 					<ul>
-						<li><a href="checkin.html">Plástico</a></li>
-						<li><a href="checkin.html">Papel</a></li>
-						<li><a href="checkin.html">Metal</a></li>
-						<li><a href="checkin.html">Vidro</a></li>
-						<li><a href="checkin.html">Orgânico</a></li>
+						<li><a href="checkin.html" data-theme="r">Plástico</a></li>
+						<li><a href="checkin.html" data-theme="b">Papel</a></li>
+						<li><a href="checkin.html" data-theme="e">Vidro/Metal</a></li>
+						<li><a href="checkin.html" data-theme="o">Orgânico</a></li>
+						<li><a href="checkin.html" data-theme="c">Não reciclável</a></li>
 					</ul>
 				</div>
 			</div>
