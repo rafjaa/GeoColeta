@@ -1,40 +1,54 @@
 <!DOCTYPE html>
 
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>GeoColeta</title>
-		<link rel="stylesheet" href="jquery.mobile-1.2.0.css" />
-		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+  <head>
+    <meta charset="utf-8">
+    <title>GeoColeta</title>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <script src="modernizr-geo.js"></script>
+    <script>
+      $(document).ready(function() {
+	var latlng = new google.maps.LatLng(-21.2281, -43.7665);
 
-	</head>
-	
-	<body>
-		<div data-role="page">
+	var myOptions = {
+	    zoom: 18,
+	    center: latlng,
+	    mapTypeId: google.maps.MapTypeId.SATELLITE
+	};
+	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+      });
+    </script>
+  </head>
 
-			<div data-role="header">
-				<h1>GeoColeta</h1>
-				<a href="index.html" data-icon="refresh" data-iconpos="notext">Refresh</a>
-			</div>
+  <body>
+    <div data-role="page">
 
-			<div data-role="content">
-				<img src="https://maps.googleapis.com/maps/api/staticmap?center=Madison, WI&amp;zoom=14&amp;size=288x200&amp;markers=Madison, WI&amp;sensor=false" width="288" height="200" />
-			</div>
+      <div data-role="header" data-position="fixed" data-theme="d">
+	<h1>GeoColeta</h1>
+	<a href="index.html" data-icon="search" data-iconpos="notext">Lixeiras</a>
+	<a href="index.html" data-icon="refresh" data-iconpos="notext">Refresh</a>
+      </div>
 
-			<div data-role="footer">
-				<div data-role="navbar">
-					<ul>
-						<li><a href="checkin.html" data-theme="r">Plástico</a></li>
-						<li><a href="checkin.html" data-theme="b">Papel</a></li>
-						<li><a href="checkin.html" data-theme="e">Vidro/Metal</a></li>
-						<li><a href="checkin.html" data-theme="o">Orgânico</a></li>
-						<li><a href="checkin.html" data-theme="c">Não reciclável</a></li>
-					</ul>
-				</div>
-			</div>
+      <div data-role="content" style="padding:0">
+	<div id="map_canvas" style="width:100%; height:600px"></div>
+      </div>
 
-		</div>
-	</body>
+      <div data-role="footer" >
+	<div data-role="navbar">
+	  <ul>
+	    <li><a href="checkin.html" data-icon="info" >Plástico</a></li>
+	    <li><a href="checkin.html" data-icon="info">Papel</a></li>
+	    <li><a href="checkin.html" data-icon="info">Vidro/Metal</a></li>
+	    <li><a href="checkin.html" data-icon="info">Orgânico</a></li>
+	    <li><a href="checkin.html" data-icon="info">Não reciclável</a></li>
+	  </ul>
+	</div>
+      </div>
+
+    </div>
+  </body>
 
 </html>
