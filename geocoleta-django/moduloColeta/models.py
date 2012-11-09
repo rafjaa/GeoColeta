@@ -5,16 +5,26 @@ from django.db import models
 
 class TiposColeta(models.Model):
 	tipo = models.CharField(max_length=30)
+
 	def __unicode__(self):
 		return u'{0}'.format(self.tipo)
+
+	class Meta():
+		verbose_name = u'Tipo de Coleta'
+		verbose_name_plural = u'Tipos de Coleta'
 
 class LocalColeta(models.Model):
 	latitude = models.CharField(max_length=100)
 	longitude = models.CharField(max_length=100)
 	descricao = models.TextField('Descrição')
 	tipo = models.ManyToManyField('TiposColeta')
+
 	def __unicode__(self):
 		return self.descricao
+
+	class Meta():
+		verbose_name = u'Local de Coleta'
+		verbose_name_plural = u'Locais de Coleta'
 
 
 class Log(models.Model):
@@ -23,3 +33,6 @@ class Log(models.Model):
 	local = models.ForeignKey('LocalColeta')
 	data = models.DateTimeField()
 	tipo = models.ForeignKey('TiposColeta')
+
+	def __unicode__(self):
+		return '{0} - {1}'.format(local.descricao, data)
