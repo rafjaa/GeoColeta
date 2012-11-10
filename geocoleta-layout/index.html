@@ -31,13 +31,37 @@
     </script>
     <script type="text/javascript">
       $(document).ready(function(){
-            var mapOptions = {
-                center: new google.maps.LatLng(-21.2281, -43.7665),
-                zoom: 18,
-                mapTypeId: google.maps.MapTypeId.SATELLITE
-            };
-            var map = new google.maps.Map(document.getElementById("map_canvas"),
-            mapOptions);
+            var map;
+
+            var carrega_mapa = function(){
+                var pos = new google.maps.LatLng(-21.2281, -43.7665);
+
+                var mapOptions = {
+                    center: pos,
+                    zoom: 18,
+                    mapTypeId: google.maps.MapTypeId.SATELLITE
+                };
+
+                map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+                var marker = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                    title: 'Minha posição',
+                    icon: new google.maps.MarkerImage("http://www.youthnetworks.eu/App_Themes/YouthNetworksTheme/images/GoogleIcons/person_level2-icon.png")
+                });
+            }
+
+            /* Reposicionao o centro e a nova posiçao. Não reflete mudanças no servidor, então só será útil se
+               não formos exibiras lixeiras nesta página inicial.
+            */
+            $("#recarregar").click(function(){
+                // var nova_pos = geolocalização...
+                nova_pos = new google.maps.LatLng(-21.2281, -43.7665)
+                map.setCenter(nova_pos);
+            });
+
+            carrega_mapa();
       });
     </script>
   </head>
@@ -48,7 +72,7 @@
       <div data-role="header" data-position="fixed" data-theme="c">
         <h1>GeoColeta</h1>
         <a href="index.html" data-icon="grid">Locais</a>
-        <a href="index.html" data-icon="refresh" data-iconpos="notext">Atualizar</a>
+        <a id="recarregar" data-icon="refresh" data-iconpos="notext">Atualizar</a>
       </div>
 
       <div id="conteudo-mobile" data-role="content">
