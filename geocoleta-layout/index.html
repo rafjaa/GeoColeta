@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>GeoColeta</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+    <style type="text/css">
+        /* Ao final, esse CSS irá para um arquivo separado */
+        body {
+            overflow: hidden;
+        }
+
+        #pagina-mobile{
+            width: 100%;
+            height: 100%;
+        }
+        #conteudo-mobile{
+            padding: 0;
+        }
+        #map_canvas{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?sensor=true">
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+            var mapOptions = {
+                center: new google.maps.LatLng(-21.2281, -43.7665),
+                zoom: 18,
+                mapTypeId: google.maps.MapTypeId.SATELLITE
+            };
+            var map = new google.maps.Map(document.getElementById("map_canvas"),
+            mapOptions);
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="pagina-mobile" data-role="page">
+
+      <div data-role="header" data-position="fixed" data-theme="c">
+	<h1>GeoColeta</h1>
+	<a href="index.html" data-icon="search" data-iconpos="notext">Lixeiras</a>
+	<a href="index.html" data-icon="refresh" data-iconpos="notext">Refresh</a>
+      </div>
+
+      <div id="conteudo-mobile" data-role="content">
+            <div id="map_canvas"></div>
+      </div>
+
+      <div data-role="footer" data-theme="c" data-position="fixed">
+	<div data-role="navbar">
+	  <ul>
+	    <li><a href="checkin.html" data-icon="alert" >Plástico</a></li>
+	    <li><a href="checkin.html" data-icon="alert">Papel</a></li>
+	    <li><a href="checkin.html" data-icon="alert">Vidro/Metal</a></li>
+	    <li><a href="checkin.html" data-icon="alert">Orgânico</a></li>
+	    <li><a href="checkin.html" data-icon="alert">Não reciclável</a></li>
+	  </ul>
+	</div>
+      </div>
+
+    </div>
+  </body>
+</html>
