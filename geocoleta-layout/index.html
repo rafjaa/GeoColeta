@@ -23,6 +23,43 @@
             width: 100%;
             height: 100%;
         }
+
+        .ui-icon-lixo-plastico{
+            background-color: #ff8080;
+            background-image: url("plastico.png");
+        }
+
+        .ui-icon-lixo-papel{
+            background-color: #6d9cc8;
+            background-image: url("papel.png");
+        }
+
+        .ui-icon-lixo-vidro{
+            background-color: #95e580;
+            background-image: url("vidro.png");
+        }
+
+        .ui-icon-lixo-metal{
+            background-color: #f1ed5b;
+            background-image: url("metal.png");
+        }
+
+        .ui-icon-lixo-organico{
+            background-color: #bf7e5d;
+            background-image: url("organico.png");
+        }
+
+        .ui-icon-icone-reciclavel{
+            background-image: url("recicl.png");
+        }
+
+        @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+            .ui-icon-icone-reciclavel{
+                background-image: url("recicl-hd.png");
+                background-size: 18px 18px;
+            }
+        }
+
     </style>
     <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
@@ -71,7 +108,7 @@
 
       <div data-role="header" data-position="fixed" data-theme="c">
         <h1>GeoColeta</h1>
-        <a href="index.html" data-icon="grid">Locais</a>
+        <a href="index.html" data-icon="icone-reciclavel" data-iconpos="notext">Locais</a>
         <a id="recarregar" data-icon="refresh" data-iconpos="notext">Atualizar</a>
       </div>
 
@@ -82,10 +119,11 @@
       <div data-role="footer" data-theme="c" data-position="fixed">
         <div data-role="navbar">
             <ul>
-                <li><a href="checkin.html" data-icon="alert">Plástico</a></li>
-                <li><a href="checkin.html" data-icon="alert">Papel</a></li>
-                <li><a href="checkin.html" data-icon="alert">Vidro/Metal</a></li>
-                <li><a href="checkin.html" data-icon="alert">Orgânico</a></li>
+                <li><a href="checkin.html" data-icon="lixo-plastico">Plástico</a></li>
+                <li><a href="checkin.html" data-icon="lixo-papel">Papel</a></li>
+                <li><a href="checkin.html" data-icon="lixo-vidro">Vidro</a></li>
+                <li><a href="checkin.html" data-icon="lixo-metal">Metal</a></li>
+                <li><a href="checkin.html" data-icon="lixo-organico">Orgânico</a></li>
             </ul>
         </div>
       </div>
