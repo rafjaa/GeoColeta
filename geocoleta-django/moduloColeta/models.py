@@ -35,4 +35,4 @@ class Log(models.Model):
 	tipo = models.ForeignKey('TiposColeta')
 
 	def __unicode__(self):
-		return '{0} - {1}'.format(local.descricao, data)
+		return u'{0} - {1}'.format(self.local.descricao, self.data)

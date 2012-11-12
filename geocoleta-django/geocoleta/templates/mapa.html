@@ -4,26 +4,26 @@
 	<script type="text/javascript">
 
 		$(document).ready(function() {
-			var objJson = '{{locaisColeta|safe}}';
+			var objJson = '{{dados|safe}}';
 			var s = JSON.parse(objJson);
 
-			var periodo;
+			alert(s);
 
+			var periodo;
+			var coleta;
 		
 			$('#btt_filtrar').click(function(){
 				periodo = $('#filtro').val();
 				if(periodo == 'null') {
 					alert('Selecione um Período');
+					return false;
 				} else {
 					coleta = $('#coleta').val();
 					if(coleta == 'null') {
 						alert('Selecione um Período');
+						return false;
 					} else {
-						$.ajax({
-							type: 'GET',
-							url: '/mapa',
-							data: {'coleta' : coleta, 'periodo' : periodo}
-						});
+						return true;
 					}
 				}
 			});
@@ -51,22 +51,13 @@
                         <a href="/coletas" title="Coletas">Coletas</a>
                     </li>
 				</ul>
-					<form class="navbar-form pull-right" >
-						<select id="filtro">
-							<option value="null" selected>Período...</option>
-							<option value="todos" id="todos">Todos</option>
-							<option value="semana" id="semana">Última semana</option>
-							<option value="mes" id="mes">Último mês</option>
-							<option value="ano" id="ano">Último ano</option>
-						</select>
-						<select id="coleta">					
-							<option selected>Material...</option>		
-						{% for tipo in tiposColeta %}
-							<option id="{{tipo.tipo}}">{{tipo.tipo}}</option>
-						{% endfor %}
-						</select>
-						<button class="btn" id="btt_filtrar">Filtrar</button>
+					<form class="navbar-form pull-right" method="POST" action="">
+						{% csrf_token %}
+						{{ formFiltro.periodo }}
+						{{ formFiltro.coleta }}
+						<button class="btn" id="btt_filtrar" type="submit">Filtrar</button>
 					</form>
+					
             </div>
         </div>
     </div>
