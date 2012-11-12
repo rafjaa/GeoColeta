@@ -3,6 +3,7 @@
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.core.paginator import Paginator
 
 import json
 from models import LocalColeta
@@ -100,6 +101,29 @@ def mapa(request):
 
 				form = Filtro()
 				return render_to_response('mapa.html', {'dados': objJason, 'formFiltro': form}, context_instance=RequestContext(request))
+
+def coletas(request):
+	tiposColeta = TiposColeta.objects.all()
+	locaisColeta = LocalColeta.objects.all()
+
+	paginator = Paginator(locaisColeta, 10)
+
+	try:
+		page = int(request.GET.get('page', '1'))
+	except ValueError:
+		page = 1
+
+	try:
+		locais = paginator.page(page)
+	except (EmptyPage, InvalidPage):
+		locais = paginator.page(paginator.num_pages)
+
+	d = []
+	for local in locaisColeta:
+		d.append({'latitude':local.latitude, 'longitude':local.longitude, 'descricao':local.descricao,
+		'tipos':parse_tipo(local.tipo.all())})
+	
+	return render_to_response('coletas.html', {'locaisColeta': locaisColeta, 'tiposColeta': tiposColeta, 'locaisColetaPag': locais})
 
 #Aqui acontece a mágica!
 def parse_tipo(classe):

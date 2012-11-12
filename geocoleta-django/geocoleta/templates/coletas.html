@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block cabecalho %}
+	<title>Coletas</title>
+{% endblock %}
+
+{% block corpo %}
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span> 
+            </a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li>
+                        <a href="home" title="Página Inicial">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="/mapa" title="Mapa GeoColeta">Mapa</a>
+                    </li>
+                    <li class="active">
+                        <a href="/coletas" title="Coletas">Coletas</a>
+                    </li>
+				</ul>
+					<form class="navbar-form pull-right" action="/coletas/" method="POST">
+						<select id="filtro"> 
+							<option value="null" selected>Período...</option>
+							<option value="todos" id="todos">Todos</option>
+							<option value="semana" id="semana">Última semana</option>
+							<option value="mes" id="mes">Último mês</option>
+							<option value="ano" id="ano">Último ano</option>
+						</select>
+						<select id="coleta">					
+							<option selected>Material...</option>		
+						{% for tipo in tiposColeta %}
+							<option id="{{tipo.tipo}}">{{tipo.tipo}}</option>
+						{% endfor %}
+						</select>
+						<input type="submit" class="btn" id="btt_filtrar" value="Filtrar" />
+					</form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<header style="height:50px"></header>
+
+<div class="tabbable tabs-left" >
+  	<ul class="nav nav-tabs" style="width:35%;height:500px;">
+  		{% for local in locaisColetaPag.object_list %}
+			<li><a href="#{{local.id}}" data-toggle="tab">
+				{{local.descricao}}
+			</a></li>
+		{% endfor %}
+		<div class="pagination pagination-centered" style="position:relative; bottom:0px;">
+			<ul>
+				{% if locaisColetaPag.has_previous %}
+		            <li><a href="?page={{ locaisColetaPag.previous_page_number }}"> << </a></li>
+		        {% else %}
+		        	<li class="disabled"><a> << </a></li>
+		        {% endif %}		        
+
+				{% if locaisColetaPag.has_next %}
+		        	<li><a href="?page={{ locaisColetaPag.next_page_number }}"> >> </a></li>
+	        	{% else %}
+		        	<li class="disabled"><a> >> </a></li>
+	        	{% endif %}
+		    </ul>
+		</div>	
+  	</ul>
+	<div class="tab-content">
+
+  	</div>	
+</div> 
+{% endblock %}

@@ -13,6 +13,7 @@ urlpatterns = patterns('',
 
 
 	url(r'^mapa$', 'moduloColeta.views.mapa'),
+    url(r'^coletas$', 'moduloColeta.views.coletas'),
 
     # url(r'^geocoleta/', include('geocoleta.foo.urls')),
 
