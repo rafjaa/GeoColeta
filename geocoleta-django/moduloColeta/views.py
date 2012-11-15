@@ -4,10 +4,12 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.paginator import Paginator
+from django.http import HttpResponse
 
 import json
 from models import LocalColeta
 from models import TiposColeta
+from models import Log
 from models import Log
 from forms import Filtro
 
@@ -103,27 +105,82 @@ def mapa(request):
 				return render_to_response('mapa.html', {'dados': objJason, 'formFiltro': form}, context_instance=RequestContext(request))
 
 def coletas(request):
-	tiposColeta = TiposColeta.objects.all()
-	locaisColeta = LocalColeta.objects.all()
-
-	paginator = Paginator(locaisColeta, 10)
-
-	try:
-		page = int(request.GET.get('page', '1'))
-	except ValueError:
-		page = 1
-
-	try:
-		locais = paginator.page(page)
-	except (EmptyPage, InvalidPage):
-		locais = paginator.page(paginator.num_pages)
-
-	d = []
-	for local in locaisColeta:
-		d.append({'latitude':local.latitude, 'longitude':local.longitude, 'descricao':local.descricao,
-		'tipos':parse_tipo(local.tipo.all())})
+	if request.is_ajax():
+		id_log = request.GET['id']
+		semana = datetime.now().isocalendar()[1]
+		ano = datetime.now().year
+		mes = datetime.now().month
 	
-	return render_to_response('coletas.html', {'locaisColeta': locaisColeta, 'tiposColeta': tiposColeta, 'locaisColetaPag': locais})
+		#logs = Log.objects.filter(data__month=mes,data__year=ano, data__week_day=semana)
+		logs = Log.objects.filter(local=id_log)
+
+		sys.stderr.write(str(logs))
+		
+		resposta = {}
+		resposta['Papel'] = [0,0,0,0,0,0,0]
+		resposta['Plastico'] = [0,0,0,0,0,0,0]
+		resposta['Metal/Vidro'] = [0,0,0,0,0,0,0]
+		resposta['Organico'] = [0,0,0,0,0,0,0]
+		resposta['Nao Reciclavel'] = [0,0,0,0,0,0,0]
+		resposta['soma'] = [0,0,0,0,0,0,0]
+
+		for l in logs:
+			if l.data.isocalendar()[2] == 1:
+				resposta[l.tipo.tipo][1] += 1
+				resposta['soma'][1] += 1
+				print resposta[l.tipo.tipo][1]
+			elif l.data.isocalendar()[2] == 2:
+				print l.tipo.tipo
+				resposta[l.tipo.tipo][2] += 1
+				print resposta[l.tipo.tipo][2]
+				resposta['soma'][2] += 1
+				print resposta[l.tipo.tipo][2]
+			elif l.data.isocalendar()[2] == 3:
+				resposta[l.tipo.tipo][3] += 1
+				resposta['soma'][3] += 1
+			elif l.data.isocalendar()[2] == 4:
+				resposta[l.tipo.tipo][4] += 1
+				resposta['soma'][4] += 1
+			elif l.data.isocalendar()[2] == 5:
+				resposta[l.tipo.tipo][5] += 1
+				resposta['soma'][5] += 1
+			elif l.data.isocalendar()[2] == 6:
+				resposta[l.tipo.tipo][6] += 1
+				resposta['soma'][6] += 1
+			elif l.data.isocalendar()[2] == 7:
+				resposta[l.tipo.tipo][0] += 1
+				resposta['soma'][0] += 1		
+
+		respostaJson = json.dumps(resposta)
+
+		return HttpResponse(respostaJson)
+	elif request.method == 'GET':
+		#tiposColeta = TiposColeta.objects.all().order_by('id')
+		locaisColeta = LocalColeta.objects.all().order_by('id')
+		log = Log.objects.all()
+
+		paginator = Paginator(locaisColeta, 9)
+
+		form = Filtro()
+
+		try:
+			page = int(request.GET.get('page', '1'))
+		except ValueError:
+			page = 1
+
+		try:
+			locais = paginator.page(page)
+		except (EmptyPage, InvalidPage):
+			locais = paginator.page(paginator.num_pages)
+
+		'''d = []
+		for local in locaisColeta:
+			d.append({'latitude':local.latitude, 'longitude':local.longitude, 'descricao':local.descricao,
+			'tipos':parse_tipo(local.tipo.all())})
+		'''
+		return render_to_response('coletas.html', 
+			{'locaisColetaPag': locais, 'formFiltro':form, 'logs': log})
+
 
 #Aqui acontece a mágica!
 def parse_tipo(classe):
