@@ -18,8 +18,15 @@
         var map;
 
         var carrega_mapa = function(){
+            var center;
+            if($("#id_latitude").val() != ""){
+                center = new google.maps.LatLng($("#id_latitude").val(), $("#id_longitude").val());
+            }else{
+                center = new google.maps.LatLng(-21.228232359997463, -43.76727244500285);
+            }
+
             var mapOptions = {
-                center: new google.maps.LatLng($("#id_latitude").val(), $("#id_longitude").val()),
+                center: center,
                 zoom: 18,
                 mapTypeId: google.maps.MapTypeId.SATELLITE
             };
