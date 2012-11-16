@@ -114,7 +114,7 @@ def coletas(request):
 		#logs = Log.objects.filter(data__month=mes,data__year=ano, data__week_day=semana)
 		logs = Log.objects.filter(local=id_log)
 
-		sys.stderr.write(str(logs))
+		#sys.stderr.write(str(logs))
 		
 		resposta = {}
 		resposta['Papel'] = [0,0,0,0,0,0,0]
@@ -128,13 +128,9 @@ def coletas(request):
 			if l.data.isocalendar()[2] == 1:
 				resposta[l.tipo.tipo][1] += 1
 				resposta['soma'][1] += 1
-				print resposta[l.tipo.tipo][1]
 			elif l.data.isocalendar()[2] == 2:
-				print l.tipo.tipo
 				resposta[l.tipo.tipo][2] += 1
-				print resposta[l.tipo.tipo][2]
 				resposta['soma'][2] += 1
-				print resposta[l.tipo.tipo][2]
 			elif l.data.isocalendar()[2] == 3:
 				resposta[l.tipo.tipo][3] += 1
 				resposta['soma'][3] += 1
