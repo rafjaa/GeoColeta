@@ -44,8 +44,8 @@
             google.maps.event.addListener(marker, "dragend", function(event) {
                 var point = marker.getPosition();
                 map.panTo(point);
-                $("#id_latitude").val(map.getCenter().lat());
-                $("#id_longitude").val(map.getCenter().lng());
+                $("#id_latitudeUsuario").val(map.getCenter().lat());
+                $("#id_longitudeUsuario").val(map.getCenter().lng());
             });
         }
 
