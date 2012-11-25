@@ -3,3 +3,4 @@ from django.contrib import admin
 
 admin.site.register(LocalColeta)
 admin.site.register(TiposColeta)
+admin.site.register(Log)
