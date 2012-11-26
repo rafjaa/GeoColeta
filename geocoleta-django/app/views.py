@@ -29,6 +29,9 @@ def lixeira(request, id_lixeira):
     return render_to_response('app/info_lixeira.html', {'local': lixeira, 'tipos': tipos})
 
 def buscar_lixeira(request):
+    '''
+      Lembrar de gerar um log
+    '''
     lat = request.GET['lat']
     lng = request.GET['lng']
     tipo = request.GET['tipo']
@@ -52,7 +55,7 @@ def buscar_lixeira(request):
 	  melhor_distancia = dist
 	  melhor_ponto = l
     
-    return HttpResponse(str(melhor_distancia) + '  ' + melhor_ponto.descricao)
+    return HttpResponse(json.dumps({'lat': float(melhor_ponto.latitude), 'lng': float(melhor_ponto.longitude)}))
 
 def parse_tipo(classe):
   s = []

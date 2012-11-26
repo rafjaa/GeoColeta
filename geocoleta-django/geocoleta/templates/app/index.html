@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
   <head>
     <meta charset="utf-8">
     <title>GeoColeta</title>
@@ -70,6 +70,7 @@
     <script type="text/javascript">
       $(document).ready(function(){
             var map;
+            var obj_circulo;
             
             // geolocalização obterá esses dados
             var lat = -21.231823046;
@@ -137,23 +138,34 @@
                 
             }
 
-            /* Reposicionao o centro e a nova posiçao. Não reflete mudanças no servidor, então só será útil se
-               não formos exibiras lixeiras nesta página inicial.
-            */
-            $("#recarregar").click(function(){
-                // var nova_pos = geolocalização...
-                nova_pos = new google.maps.LatLng(-21.231823046, -43.76704943)
-                map.setCenter(nova_pos);
-            });
-
             carrega_mapa();
+            
+            var desenha_circulo = function(lat, lng){
+                if(!obj_circulo){
+    		    var circulo = {
+		      strokeColor: "#FF0000",
+		      strokeOpacity: 0.8,
+		      strokeWeight: 2,
+		      fillColor: "#FF0000",
+		      fillOpacity: 0.35,
+		      map: map,
+		      center: new google.maps.LatLng(lat + 0.00004, lng + 0.00004),
+		      radius: 10
+		    };
+		    obj_circulo = new google.maps.Circle(circulo);
+		 }
+		 else{
+		    obj_circulo.setCenter(new google.maps.LatLng(lat + 0.00004, lng + 0.00004));
+		 }
+            }
             
             var URL_AJAX = '/app/buscar_lixeira';
             
             $(".btn_tipo").click(function(){
 		var tipo_l = this.name;
 		$.get(URL_AJAX + "?lat=" + lat + "&lng=" + lng + "&tipo=" + tipo_l, function(dados) {
-		    alert(dados);
+		    dados = JSON.parse(dados)
+		    desenha_circulo(dados.lat, dados.lng);
 		});
             });
       });
@@ -166,7 +178,7 @@
       <div data-role="header" data-position="fixed" data-theme="c">
         <h1>GeoColeta</h1>
         <a href="/app/lixeiras" data-icon="icone-reciclavel" data-iconpos="notext">Locais</a>
-        <a id="recarregar" data-icon="refresh" data-iconpos="notext">Atualizar</a>
+        <a href="/app/" target="_self" data-icon="refresh" data-iconpos="notext">Recarregar</a>
       </div>
 
       <div id="conteudo-mobile" data-role="content">
