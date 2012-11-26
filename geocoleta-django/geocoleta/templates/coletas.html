@@ -90,8 +90,9 @@
 			var highchartsOptions = Highcharts.setOptions(Highcharts.theme);
 
 			var conteudo = document.getElementById("highcharts");
+
 			$('.localColeta').click(function() {
-				selecionado = this;
+				selecionado = this.id;
 				$.get("/coletas", {id : this.id}, function(data) { 
 					var json = JSON.parse(data);
 

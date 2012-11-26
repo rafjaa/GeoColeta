@@ -1,13 +1,93 @@
 {% extends 'base.html' %}
 {% block cabecalho %}
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 	<title>Mapa</title>
+	<style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      article { height: 100%; margin: 0; padding:0; }
+      #map_canvas { width:100%; height:100%; }
+    </style>
+	<script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBhp-XEVy9T9yaht07LCj6SdwaztO0tVmc&sensor=true">
+    </script>
 	<script type="text/javascript">
 
 		$(document).ready(function() {
-			var objJson = '{{dados|safe}}';
-			var s = JSON.parse(objJson);
 
-			alert(s);
+			function setMarkers(map, locations) {
+		        // Add markers to the map
+
+		        // Marker sizes are expressed as a Size of X,Y
+		        // where the origin of the image (0,0) is located
+		        // in the top left of the image.
+
+		        // Origins, anchor positions and coordinates of the marker
+		        // increase in the X direction to the right and in
+		        // the Y direction down.
+		        var image = new google.maps.MarkerImage('../medias/imagens/lixeira.png',
+		            // This marker is 20 pixels wide by 32 pixels tall.
+		            new google.maps.Size(32, 32),
+		            // The origin for this image is 0,0.
+		            new google.maps.Point(0,0),
+		            // The anchor for this image is the base of the flagpole at 0,32.
+		            new google.maps.Point(0, 32));
+		        
+		        /*var shadow = new google.maps.MarkerImage('../medias/imagens/lixeira.png',
+		            // The shadow image is larger in the horizontal dimension
+		            // while the position and offset are the same as for the main image.
+		            new google.maps.Size(37, 32),
+		            new google.maps.Point(0,0),
+		            new google.maps.Point(0, 32));*/
+
+		        // Área clicável da imagem
+		        var shape = {
+		            coord: [1, 1, 1, 32, 30, 32, 30, 1],
+		            type: 'poly'
+		        };
+
+		        var contentString = '';
+
+		        for (var i = 0; i < locations.length; i++) {
+		          var lixeira = locations[i];
+		          if(typeof lixeira.data == 'undefined') {
+		          	var descricao = lixeira.descricao + "<br /><b>Tipos:</b><br />" + lixeira.tipo;
+		          } else {
+		          	var descricao = lixeira.data + " - " + lixeira.localColeta + "<br /><b>Tipo: </b>" + lixeira.tipo;
+		          }
+  		          var myLatLng = new google.maps.LatLng(lixeira.latitude, lixeira.longitude);
+		          var marker = new google.maps.Marker({
+		              position: myLatLng,
+		              map: map,
+		              icon: image,
+		              shape: shape,
+		              title: descricao,
+		              zIndex: i+1
+		          });
+
+		          var infowindow = new google.maps.InfoWindow({
+		              content: contentString
+		          });
+		          google.maps.event.addListener(marker, 'click', function() {
+		      	      infowindow.setContent(this.title);
+		      	      infowindow.open(map, this);
+		          });
+		        }
+		      }
+
+			var mapOptions = {
+				zoom: 18, // Zoom inicial
+				center: new google.maps.LatLng(-21.22734708340924, -43.76363149344025), // ponto central do mapa
+				mapTypeId: google.maps.MapTypeId.SATELLITE // Imagem de satélite
+			}
+			var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+			document.getElementById("map_canvas").innerHTML = map;
+
+			var objJson = '{{dados|safe}}';
+			var lixeiras = JSON.parse(objJson);
+
+			setMarkers(map, lixeiras);
 
 			var periodo;
 			var coleta;
@@ -43,7 +123,6 @@
                     <li>
                         <a href="home" title="Página Inicial">Home</a>
                     </li>
-
                     <li class="active">
                         <a href="/mapa" title="Mapa GeoColeta">Mapa</a>
                     </li>
@@ -62,4 +141,5 @@
         </div>
     </div>
 </div>
+<div id="map_canvas"></div>
 {% endblock %}

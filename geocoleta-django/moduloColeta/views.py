@@ -27,7 +27,7 @@ def mapa(request):
 		d = []
 		for local in locaisColeta:
 			d.append({'latitude':local.latitude, 'longitude':local.longitude, 'descricao':local.descricao,
-			'tipos':parse_tipo(local.tipo.all())})
+			'tipo':parse_tipo(local.tipo.all())})
 		objJason = json.dumps(d)
 
 		form = Filtro()
@@ -43,7 +43,7 @@ def mapa(request):
 				jsonString = []
 
 				for atual in log:
-					jsonString.append({'latitudeUsuario': atual.latitudeUsuario, 'longitudeUsuario' : atual.longitudeUsuario, 'localColeta': atual.local.descricao,
+					jsonString.append({'latitude': atual.latitudeUsuario, 'longitude' : atual.longitudeUsuario, 'localColeta': atual.local.descricao,
 					'data': atual.data.strftime("%d/%m/%y"), 'tipo':atual.tipo.tipo})
 
 				objJason = json.dumps(jsonString)
@@ -66,7 +66,7 @@ def mapa(request):
 
 				jsonString = []
 				for atual in logs:
-					jsonString.append({'latitudeUsuario': atual.latitudeUsuario, 'longitudeUsuario' : atual.longitudeUsuario, 'localColeta': atual.local.descricao,
+					jsonString.append({'latitude': atual.latitudeUsuario, 'longitude' : atual.longitudeUsuario, 'localColeta': atual.local.descricao,
 					'data': atual.data.strftime("%d/%m/%y"), 'tipo':atual.tipo.tipo})
 
 				objJason = json.dumps(jsonString)
@@ -81,7 +81,7 @@ def mapa(request):
 				
 				jsonString = []
 				for atual in logs:
-					jsonString.append({'latitudeUsuario': atual.latitudeUsuario, 'longitudeUsuario' : atual.longitudeUsuario, 'localColeta': atual.local.descricao,
+					jsonString.append({'latitude': atual.latitudeUsuario, 'longitude' : atual.longitudeUsuario, 'localColeta': atual.local.descricao,
 					'data': atual.data.strftime("%d/%m/%y"), 'tipo':atual.tipo.tipo})
 
 				objJason = json.dumps(jsonString)
@@ -96,7 +96,7 @@ def mapa(request):
 
 				jsonString = []
 				for atual in logs:
-					jsonString.append({'latitudeUsuario': atual.latitudeUsuario, 'longitudeUsuario' : atual.longitudeUsuario, 'localColeta': atual.local.descricao,
+					jsonString.append({'latitude': atual.latitudeUsuario, 'longitude' : atual.longitudeUsuario, 'localColeta': atual.local.descricao,
 					'data': atual.data.strftime("%d/%m/%y"), 'tipo':atual.tipo.tipo})
 
 				objJason = json.dumps(jsonString)
@@ -151,7 +151,6 @@ def coletas(request):
 
 		return HttpResponse(respostaJson)
 	elif request.method == 'GET':
-		#tiposColeta = TiposColeta.objects.all().order_by('id')
 		locaisColeta = LocalColeta.objects.all().order_by('id')
 		log = Log.objects.all()
 
@@ -169,11 +168,6 @@ def coletas(request):
 		except (EmptyPage, InvalidPage):
 			locais = paginator.page(paginator.num_pages)
 
-		'''d = []
-		for local in locaisColeta:
-			d.append({'latitude':local.latitude, 'longitude':local.longitude, 'descricao':local.descricao,
-			'tipos':parse_tipo(local.tipo.all())})
-		'''
 		return render_to_response('coletas.html', 
 			{'locaisColetaPag': locais, 'formFiltro':form, 'logs': log})
 
