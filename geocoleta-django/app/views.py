@@ -12,7 +12,7 @@ def home(request):
     locais = LocalColeta.objects.all()
     j = []
     for local in locais:
-        j.append({'latitude':local.latitude, 'longitude':local.longitude, 'descricao':local.descricao,
+        j.append({'latitude':local.latitude[:11], 'longitude':local.longitude[:11], 'descricao':local.descricao,
 	        'tipo':parse_tipo(local.tipo.all())})
 
     obj_json = json.dumps(j)

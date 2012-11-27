@@ -162,7 +162,7 @@
             var URL_AJAX = '/app/buscar_lixeira';
             $(".btn_tipo").click(function(){
                 var tipo_l = this.name;
-                $.get(URL_AJAX + "?lat=" + lat + "&lng=" + lng + "&tipo=" + tipo_l, function(dados) {
+                $.get(URL_AJAX + "?lat=" + lat + "&lng=" + lng + "&tipo=" + tipo_l, function(dados){
                     dados = JSON.parse(dados)
                     desenha_circulo(dados.lat, dados.lng, tipo_l);
                 });

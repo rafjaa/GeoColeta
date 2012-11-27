@@ -26,7 +26,7 @@ def mapa(request):
 		locaisColeta = LocalColeta.objects.all()
 		d = []
 		for local in locaisColeta:
-			d.append({'latitude':local.latitude, 'longitude':local.longitude, 'descricao':local.descricao,
+			d.append({'latitude':local.latitude[:11], 'longitude':local.longitude[:11], 'descricao':local.descricao,
 			'tipo':parse_tipo(local.tipo.all())})
 		objJason = json.dumps(d)
 
