@@ -48,6 +48,12 @@
 				background-size:18px 18px
 			}
 		}
+		.info-dist{
+			display: none;
+			text-align: center;
+			padding: 3px 0;
+			font-size: 13px;
+		}
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -82,7 +88,7 @@
 
 				for (var i=0; i < locations.length; i++){
 					var lixeira = locations[i];
- 					var descricao = lixeira.descricao + "<br /><b>Tipos:</b><br />" + lixeira.tipo;
+ 					var descricao = "<h4 style=\"margin: 0px 0; text-shadow: 1px 1px #ccc\">" + lixeira.descricao + "</h4><span style=\"font-size: 14px\"><strong>Tipos: </strong>" + lixeira.tipo + "</span>";
 					var myLatLng = new google.maps.LatLng(lixeira.lat, lixeira.lng);
 					var marker = new google.maps.Marker({
 						position:myLatLng, map:map, icon:image,
@@ -118,6 +124,8 @@
 				var tipo_l = this.name;
 				$.get(URL_AJAX + "?lat=" + lat + "&lng=" + lng + "&tipo=" + tipo_l, function(dados){
 					desenha_circulo(dados.lat, dados.lng, tipo_l);
+					$("#metragem").html(dados.dist + " metros");
+					$(".info-dist").fadeIn();
 				});
 			});
 		});
@@ -136,6 +144,9 @@
 		<div id="conteudo-mobile" data-role="content"><div id="map_canvas"></div></div>
 
 		<div data-role="footer" data-theme="c" data-position="fixed" data-tap-toggle="false">
+			<div class="info-dist">
+				Lixeira mais próxima: <span id="metragem"></span>
+			</div>
 		<div data-role="navbar">
 			<ul>
 				 <li><a class="btn_tipo" name="0" href="#" id="btn_plastico" data-icon="lixo-plastico">Plástico</a></li>

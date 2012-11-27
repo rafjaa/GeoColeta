@@ -31,7 +31,7 @@ class Log(models.Model):
 	latitudeUsuario = models.CharField(max_length=100)
 	longitudeUsuario = models.CharField(max_length=100)
 	local = models.ForeignKey('LocalColeta')
-	data = models.DateTimeField()
+	data = models.DateTimeField(auto_now=True)
 	tipo = models.ForeignKey('TiposColeta')
 
 	def __unicode__(self):
