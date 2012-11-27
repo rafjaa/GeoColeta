@@ -45,7 +45,6 @@ def buscar_lixeira(request):
     locais = LocalColeta.objects.filter(tipo__tipo=assoc_tipos[int(tipo)])
 
     for l in locais:
-        print (float(lat), float(lng), float(l.latitude), float(l.longitude))
         dist = haversine(float(lat), float(lng), float(l.latitude), float(l.longitude))
         
         if not melhor_distancia:
