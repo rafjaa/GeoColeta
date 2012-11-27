@@ -30,7 +30,7 @@ def lixeira(request, id_lixeira):
 
 def buscar_lixeira(request):
     '''
-      Lembrar de gerar um log
+      Lembrar de gerar um log - não mais aqui
     '''
     lat = request.GET['lat']
     lng = request.GET['lng']
@@ -39,7 +39,7 @@ def buscar_lixeira(request):
     assoc_tipos = ('Plastico', 'Papel', 'Metal/Vidro', 'Organico', 'Nao Reciclavel')
     
     melhor_distancia = 0
-    melhor_ponto = None   
+    melhor_ponto = None
     
     # Compara a distância do usuário para cada ponto de coleta seletiva
     locais = LocalColeta.objects.filter(tipo__tipo=assoc_tipos[int(tipo)])
