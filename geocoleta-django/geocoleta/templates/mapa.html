@@ -16,31 +16,11 @@
 		$(document).ready(function() {
 
 			function setMarkers(map, locations) {
-		        // Add markers to the map
-
-		        // Marker sizes are expressed as a Size of X,Y
-		        // where the origin of the image (0,0) is located
-		        // in the top left of the image.
-
-		        // Origins, anchor positions and coordinates of the marker
-		        // increase in the X direction to the right and in
-		        // the Y direction down.
 		        var image = new google.maps.MarkerImage('../medias/imagens/lixeira.png',
-		            // This marker is 20 pixels wide by 32 pixels tall.
 		            new google.maps.Size(32, 32),
-		            // The origin for this image is 0,0.
 		            new google.maps.Point(0,0),
-		            // The anchor for this image is the base of the flagpole at 0,32.
 		            new google.maps.Point(0, 32));
-		        
-		        /*var shadow = new google.maps.MarkerImage('../medias/imagens/lixeira.png',
-		            // The shadow image is larger in the horizontal dimension
-		            // while the position and offset are the same as for the main image.
-		            new google.maps.Size(37, 32),
-		            new google.maps.Point(0,0),
-		            new google.maps.Point(0, 32));*/
 
-		        // Área clicável da imagem
 		        var shape = {
 		            coord: [1, 1, 1, 32, 30, 32, 30, 1],
 		            type: 'poly'
@@ -76,7 +56,7 @@
 		      }
 
 			var mapOptions = {
-				zoom: 18, // Zoom inicial
+				zoom: 18,
 				center: new google.maps.LatLng(-21.22734708340924, -43.76363149344025), // ponto central do mapa
 				mapTypeId: google.maps.MapTypeId.SATELLITE // Imagem de satélite
 			}
@@ -84,9 +64,7 @@
 
 			document.getElementById("map_canvas").innerHTML = map;
 
-			var objJson = '{{dados|safe}}';
-			var lixeiras = JSON.parse(objJson);
-
+			var lixeiras = {{dados|safe}};
 			setMarkers(map, lixeiras);
 
 			var periodo;

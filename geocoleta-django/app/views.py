@@ -12,11 +12,11 @@ def home(request):
     locais = LocalColeta.objects.all()
     j = []
     for local in locais:
-        j.append({'latitude':local.latitude[:11], 'longitude':local.longitude[:11], 'descricao':local.descricao,
+        j.append({'lat':local.latitude[:11], 'lng':local.longitude[:11], 'descricao':local.descricao,
 	        'tipo':parse_tipo(local.tipo.all())})
 
     obj_json = json.dumps(j)
-	        
+
     return render_to_response('app/index.html', {'dados': obj_json})
 
 def lixeiras(request):
@@ -55,7 +55,7 @@ def buscar_lixeira(request):
 	  melhor_distancia = dist
 	  melhor_ponto = l
     
-    return HttpResponse(json.dumps({'lat': float(melhor_ponto.latitude), 'lng': float(melhor_ponto.longitude)}))
+    return HttpResponse(json.dumps({'lat': float(melhor_ponto.latitude), 'lng': float(melhor_ponto.longitude)}), mimetype="application/json")
 
 def parse_tipo(classe):
   s = []

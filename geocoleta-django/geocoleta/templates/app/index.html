@@ -57,8 +57,7 @@
 			var lng = -43.7670494;
 
 			var carrega_mapa = function(){
-				var objJson = '{{dados|safe}}';
-				var locations = JSON.parse(objJson);
+				var locations = {{dados|safe}};
 				var pos = new google.maps.LatLng(lat, lng);
 
 				var mapOptions = {
@@ -72,7 +71,7 @@
 				var marker = new google.maps.Marker({
 					position:pos,
 					map:map,
-					title:"Minha posição",
+					title:"Eu",
 					icon:new google.maps.MarkerImage("/static/img/user.png")
 				});
 
@@ -80,26 +79,17 @@
 					new google.maps.Size(32, 32),new google.maps.Point(0,0),new google.maps.Point(0, 32));
 
 				var shape = {coord:[1,1,1,32,30,32,30,1],type:"poly"};
-				var contentString = "";
 
 				for (var i=0; i < locations.length; i++){
 					var lixeira = locations[i];
-					if(typeof lixeira.data == 'undefined'){
- 						var descricao = lixeira.descricao + "<br /><b>Tipos:</b><br />" + lixeira.tipo;
-					}else{
-						var descricao = lixeira.data + " - " + lixeira.localColeta + "<br /><b>Tipo:</b>" + lixeira.tipo;
-					}
-					var myLatLng = new google.maps.LatLng(lixeira.latitude, lixeira.longitude);
+ 					var descricao = lixeira.descricao + "<br /><b>Tipos:</b><br />" + lixeira.tipo;
+					var myLatLng = new google.maps.LatLng(lixeira.lat, lixeira.lng);
 					var marker = new google.maps.Marker({
-						position:myLatLng,
-						map:map,
-						icon:image,
-						shape:shape,
-						title:descricao,
-						zIndex:i+1
+						position:myLatLng, map:map, icon:image,
+						shape:shape, title:descricao, zIndex:i+1
 					});
 
-					var infowindow = new google.maps.InfoWindow({content:contentString});
+					var infowindow = new google.maps.InfoWindow({content:""});
 					google.maps.event.addListener(marker, "click", function(){
 						infowindow.setContent(this.title);
 						infowindow.open(map, this);
@@ -115,14 +105,10 @@
 				}
                 var cores = {0:"#ff0000",1:"#0014ba",2:"#056d00",3:"#444444",4:"#703e00"}
  				var circulo = {
-					strokeColor:cores[tipo],
-					strokeOpacity:0.8,
-					strokeWeight:2,
-					fillColor:cores[tipo],
-					fillOpacity:0.35,
-					map:map,
-					center:new google.maps.LatLng(lat + 0.00004, lng + 0.00004),
-					radius:10
+					strokeColor:cores[tipo],fillColor:cores[tipo],
+					strokeOpacity:0.8,fillOpacity:0.35,
+					strokeWeight:2,radius:10,
+					map:map,center:new google.maps.LatLng(lat + 0.00004, lng + 0.00004),
 				};
 				obj_circulo = new google.maps.Circle(circulo);
 			}
@@ -131,7 +117,6 @@
 			$(".btn_tipo").click(function(){
 				var tipo_l = this.name;
 				$.get(URL_AJAX + "?lat=" + lat + "&lng=" + lng + "&tipo=" + tipo_l, function(dados){
-					dados = JSON.parse(dados);
 					desenha_circulo(dados.lat, dados.lng, tipo_l);
 				});
 			});
