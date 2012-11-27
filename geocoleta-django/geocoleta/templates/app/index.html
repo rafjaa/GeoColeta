@@ -1,200 +1,166 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="utf-8">
-    <title>GeoColeta</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
-    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
-    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-    <style type="text/css">
-        /* Ao final, esse CSS irá para um arquivo separado */
-        body {
-            overflow: hidden;
+<head>
+	<meta charset="utf-8">
+	<title>GeoColeta</title>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+	<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+	<style type="text/css">
+		/* Ao final, esse CSS irá para um arquivo separado */
+		body {overflow:hidden}
+		#pagina-mobile{width:100%;height:100%}
+		#conteudo-mobile{padding:0}
+		#map_canvas{
+			position:absolute;
+			width:100%;
+			height:100%;
+			padding:0
+		}
+		.ui-icon-lixo-plastico{
+			background-color:#c60009;
+			background-image:url("/static/img/recicl.png")
         }
+		.ui-icon-lixo-papel{
+			background-color:#0014ba;
+			background-image:url("/static/img/recicl.png")
+		}
+		.ui-icon-lixo-vidro{
+			background-color:#056d00;
+			background-image:url("/static/img/recicl.png")
+		}
+		.ui-icon-lixo-nreciclavel{
+			background-color:#444;
+			background-image:url("/static/img/recicl.png")
+		}
+		.ui-icon-lixo-organico{
+			background-color:#703e00;
+			background-image:url("/static/img/recicl.png")
+		}
+		.ui-icon-icone-reciclavel{
+			background-image:url("/static/img/recicl.png")
+		}
+		@media only screen and (-webkit-min-device-pixel-ratio:2) {
+			.ui-icon-icone-reciclavel{
+				background-image:url("/static/img/recicl-hd.png");
+				background-size:18px 18px
+			}
+		}
+	</style>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var map;
+			var obj_circulo;
+			var lat = -21.2318230;
+			var lng = -43.7670494;
 
-        #pagina-mobile{
-            width: 100%;
-            height: 100%;
-        }
-        #conteudo-mobile{
-            padding: 0;
-        }
-        #map_canvas{
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            padding: 0;
-		      text-shadow: none;
-        }
+			var carrega_mapa = function(){
+				var objJson = '{{dados|safe}}';
+				var locations = JSON.parse(objJson);
+				var pos = new google.maps.LatLng(lat, lng);
 
-        .ui-icon-lixo-plastico{
-            background-color: #c60009;
-            background-image: url("/static/img/recicl.png");
-        }
+				var mapOptions = {
+					center:pos,
+					zoom:19,
+					mapTypeId:google.maps.MapTypeId.SATELLITE
+				};
 
-        .ui-icon-lixo-papel{
-            background-color: #0014ba;
-            background-image: url("/static/img/recicl.png");
-        }
+				map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 
-        .ui-icon-lixo-vidro{
-            background-color: #056d00;
-            background-image: url("/static/img/recicl.png");
-        }
+				var marker = new google.maps.Marker({
+					position:pos,
+					map:map,
+					title:"Minha posição",
+					icon:new google.maps.MarkerImage("/static/img/user.png")
+				});
 
-        .ui-icon-lixo-nreciclavel{
-            background-color: #444;
-            background-image: url("/static/img/recicl.png");
-        }
+				var image = new google.maps.MarkerImage("/medias/imagens/lixeira.png",
+					new google.maps.Size(32, 32),new google.maps.Point(0,0),new google.maps.Point(0, 32));
 
-        .ui-icon-lixo-organico{
-            background-color: #703e00;
-            background-image: url("/static/img/recicl.png");
-        }
+				var shape = {coord:[1,1,1,32,30,32,30,1],type:"poly"};
+				var contentString = "";
 
-        .ui-icon-icone-reciclavel{
-            background-image: url("/static/img/recicl.png");
-        }
+				for (var i=0; i < locations.length; i++){
+					var lixeira = locations[i];
+					if(typeof lixeira.data == 'undefined'){
+ 						var descricao = lixeira.descricao + "<br /><b>Tipos:</b><br />" + lixeira.tipo;
+					}else{
+						var descricao = lixeira.data + " - " + lixeira.localColeta + "<br /><b>Tipo:</b>" + lixeira.tipo;
+					}
+					var myLatLng = new google.maps.LatLng(lixeira.latitude, lixeira.longitude);
+					var marker = new google.maps.Marker({
+						position:myLatLng,
+						map:map,
+						icon:image,
+						shape:shape,
+						title:descricao,
+						zIndex:i+1
+					});
 
-        @media only screen and (-webkit-min-device-pixel-ratio: 2) {
-            .ui-icon-icone-reciclavel{
-                background-image: url("/static/img/recicl-hd.png");
-                background-size: 18px 18px;
-            }
-        }
+					var infowindow = new google.maps.InfoWindow({content:contentString});
+					google.maps.event.addListener(marker, "click", function(){
+						infowindow.setContent(this.title);
+						infowindow.open(map, this);
+					});
+				}
+			}
 
-    </style>
-    <script type="text/javascript">
-      $(document).ready(function(){
-            var map;
-            var obj_circulo;
+			carrega_mapa();
 
-            // geolocalização obterá esses dados
-            var lat = -21.231823046;
-            var lng = -43.76704943;
+			var desenha_circulo = function(lat, lng, tipo){
+				if(obj_circulo){
+					obj_circulo.setMap(null);
+				}
+                var cores = {0:"#ff0000",1:"#0014ba",2:"#056d00",3:"#444444",4:"#703e00"}
+ 				var circulo = {
+					strokeColor:cores[tipo],
+					strokeOpacity:0.8,
+					strokeWeight:2,
+					fillColor:cores[tipo],
+					fillOpacity:0.35,
+					map:map,
+					center:new google.maps.LatLng(lat + 0.00004, lng + 0.00004),
+					radius:10
+				};
+				obj_circulo = new google.maps.Circle(circulo);
+			}
 
-            var carrega_mapa = function(){
-                var objJson = '{{dados|safe}}';
-                var locations = JSON.parse(objJson);
-                var pos = new google.maps.LatLng(lat, lng);
+			var URL_AJAX = "/app/buscar_lixeira";
+			$(".btn_tipo").click(function(){
+				var tipo_l = this.name;
+				$.get(URL_AJAX + "?lat=" + lat + "&lng=" + lng + "&tipo=" + tipo_l, function(dados){
+					dados = JSON.parse(dados);
+					desenha_circulo(dados.lat, dados.lng, tipo_l);
+				});
+			});
+		});
+	</script>
+	</head>
 
-                var mapOptions = {
-                    center: pos,
-                    zoom: 19,
-                    mapTypeId: google.maps.MapTypeId.SATELLITE
-                };
+	<body>
+	<div id="pagina-mobile" data-role="page">
 
-                map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+		<div data-role="header" data-position="fixed" data-theme="c">
+			<h1>GeoColeta</h1>
+			<a href="/app/lixeiras" data-icon="icone-reciclavel" data-iconpos="notext" data-prefetch>Locais</a>
+			<a href="/app/" target="_self" data-icon="refresh" data-iconpos="notext">Recarregar</a>
+		</div>
 
-                var marker = new google.maps.Marker({
-                    position: pos,
-                    map: map,
-                    title: 'Minha posição',
-                    icon: new google.maps.MarkerImage("/static/img/user.png")
-                });
+		<div id="conteudo-mobile" data-role="content"><div id="map_canvas"></div></div>
 
-                var image = new google.maps.MarkerImage('/medias/imagens/lixeira.png',
-                    new google.maps.Size(32, 32),
-                    new google.maps.Point(0,0),
-                    new google.maps.Point(0, 32));
-
-                var shape = {
-                    coord: [1, 1, 1, 32, 30, 32, 30, 1],
-                    type: 'poly'
-                };
-                var contentString = '';
-
-                for (var i = 0; i < locations.length; i++) {
-                    var lixeira = locations[i];
-                    if(typeof lixeira.data == 'undefined') {
-                        var descricao = lixeira.descricao + "<br /><b>Tipos:</b><br />" + lixeira.tipo;
-                    } else {
-                        var descricao = lixeira.data + " - " + lixeira.localColeta + "<br /><b>Tipo: </b>" + lixeira.tipo;
-                    }
-                    var myLatLng = new google.maps.LatLng(lixeira.latitude, lixeira.longitude);
-                    var marker = new google.maps.Marker({
-                        position: myLatLng,
-                        map: map,
-                        icon: image,
-                        shape: shape,
-                        title: descricao,
-                        zIndex: i+1
-                    });
-
-                    var infowindow = new google.maps.InfoWindow({
-                        content: contentString
-                    });
-                    google.maps.event.addListener(marker, 'click', function() {
-                        infowindow.setContent(this.title);
-                        infowindow.open(map, this);
-                    });
-                } //for
-            }
-
-            carrega_mapa();
-
-            var desenha_circulo = function(lat, lng, tipo){
-                if(obj_circulo){
-                    obj_circulo.setMap(null);
-                }
-                var cores = {
-                    0: "#ff0000",
-                    1: "#0014ba",
-                    2: "#056d00",
-                    3: "#444444",
-                    4: "#703e00"
-                }
-                var circulo = {
-                    strokeColor: cores[tipo],
-                    strokeOpacity: 0.8,
-                    strokeWeight: 2,
-                    fillColor: cores[tipo],
-                    fillOpacity: 0.35,
-                    map: map,
-                    center: new google.maps.LatLng(lat + 0.00004, lng + 0.00004),
-                    radius: 10
-                };
-                obj_circulo = new google.maps.Circle(circulo);
-            }
-
-            var URL_AJAX = '/app/buscar_lixeira';
-            $(".btn_tipo").click(function(){
-                var tipo_l = this.name;
-                $.get(URL_AJAX + "?lat=" + lat + "&lng=" + lng + "&tipo=" + tipo_l, function(dados){
-                    dados = JSON.parse(dados)
-                    desenha_circulo(dados.lat, dados.lng, tipo_l);
-                });
-            });
-      });
-    </script>
-  </head>
-
-  <body>
-    <div id="pagina-mobile" data-role="page">
-
-      <div data-role="header" data-position="fixed" data-theme="c">
-        <h1>GeoColeta</h1>
-        <a href="/app/lixeiras" data-icon="icone-reciclavel" data-iconpos="notext" data-prefetch>Locais</a>
-        <a href="/app/" target="_self" data-icon="refresh" data-iconpos="notext">Recarregar</a>
-      </div>
-
-      <div id="conteudo-mobile" data-role="content">
-            <div id="map_canvas"></div>
-      </div>
-
-	   <div data-role="footer" data-theme="c" data-position="fixed" data-tap-toggle="false">
-	     <div data-role="navbar">
-	         <ul>
-	             <li><a class="btn_tipo" name="0" href="#" id="btn_plastico" data-icon="lixo-plastico">Plástico</a></li>
-	             <li><a class="btn_tipo" name="1" href="#" id="btn_papel" data-icon="lixo-papel">Papel</a></li>
-	             <li><a class="btn_tipo" name="2" href="#" id="btn_vidro_metal" data-icon="lixo-vidro">Vidro/Metal</a></li>
-                 <li><a class="btn_tipo" name="3" href="#" id="btn_organico" data-icon="lixo-organico">Orgânico</a></li>
-	             <li><a class="btn_tipo" name="4" href="#" id="btn_nreciclavel" data-icon="lixo-nreciclavel">Não Reciclável</a></li>
-	         </ul>
-	     </div>
+		<div data-role="footer" data-theme="c" data-position="fixed" data-tap-toggle="false">
+		<div data-role="navbar">
+			<ul>
+				 <li><a class="btn_tipo" name="0" href="#" id="btn_plastico" data-icon="lixo-plastico">Plástico</a></li>
+				 <li><a class="btn_tipo" name="1" href="#" id="btn_papel" data-icon="lixo-papel">Papel</a></li>
+				 <li><a class="btn_tipo" name="2" href="#" id="btn_vidro_metal" data-icon="lixo-vidro">Vidro/Metal</a></li>
+				 <li><a class="btn_tipo" name="3" href="#" id="btn_organico" data-icon="lixo-organico">Orgânico</a></li>
+				 <li><a class="btn_tipo" name="4" href="#" id="btn_nreciclavel" data-icon="lixo-nreciclavel">Não Reciclável</a></li>
+			</ul>
+		</div>
 	</div>
-    </div>
-  </body>
+	</div>
+	</body>
 </html>
