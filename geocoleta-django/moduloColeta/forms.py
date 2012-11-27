@@ -13,5 +13,6 @@ class Filtro(forms.Form):
 		(ANO , 'Ano'),
 		)
 
+
 	periodo = forms.ChoiceField(choices=OPCOES)
 	coleta = forms.ModelChoiceField(queryset=TiposColeta.objects.all())

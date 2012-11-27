@@ -34,6 +34,32 @@
 		          	var descricao = lixeira.descricao + "<br /><b>Tipos:</b><br />" + lixeira.tipo;
 		          } else {
 		          	var descricao = lixeira.data + " - " + lixeira.localColeta + "<br /><b>Tipo: </b>" + lixeira.tipo;
+		          	if(lixeira.tipo == 'Papel') {
+			          	image = new google.maps.MarkerImage('../medias/imagens/marker1.png',
+			            	new google.maps.Size(32, 32),
+			            	new google.maps.Point(0,0),
+			            	new google.maps.Point(0, 32));
+		          	} else if(lixeira.tipo == 'Plastico') {
+			          	image = new google.maps.MarkerImage('../medias/imagens/marker2.png',
+			            	new google.maps.Size(32, 32),
+			            	new google.maps.Point(0,0),
+			            	new google.maps.Point(0, 32));
+		          	} else if(lixeira.tipo == 'Metal/Vidro') {
+			          	image = new google.maps.MarkerImage('../medias/imagens/marker3.png',
+			            	new google.maps.Size(32, 32),
+			            	new google.maps.Point(0,0),
+			            	new google.maps.Point(0, 32));
+		          	} else if(lixeira.tipo == 'Organico') {
+			          	image = new google.maps.MarkerImage('../medias/imagens/marker4.png',
+			            	new google.maps.Size(32, 32),
+			            	new google.maps.Point(0,0),
+			            	new google.maps.Point(0, 32));
+		          	} else if(lixeira.tipo == 'Nao Reciclavel') {
+			          	image = new google.maps.MarkerImage('../medias/imagens/marker5.png',
+			            	new google.maps.Size(32, 32),
+			            	new google.maps.Point(0,0),
+			            	new google.maps.Point(0, 32));
+		          	}
 		          }
   		          var myLatLng = new google.maps.LatLng(lixeira.latitude, lixeira.longitude);
 		          var marker = new google.maps.Marker({
@@ -65,27 +91,26 @@
 			document.getElementById("map_canvas").innerHTML = map;
 
 			var lixeiras = {{dados|safe}};
+
+			alert(lixeiras[0]);
 			setMarkers(map, lixeiras);
 
 			var periodo;
 			var coleta;
 		
 			$('#btt_filtrar').click(function(){
-				periodo = $('#filtro').val();
-				if(periodo == 'null') {
-					alert('Selecione um Período');
+				periodo = $('#id_periodo').val();
+				coleta = $('#id_coleta').val();
+				if(coleta == '') {
+					alert('Selecione um tipo de material');
 					return false;
 				} else {
-					coleta = $('#coleta').val();
-					if(coleta == 'null') {
-						alert('Selecione um Período');
-						return false;
-					} else {
-						return true;
-					}
+					return true;
 				}
+				
 			});
 		});
+
 	</script>
 {% endblock %}
 

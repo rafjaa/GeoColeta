@@ -37,9 +37,11 @@ def mapa(request):
 		form = Filtro(request.POST, request.FILES)
 		if form.is_valid():
 			filtros = form.cleaned_data
-
 			if filtros['periodo'] == 'todos':
-				log = Log.objects.filter(tipo=filtros['coleta'])
+				if str(filtros['coleta']) == 'Todos':
+					log = Log.objects.all()
+				else:	
+					log = Log.objects.filter(tipo=filtros['coleta'])
 				jsonString = []
 
 				for atual in log:
