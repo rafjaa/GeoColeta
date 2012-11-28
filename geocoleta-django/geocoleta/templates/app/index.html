@@ -80,7 +80,6 @@
 					title:"Eu",
 					icon:new google.maps.MarkerImage("/static/img/user.png")
 				});
-				marker.setDraggable (true);
 				
 				var image = new google.maps.MarkerImage("/medias/imagens/lixeira.png",
 					new google.maps.Size(32, 32),new google.maps.Point(0,0),new google.maps.Point(0, 32));
@@ -102,11 +101,6 @@
 						infowindow.open(map, this);
 					});
 				}
-
-				google.maps.event.addListener(marker, "dragend", function(event){
-	                var point = marker.getPosition();
-                	map.panTo(point);
-            	});
 			}
 
 			carrega_mapa();
