@@ -53,6 +53,9 @@ def buscar_lixeira(request):
             melhor_distancia = dist
             melhor_ponto = l
     
+    Log(latitudeUsuario=lat, longitudeUsuario=lng, tipo=TiposColeta.objects.get(tipo=assoc_tipos[int(tipo)]),
+        local=melhor_ponto).save()
+    
     return HttpResponse(json.dumps({'lat': float(melhor_ponto.latitude), 'lng': float(melhor_ponto.longitude), 'dist': round(melhor_distancia, 1)}), mimetype="application/json")
 
 def gerador_log(request):
