@@ -59,8 +59,10 @@ def mapa(request):
 				date = datetime.now()
 				mes = datetime.now().month
 				logs = []
-
-				candidatos = Log.objects.filter(tipo=filtros['coleta'], data__month=date.month, data__year=date.year)
+				if str(filtros['coleta']) == 'Todos':
+					candidatos = Log.objects.filter(data__month=date.month, data__year=date.year)
+				else:
+					candidatos = Log.objects.filter(tipo=filtros['coleta'], data__month=date.month, data__year=date.year)
 
 				for atual in candidatos:
 					if atual.data.isocalendar()[1] == semana:
@@ -79,7 +81,11 @@ def mapa(request):
 
 			elif filtros['periodo'] == 'mes':
 				date = datetime.now()
-				logs = Log.objects.filter(tipo=filtros['coleta'], data__month=date.month, data__year=date.year)				
+
+				if str(filtros['coleta']) == 'Todos':
+					logs = Log.objects.filter(data__month=date.month, data__year=date.year)
+				else:
+					logs = Log.objects.filter(tipo=filtros['coleta'], data__month=date.month, data__year=date.year)				
 				
 				jsonString = []
 				for atual in logs:
@@ -94,7 +100,11 @@ def mapa(request):
 
 			elif filtros['periodo'] == 'ano':
 				date = datetime.now()
-				logs = Log.objects.filter(tipo=filtros['coleta'], data__year=date.year)
+
+				if str(filtros['coleta']) == 'Todos':
+					logs = Log.objects.filter(data__year=date.year)
+				else:
+					logs = Log.objects.filter(tipo=filtros['coleta'], data__year=date.year)
 
 				jsonString = []
 				for atual in logs:
