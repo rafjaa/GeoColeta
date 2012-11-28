@@ -34,6 +34,13 @@ def mapa(request):
 
 		return render_to_response('mapa.html', {'dados': objJason, 'formFiltro': form}, context_instance=RequestContext(request))
 	else:
+		x = LocalColeta.objects.all()
+		d = []
+		for local in x:
+			d.append({'latitude':local.latitude[:11], 'longitude':local.longitude[:11], 'descricao':local.descricao,
+			'tipo':parse_tipo(local.tipo.all())})
+		objJasonLixeiras = json.dumps(d)
+
 		form = Filtro(request.POST, request.FILES)
 		if form.is_valid():
 			filtros = form.cleaned_data
@@ -52,7 +59,7 @@ def mapa(request):
 
 				form = Filtro()
 
-				return render_to_response('mapa.html', {'dados': objJason,'formFiltro': form}, context_instance=RequestContext(request))
+				return render_to_response('mapa.html', {'dados': objJason,'formFiltro': form, 'lixeiras': objJasonLixeiras}, context_instance=RequestContext(request))
 
 			elif filtros['periodo'] == 'semana':
 				semana = datetime.now().isocalendar()[1]
@@ -77,7 +84,7 @@ def mapa(request):
 
 				form = Filtro()
 
-				return render_to_response('mapa.html', {'dados': objJason, 'formFiltro': form}, context_instance=RequestContext(request))
+				return render_to_response('mapa.html', {'dados': objJason, 'formFiltro': form, 'lixeiras': objJasonLixeiras}, context_instance=RequestContext(request))
 
 			elif filtros['periodo'] == 'mes':
 				date = datetime.now()
@@ -95,7 +102,7 @@ def mapa(request):
 				objJason = json.dumps(jsonString)
 
 				form = Filtro()
-				return render_to_response('mapa.html', {'dados': objJason, 'formFiltro': form}, context_instance=RequestContext(request))				
+				return render_to_response('mapa.html', {'dados': objJason, 'formFiltro': form, 'lixeiras': objJasonLixeiras}, context_instance=RequestContext(request))				
 
 
 			elif filtros['periodo'] == 'ano':
@@ -114,7 +121,7 @@ def mapa(request):
 				objJason = json.dumps(jsonString)
 
 				form = Filtro()
-				return render_to_response('mapa.html', {'dados': objJason, 'formFiltro': form}, context_instance=RequestContext(request))
+				return render_to_response('mapa.html', {'dados': objJason, 'formFiltro': form, 'lixeiras': objJasonLixeiras}, context_instance=RequestContext(request))
 
 def coletas(request):
 	if request.is_ajax():

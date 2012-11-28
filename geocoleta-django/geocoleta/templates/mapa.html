@@ -15,7 +15,7 @@
 
 		$(document).ready(function() {
 
-			function setMarkers(map, locations) {
+			function setMarkers(map, locations, lixeiras) {
 		        var image = new google.maps.MarkerImage('../medias/imagens/lixeira.png',
 		            new google.maps.Size(32, 32),
 		            new google.maps.Point(0,0),
@@ -27,6 +27,31 @@
 		        };
 
 		        var contentString = '';
+
+		        if(typeof lixeiras != 'undefined') {
+			        for(var i = 0; i < lixeiras.length; i++) {
+			        	var lixeira = lixeiras[i];
+			        	var descricao = lixeira.descricao + "<br /><b>Tipos:</b><br />" + lixeira.tipo;
+			        	var myLatLng = new google.maps.LatLng(lixeira.latitude, lixeira.longitude);
+		          		var marker = new google.maps.Marker({
+			            	position: myLatLng,
+			            	map: map,
+			            	icon: image,
+			            	shape: shape,
+			            	title: descricao,
+			            	zIndex: i+1
+			          	});
+
+						var infowindow = new google.maps.InfoWindow({
+						  content: contentString
+						});
+						google.maps.event.addListener(marker, 'click', function() {
+						      infowindow.setContent(this.title);
+						      infowindow.open(map, this);
+						});
+			        }
+			    }
+
 
 		        for (var i = 0; i < locations.length; i++) {
 		          var lixeira = locations[i];
@@ -91,8 +116,9 @@
 			document.getElementById("map_canvas").innerHTML = map;
 
 			var lixeiras = {{dados|safe}};
+			var locaisColeta = {{ lixeiras|safe }}
 
-			setMarkers(map, lixeiras);
+			setMarkers(map, lixeiras, locaisColeta);
 
 			var periodo;
 			var coleta;

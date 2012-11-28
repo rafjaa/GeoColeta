@@ -15,4 +15,4 @@ class Filtro(forms.Form):
 
 
 	periodo = forms.ChoiceField(choices=OPCOES)
-	coleta = forms.ModelChoiceField(queryset=TiposColeta.objects.all())
+	coleta = forms.ModelChoiceField(queryset=TiposColeta.objects.all().order_by('-tipo'))
