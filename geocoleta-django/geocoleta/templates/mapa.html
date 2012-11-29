@@ -31,7 +31,7 @@
 		        if(typeof lixeiras != 'undefined') {
 			        for(var i = 0; i < lixeiras.length; i++) {
 			        	var lixeira = lixeiras[i];
-			        	var descricao = lixeira.descricao + "<br /><b>Tipos:</b><br />" + lixeira.tipo;
+			        	var descricao = "<h4 style=\"margin: 0px 0; text-shadow: 1px 1px #ccc\">" + lixeira.descricao + "</h4><br><strong>Tipos: </strong>" + lixeira.tipo;
 			        	var myLatLng = new google.maps.LatLng(lixeira.latitude, lixeira.longitude);
 		          		var marker = new google.maps.Marker({
 			            	position: myLatLng,
@@ -52,13 +52,12 @@
 			        }
 			    }
 
-
 		        for (var i = 0; i < locations.length; i++) {
 		          var lixeira = locations[i];
 		          if(typeof lixeira.data == 'undefined') {
-		          	var descricao = lixeira.descricao + "<br /><b>Tipos:</b><br />" + lixeira.tipo;
+		          	var descricao = "<h4 style=\"margin: 0px 0; text-shadow: 1px 1px #ccc\">" + lixeira.descricao + "</h4><br><strong>Tipos:</strong> " + lixeira.tipo;
 		          } else {
-		          	var descricao = lixeira.data + " - " + lixeira.localColeta + "<br /><b>Tipo: </b>" + lixeira.tipo;
+		          	var descricao = "<h4 style=\"margin: 0px 0; text-shadow: 1px 1px #ccc\">" + lixeira.data + "</h4><br><strong>Local: </strong>" + lixeira.localColeta + "<br><strong>Tipo de lixo: </strong>" + lixeira.tipo;
 		          	if(lixeira.tipo == 'Papel') {
 			          	image = new google.maps.MarkerImage('../medias/imagens/marker1.png',
 			            	new google.maps.Size(32, 32),

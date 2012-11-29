@@ -59,11 +59,15 @@
 		$(document).ready(function(){
 			var map;
 			var obj_circulo;
-			var lat = -21.2318230;
-			var lng = -43.7670494;
+			var lat = false;
+			var lng = false;
 
 			var carrega_mapa = function(){
 				var locations = {{dados|safe}};
+				if(!lat || (lat == -21.226447 && lng == -43.774195)){
+                    lat = -21.2320030; lng = -43.7666417;
+                }
+
 				var pos = new google.maps.LatLng(lat, lng);
 
 				var mapOptions = {
@@ -88,7 +92,7 @@
 
 				for (var i=0; i < locations.length; i++){
 					var lixeira = locations[i];
- 					var descricao = "<h4 style=\"margin: 0px 0; text-shadow: 1px 1px #ccc\">" + lixeira.descricao + "</h4><span style=\"font-size: 14px\"><strong>Tipos: </strong>" + lixeira.tipo + "</span>";
+ 					var descricao = "<h4 style=\"margin: 0px 0; text-shadow: 1px 1px #ccc\">" + lixeira.descricao + "</h4><br><span style=\"font-size: 14px\"><strong>Tipos: </strong>" + lixeira.tipo + "</span>";
 					var myLatLng = new google.maps.LatLng(lixeira.lat, lixeira.lng);
 					var marker = new google.maps.Marker({
 						position:myLatLng, map:map, icon:image,
@@ -102,8 +106,16 @@
 					});
 				}
 			}
-
-			carrega_mapa();
+			
+			function show_map(position) {
+                lat = position.coords.latitude;
+                lng = position.coords.longitude;
+                carrega_mapa();
+            }
+            function handle_error(err){
+                carrega_mapa();
+            }
+            navigator.geolocation.getCurrentPosition(show_map, handle_error);
 
 			var desenha_circulo = function(lat, lng, tipo){
 				if(obj_circulo){

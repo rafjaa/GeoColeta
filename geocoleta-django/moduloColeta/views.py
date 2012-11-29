@@ -27,7 +27,7 @@ def mapa(request):
 		d = []
 		for local in locaisColeta:
 			d.append({'latitude':local.latitude[:11], 'longitude':local.longitude[:11], 'descricao':local.descricao,
-			'tipo':parse_tipo(local.tipo.all())})
+			'tipo': ', '.join([str(c) for c in local.tipo.all()])})
 		objJason = json.dumps(d)
 
 		form = Filtro()
@@ -38,7 +38,7 @@ def mapa(request):
 		d = []
 		for local in x:
 			d.append({'latitude':local.latitude[:11], 'longitude':local.longitude[:11], 'descricao':local.descricao,
-			'tipo':parse_tipo(local.tipo.all())})
+			'tipo': ', '.join([str(c) for c in local.tipo.all()])})
 		objJasonLixeiras = json.dumps(d)
 
 		form = Filtro(request.POST, request.FILES)
