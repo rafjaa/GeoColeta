@@ -6,11 +6,11 @@ __Uma Aplicação Móvel baseada em Geolocalização e uma Interface Gerencial p
 ## Screenshots
 
 <p align="center">
-  <img src="https://raw.github.com/rafjaa/GeoColeta/master/samples/tela.png" alt="Aplicação móvel" style="margin: 20px 0" />
-
-  <img src="https://raw.github.com/rafjaa/GeoColeta/master/samples/gerencial.png" alt="Aplicação gerencial - mapa de coletas" style="margin: 20px 0" />
-
-  <img src="https://raw.github.com/rafjaa/GeoColeta/master/samples/grafico.png" alt="Aplicação gerencial - gráficos" style="margin: 20px 0" />
+  <img src="https://raw.github.com/rafjaa/GeoColeta/master/samples/tela.png" alt="Aplicação móvel" />
+<hr />
+  <img src="https://raw.github.com/rafjaa/GeoColeta/master/samples/gerencial.png" alt="Aplicação gerencial - mapa de coletas" />
+<hr>
+  <img src="https://raw.github.com/rafjaa/GeoColeta/master/samples/grafico.png" alt="Aplicação gerencial - gráficos" />
 </p>
 
 ## Wiki do Projeto
