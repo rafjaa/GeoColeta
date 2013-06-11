@@ -4,6 +4,23 @@ import os
 
 ROOTDIR = os.path.realpath(os.path.dirname(__file__))
 
+# APP ID
+FACEBOOK_APP_ID = 'APP_ID'
+
+# APP SECRET KEY
+FACEBOOK_API_SECRET = 'APP_SECRET'
+
+# AUTENTICACOES BACKENDS
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.facebook.FacebookBackend',
+)
+
+# OBTER PERMISSOES EXTRAS DO FACEBOOK. 
+FACEBOOK_EXTENDED_PERMISSIONS = ['email']
+
+# PARAMETROS EXTRA
+FACEBOOK_PROFILE_EXTRA_PARAMS = {'locale': 'br_BR'}
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
