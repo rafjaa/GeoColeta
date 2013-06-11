@@ -1,25 +1,45 @@
 # Django settings for geocoleta project.
 
 import os
+import django
 
 ROOTDIR = os.path.realpath(os.path.dirname(__file__))
 
-# APP ID
-FACEBOOK_APP_ID = 'APP_ID'
+django_version = django.VERSION
+# some complications related to our travis testing setup
+DJANGO = os.environ.get('DJANGO', '1.5.1')
+MODE = os.environ.get('MODE', 'standalone')
+CUSTOM_USER_MODEL = bool(int(os.environ.get('CUSTOM_USER_MODEL', '1')))
 
-# APP SECRET KEY
-FACEBOOK_API_SECRET = 'APP_SECRET'
+if DJANGO != '1.5.1':
+    CUSTOM_USER_MODEL = False
 
-# AUTENTICACOES BACKENDS
+FACEBOOK_APP_ID = '208761772605116'
+FACEBOOK_APP_SECRET = 'ac8044a9f0c43aab31e91b7839aabd90'
+TEMPLATE_CONTEXT_PROCESSORS = [
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.request',
+    'django.contrib.messages.context_processors.messages',
+    'django_facebook.context_processors.facebook',
+]
+
+if django_version >= (1, 4, 0):
+    TEMPLATE_CONTEXT_PROCESSORS.append('django.core.context_processors.tz')
+    
 AUTHENTICATION_BACKENDS = (
-    'social_auth.backends.facebook.FacebookBackend',
+    'django_facebook.auth_backends.FacebookBackend',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
-# OBTER PERMISSOES EXTRAS DO FACEBOOK. 
-FACEBOOK_EXTENDED_PERMISSIONS = ['email']
-
-# PARAMETROS EXTRA
-FACEBOOK_PROFILE_EXTRA_PARAMS = {'locale': 'br_BR'}
+if CUSTOM_USER_MODEL:
+    AUTH_USER_MODEL = 'django_facebook.FacebookCustomUser'
+else:
+    AUTH_USER_MODEL = 'auth.User'
+    AUTH_PROFILE_MODULE = 'member.UserProfile'
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -146,6 +166,7 @@ INSTALLED_APPS = (
 	'grappelli',
     'django.contrib.admin',
     'app',
+    'django_facebook',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 	'moduloColeta',
