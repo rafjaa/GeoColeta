@@ -1,3 +1,7 @@
 *~
 *.pyc
 *.pyo
+
+# pip
+pip-log.txt
+build
