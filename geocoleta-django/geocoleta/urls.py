@@ -11,6 +11,8 @@ urlpatterns = patterns('',
     url(r'^home$', 'moduloColeta.views.home',),
     url(r'^medias/(.*)$', 'django.views.static.serve', {'document_root':settings.MEDIA_ROOT}),
 
+    # Facebook
+    (r'^facebook/', include('django_facebook.urls')),
 
     url(r'^mapa$', 'moduloColeta.views.mapa'),
     url(r'^coletas$', 'moduloColeta.views.coletas'),
@@ -25,3 +27,21 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^grappelli/', include('grappelli.urls')),
 )
+
+if settings.MODE == 'userena':
+    urlpatterns += patterns('',
+                            (r'^accounts/', include('userena.urls')),
+                            )
+elif settings.MODE == 'django_registration':
+    urlpatterns += patterns('',
+                            (r'^accounts/', include(
+                                'registration.backends.default.urls')),
+                            )
+
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+                            url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+                                'document_root': settings.MEDIA_ROOT,
+                                }),
+                            )
