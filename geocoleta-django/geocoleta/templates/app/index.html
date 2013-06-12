@@ -54,12 +54,6 @@
 			padding: 3px 0;
 			font-size: 13px;
 		}
-	    #botao-submit-fb {
-			background:url("/static/img/compartilhar.jpg") no-repeat;
-			width: 115px;
-			height: 33px;
-			border: 0;
-		}
 
 	</style>
 	<script src="/static/js/statictest.js" type="text/javascript"></script>
@@ -180,14 +174,14 @@
 
 		<div data-role="footer" data-theme="c" data-position="fixed" data-tap-toggle="false">
 			<div class="info-dist">
-				Lixeira mais próxima: <span id="metragem"></span>
 				<form action="/facebook/wall_post/" method="post">
+					Lixeira mais próxima: <span id="metragem"></span>
 					<input type='hidden' name='csrfmiddlewaretoken' value='FJMMUs1ohRJl60KQXfBeq73RZvGCP5E3' />
 					<input type="hidden" value="/app" name="next" />
 
 					<input type="hidden" name="message" value="Estou contribuindo com a Coleta Seletiva no IF Sudeste MG, Câmpus Barbacena. Mais informações sobre o GeoColeta: http://www.barbacena.ifsudestemg.edu.br/conteudo/GeoColeta" />
 					<br />
-					<input id="botao-submit-fb" type="submit" value=" " onclick="F.connect(this.parentNode, ['publish_stream']); return false;"/>
+					<input type="image" value=" " src="/static/img/compartilhar.jpg" alt="submit" onclick="F.connect(this.parentNode, ['publish_stream']); return false;"/>
 				</form>
 		</div>
 		<div data-role="navbar">
