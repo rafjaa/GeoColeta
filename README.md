@@ -1,6 +1,6 @@
 # GeoColeta
 
-__Uma Aplicação Móvel baseada em Geolocalização e uma Interface Gerencial para apoio ao Processo de Coleta Seletiva__. Protótipo funcional finalista da Semana Nacional de Ciência e Tecnologia 2012, no IF Sudeste de Minas Gerais, Câmpus Barbacena.
+__Sistema de Informação Geográfica para gerência e incentivo ao Processo de Coleta Seletiva__. Protótipo funcional finalista da Semana Nacional de Ciência e Tecnologia 2012, no IF Sudeste de Minas Gerais, Câmpus Barbacena.
 
 
 ## Screenshots
