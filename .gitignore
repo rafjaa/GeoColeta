@@ -5,3 +5,9 @@
 # pip
 pip-log.txt
 build
+
+# virtualenv
+bin
+include
+lib
+local
