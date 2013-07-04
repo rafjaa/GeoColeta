@@ -1,0 +1,46 @@
+.content{
+    padding: 0;
+}
+
+#map-canvas{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+.ui-icon-lixo-plastico{
+	background-color: #c60009;
+	background-image: url("/static/img/recicl.png")
+}
+
+.ui-icon-lixo-papel{
+	background-color: #0014ba;
+	background-image: url("/static/img/recicl.png")
+}
+
+.ui-icon-lixo-vidro{
+	background-color: #056d00;
+	background-image: url("/static/img/recicl.png")
+}
+
+.ui-icon-lixo-nreciclavel{
+	background-color: #444;
+	background-image: url("/static/img/recicl.png")
+}
+
+.ui-icon-lixo-organico{
+	background-color: #703e00;
+	background-image: url("/static/img/recicl.png")
+}
+
+.ui-icon-icone-reciclavel{
+	background-image: url("/static/img/recicl.png")
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio:2) {
+	.ui-icon-icone-reciclavel{
+		background-image: url("/static/img/recicl-hd.png");
+		background-size: 18px 18px
+	}
+}
