@@ -1,6 +1,6 @@
 # GeoColeta
 
-__Sistema de Informação Geográfica para gerência e incentivo ao Processo de Coleta Seletiva__
+__Sistema de Informação Geográfica para gerência e incentivo ao Processo de Coleta Seletiva__: http://www.barbacena.ifsudestemg.edu.br/conteudo/geocoleta
 
 - Projeto finalista da Semana Nacional de Ciência e Tecnologia 2012 do Câmpus Barbacena.
 
@@ -9,7 +9,6 @@ __Sistema de Informação Geográfica para gerência e incentivo ao Processo de 
 
 - Em fase de implantação no Câmpus por meio do projeto "Implantação de um Sistema de Informação Geográfica para gerência e incentivo ao Processo de Coleta Seletiva no Instituto Federal do Sudeste de Minas Gerais, Câmpus Barbacena", aprovado no Edital 01/2013 - Nível Técnico.
 
-http://www.barbacena.ifsudestemg.edu.br/conteudo/geocoleta
 
 ## Screenshots
 
@@ -21,6 +20,5 @@ http://www.barbacena.ifsudestemg.edu.br/conteudo/geocoleta
   <img src="https://raw.github.com/rafjaa/GeoColeta/master/samples/grafico.png" alt="Aplicação gerencial - gráficos" />
 </p>
 
-## Wiki do Projeto
-Informações sobre instalação e configuração do software:
-https://github.com/rafjaa/GeoColeta/wiki/Home/
+## Protótipo
+Para instalar a versão anterior do projeto (protótipo), acesse o link https://github.com/rafjaa/GeoColeta/tree/prototipo
