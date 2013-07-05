@@ -93,20 +93,8 @@ $(document).ready(function(){
             //icon: new google.maps.MarkerImage("/static/img/user.png")
     });
 
-    /* Eventos no mapa */
-
-    google.maps.event.addListener(user, 'dragend', function(){
-        //user.getPosition().lng()
-        map.setCenter(user.getPosition());
-    });
-
-    google.maps.event.addListener(map, 'click', function(ev){
-        alert(ev.latLng.lat() + ' ' + ev.latLng.lng());
-    });
-
-
     /* Desenha as coordenadas */
-    var coords = [
+    var coords_sede = [
     new google.maps.LatLng(-21.228004410394462, -43.76750886440277),
     new google.maps.LatLng(-21.228516953153143, -43.76747399568558),
     new google.maps.LatLng(-21.228516953153143, -43.767428398132324),
@@ -118,24 +106,41 @@ $(document).ready(function(){
     new google.maps.LatLng(-21.228524453765658, -43.767001926898956),
     new google.maps.LatLng(-21.22848195028969, -43.76700460910797),
     new google.maps.LatLng(-21.22847194947005, -43.76684635877609),
-    new google.maps.LatLng(-21.228364440615962, -43.76685440540314),
+    new google.maps.LatLng(-21.228256931683497, -43.76686781644821),
+    new google.maps.LatLng(-21.228246930848602, -43.76678466796875),        
+    new google.maps.LatLng(-21.228331937923713, -43.76676857471466),
     new google.maps.LatLng(-21.228331937923713, -43.7666130065918),
     new google.maps.LatLng(-21.228061915280477, -43.766639828681946),
     new google.maps.LatLng(-21.228071916127934, -43.7668839097023),
     new google.maps.LatLng(-21.227959406554984, -43.766897320747375),
   ];
-  var flightPath = new google.maps.Polygon({
-    paths: coords,
-    strokeColor: "#FF0000",
-    strokeOpacity: 0.8,
-    strokeWeight: 0.5,
-    fillColor: "#FF0000",
-    fillOpacity: 0.25
-  });
 
-  flightPath.setMap(map);
+    var place_sede = new google.maps.Polygon({
+        paths: coords_sede,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.25
+    });
 
+    place_sede.setMap(map);
+
+
+    /* Eventos no mapa */
+
+    google.maps.event.addListener(user, 'dragend', function(){
+        //user.getPosition().lng()
+        map.setCenter(user.getPosition());
+    });
+
+    google.maps.event.addListener(map, 'click', function(ev){
+        alert(ev.latLng.lat() + ' ' + ev.latLng.lng());
+    });
+
+    google.maps.event.addListener(place_sede, 'click', function(){
+        alert('PRÉDIO SEDE');
+    });
 
     $("#panel").panel("open");
-
 });
