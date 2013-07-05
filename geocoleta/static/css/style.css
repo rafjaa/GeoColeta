@@ -44,3 +44,14 @@
 		background-size: 18px 18px
 	}
 }
+
+#my-wrapper {
+    padding-top : 45px;
+}
+#my-wrapper form {
+    position : fixed;
+    top      : 15px;
+    left     : 15px;
+    width    : 100%;
+    z-index  : 1;
+}​

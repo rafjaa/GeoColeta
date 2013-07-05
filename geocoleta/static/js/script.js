@@ -39,7 +39,7 @@ $(document).ready(function(){
     $('#opt_infra').click(function(){
         $.get('ajax_infraestrutura', function(data){
             $('#panel').contents().hide();
-            $('#panel').append(data).trigger('create');
+            $('#panel').html(data).trigger('create');
             $('#panel').trigger('updatelayout');
         });
     });
