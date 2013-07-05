@@ -38,24 +38,24 @@ $(document).ready(function(){
 
     $('#opt_infra').click(function(){
         $.get('ajax_infraestrutura', function(data){
-            $('#panel').contents().hide();
-            $('#panel').html(data).trigger('create');
+            $('#main_list').hide();
+            $('#panel').prepend(data).trigger('create');
             $('#panel').trigger('updatelayout');
         });
     });
 
     $('#opt_locais').click(function(){
         $.get('ajax_locais_coleta', function(data){
-            $('#panel').contents().hide();
-            $('#panel').append(data);       
+            $('#main_list').hide();
+            $('#panel').prepend(data).trigger('create');
             $('#panel').trigger('updatelayout');
         });
     });
 
     $('#opt_noticias').click(function(){
         $.get('ajax_noticias', function(data){
-            $('#panel').contents().hide();
-            $('#panel').append(data);       
+            $('#main_list').hide();
+            $('#panel').prepend(data).trigger('create');
             $('#panel').trigger('updatelayout');
         });
     });
