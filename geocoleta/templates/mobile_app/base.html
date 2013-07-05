@@ -12,27 +12,28 @@
 
         <div data-role="page" class="page">
 
-            <div data-role="panel" id="panel" data-display="overlay" data-theme="c">
+            <div id="panel" data-role="panel" data-display="overlay" data-theme="c" data-position-fixed="true">
+
                 <ul data-role="listview" data-theme="d">
                 
                     <li data-icon="arrow-l" data-theme="a"><a href="#" data-rel="close"><strong>Geo</strong>Coleta</a></li>
 
                     <li data-icon="refresh">
-                        <a href="#">                        
+                        <a id="opt_atualizar" href="#">
                             <img class="ui-li-icon" src="/static/img/geo-icon.png" />
                             Atualizar localização
                         </a>
                     </li>
                     
                     <li data-icon="grid">
-                        <a href="#">
+                        <a id="opt_infra" href="#">
                             <img class="ui-li-icon" src="/static/img/infra-icon.png" />
                             Infraestrutura
                         </a>
                     </li>
                     
                     <li data-icon="false">
-                        <a href="#">
+                        <a id="opt_locais" href="#">
                             <img class="ui-li-icon" src="/static/img/trash-icon.png" />
                             Locais de Coleta
                             <span class="ui-li-count">27</span>
@@ -40,7 +41,7 @@
                     </li>
 
                     <li data-icon="false">                        
-                        <a href="#">
+                        <a id="opt_noticias" href="#">
                             <img class="ui-li-icon" src="/static/img/news-icon.png" />
                             Notícias <span class="ui-li-count">3</span>
                         </a>
@@ -51,13 +52,13 @@
                     </li>
 
                     <li>
-                        <a href="#">
+                        <a id="opt_descartes" href="#">
                             <h2>Descartes</h2><p>Requisições realizadas no GeoColeta</p>
                         </a>                        
                     </li>
 
                     <li>
-                        <a href="#">
+                        <a id="opt_coletores" href="#">
                             <h2>Coletores</h2><p>Utilização dos pontos de coleta seletiva</p>
                         </a>
                     </li>
@@ -65,6 +66,7 @@
                 </ul>
                 
                 <a data-theme="d" style="margin-top: 35px" href="#" data-rel="close" data-role="button">Fechar painel</a>
+
 
                 <!--
                 <ul data-role="listview" data-theme="d" data-count-theme="a" data-filter="true">

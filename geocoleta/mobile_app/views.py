@@ -9,3 +9,11 @@ def home(request):
                 context_instance=RequestContext(request))
 
 
+def ajax_infraestrutura(request):
+	return render_to_response('mobile_app/ajax_infraestrutura.html')
+
+def ajax_locais_coleta(request):
+	return render_to_response('mobile_app/ajax_locais_coleta.html')
+
+def ajax_noticias(request):
+	return render_to_response('mobile_app/ajax_noticias.html')
