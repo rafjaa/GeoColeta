@@ -12,10 +12,8 @@ $(document).ready(function(){
         lat = position.coords.latitude;
         lng = position.coords.longitude;
         accuracy = position.coords.accuracy;
-        
-        //alert(lat + ' ' + lng + ' ' + accuracy);
     }
-    
+   
     handle_error = function(error){
         var PERMISSION_DENIED = 1;
         var POSITION_UNAVAILABLE = 2;
@@ -86,8 +84,20 @@ $(document).ready(function(){
 
     var map = new google.maps.Map(document.getElementById("map-canvas"),
     mapOptions);
-    
-    
+
+    var user = new google.maps.Marker({
+            position: new google.maps.LatLng(lat, lng),
+            map: map,
+            draggable: true,
+            animation: google.maps.Animation.DROP,
+            //icon: new google.maps.MarkerImage("/static/img/user.png")
+    });
+
+    google.maps.event.addListener(user, 'dragend', function(){
+        //user.getPosition().lng()
+        map.setCenter(user.getPosition());
+    });
+
     $("#panel").panel("open");
 
 });
