@@ -1,0 +1,8 @@
+<ul id="ajax_content" data-role="listview" data-theme="d">
+    <li data-icon="back" data-theme="a">
+    	<a href="#" data-rel="close" onclick="$('.dynamic').remove(); $('#ajax_content').remove(); $('#main_list').show()">
+    		Voltar
+    	</a>
+    </li>
+</ul>
+{% block content %}{% endblock %}
