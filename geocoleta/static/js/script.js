@@ -93,10 +93,48 @@ $(document).ready(function(){
             //icon: new google.maps.MarkerImage("/static/img/user.png")
     });
 
+    /* Eventos no mapa */
+
     google.maps.event.addListener(user, 'dragend', function(){
         //user.getPosition().lng()
         map.setCenter(user.getPosition());
     });
+
+    google.maps.event.addListener(map, 'click', function(ev){
+        alert(ev.latLng.lat() + ' ' + ev.latLng.lng());
+    });
+
+
+    /* Desenha as coordenadas */
+    var coords = [
+    new google.maps.LatLng(-21.228004410394462, -43.76750886440277),
+    new google.maps.LatLng(-21.228516953153143, -43.76747399568558),
+    new google.maps.LatLng(-21.228516953153143, -43.767428398132324),
+    new google.maps.LatLng(-21.228631962503105, -43.767428398132324),
+    new google.maps.LatLng(-21.228621961693626, -43.76735866069794),
+    new google.maps.LatLng(-21.228516953153143, -43.767374753952026), 
+    new google.maps.LatLng(-21.22851445294888, -43.76722723245621),
+    new google.maps.LatLng(-21.228541955193375, -43.76720577478409),
+    new google.maps.LatLng(-21.228524453765658, -43.767001926898956),
+    new google.maps.LatLng(-21.22848195028969, -43.76700460910797),
+    new google.maps.LatLng(-21.22847194947005, -43.76684635877609),
+    new google.maps.LatLng(-21.228364440615962, -43.76685440540314),
+    new google.maps.LatLng(-21.228331937923713, -43.7666130065918),
+    new google.maps.LatLng(-21.228061915280477, -43.766639828681946),
+    new google.maps.LatLng(-21.228071916127934, -43.7668839097023),
+    new google.maps.LatLng(-21.227959406554984, -43.766897320747375),
+  ];
+  var flightPath = new google.maps.Polygon({
+    paths: coords,
+    strokeColor: "#FF0000",
+    strokeOpacity: 0.8,
+    strokeWeight: 0.5,
+    fillColor: "#FF0000",
+    fillOpacity: 0.25
+  });
+
+  flightPath.setMap(map);
+
 
     $("#panel").panel("open");
 
