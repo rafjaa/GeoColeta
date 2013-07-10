@@ -18,10 +18,11 @@
                 
                     <li data-icon="arrow-l" data-theme="a"><a href="#" data-rel="close"><strong>Geo</strong>Coleta</a></li>
 
-                    <li data-icon="refresh">
-                        <a id="opt_atualizar" href="#">
-                            <img class="ui-li-icon" src="/static/img/geo-icon.png" />
-                            Atualizar localização
+                    <li>
+                        <a id="opt_atualizar" href="#" onclick="map.setCenter(user.getPosition())">
+                            <img style="margin-top: 15px" class="ui-li-icon" src="/static/img/geo-icon.png" />
+                            <h2>Centralizar posição</h2>
+                            <p>Arraste o ícone para alterar</p>
                         </a>
                     </li>
                     
