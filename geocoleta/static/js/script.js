@@ -69,8 +69,6 @@ $(document).ready(function(){
 
 
 
-
-
     /* Inicialização das funcionalidades */
 
     // Inicia a detecção da localização do usuário
