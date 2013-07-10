@@ -1,8 +1,9 @@
 $(document).ready(function(){
 
-    var lat = -21.229544;
-    var lng = -43.771070;
+    var lat = -21.228686966943123;
+    var lng = -43.767511546611786;
     var accuracy = 999999;
+   
 
     geolocation = function(){
         navigator.geolocation.getCurrentPosition(get_location, handle_error);
@@ -69,8 +70,6 @@ $(document).ready(function(){
 
 
 
-
-
     /* Inicialização das funcionalidades */
 
     // Inicia a detecção da localização do usuário
@@ -79,7 +78,7 @@ $(document).ready(function(){
 
     var mapOptions = {
         center: new google.maps.LatLng(lat, lng),
-        zoom: 18,
+        zoom: 22,
         mapTypeId: google.maps.MapTypeId.SATELLITE
     };
 
@@ -127,21 +126,47 @@ $(document).ready(function(){
 
     place_sede.setMap(map);
 
+   //Biblioteca
+    var coords_biblioteca = [
+        new google.maps.LatLng(-21.228526953969734, -43.76678466796875),
+        new google.maps.LatLng(-21.228569457432723, -43.766787350177765), 
+        new google.maps.LatLng(-21.22866696533096, -43.76673638820648), 
+        new google.maps.LatLng(-21.22853195437778, -43.766414523124695),
+        
+        
+        new google.maps.LatLng(-21.228424445567434, -43.76645743846893), 
+        new google.maps.LatLng(-21.228424445567434, -43.766540586948395),     
+   ];
+   
+    var place_biblioteca = new google.maps.Polygon({
+        paths: coords_biblioteca,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+    });
+    
+    place_biblioteca.setMap(map);
+  
+
 
     /* Eventos no mapa */
 
     google.maps.event.addListener(user, 'dragend', function(){
         //user.getPosition().lng()
         map.setCenter(user.getPosition());
+        var pos = user.getPosition();
+        alert(pos.lat() + ', ' + pos.lng());
     });
 
     google.maps.event.addListener(map, 'click', function(ev){
-        alert(ev.latLng.lat() + ' ' + ev.latLng.lng());
+        //alert(ev.latLng.lat() + ', ' + ev.latLng.lng());
     });
 
     google.maps.event.addListener(place_sede, 'click', function(){
         alert('PRÉDIO SEDE');
     });
 
-    $("#panel").panel("open");
+    //$("#panel").panel("open");
 });
