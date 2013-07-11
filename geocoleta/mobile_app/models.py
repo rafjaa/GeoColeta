@@ -2,7 +2,7 @@
 
 from django.db import models
 
-# Create your models here.
+
 class TipoColetor(models.Model):
 	tipo = models.CharField('Tipo', max_length=30)
 	
@@ -12,7 +12,8 @@ class TipoColetor(models.Model):
 	class Meta():
 		verbose_name = u'Tipo de Coletor'
 		verbose_name_plural = u'Tipos de Coletores'
-		
+
+
 class Coletor(models.Model):
 	latitude = models.CharField('Latitude', max_length=50)
 	longitude = models.CharField('Longitude', max_length=50)
@@ -25,7 +26,8 @@ class Coletor(models.Model):
 	class Meta():
 		verbose_name = u'Coletor'
 		verbose_name_plural = u'Coletores'
-		
+
+
 class Registro(models.Model):
 	latitude = models.CharField('Latitude', max_length=50)
 	longitude = models.CharField('Longitude', max_length=50)
@@ -39,7 +41,8 @@ class Registro(models.Model):
 	class Meta():
 		verbose_name = u'Registro'
 		verbose_name_plural = u'Registros'
-		
+
+
 #Avaliar se os próximos dois models podem fazer parte dessa app
 #ou é melhor criar uma nova app para eles.
 class Local(models.Model):
@@ -56,11 +59,13 @@ class Local(models.Model):
 	class Meta():
 		verbose_name = u'Local'
 		verbose_name_plural = u'Locais'
-		
+
+
 class Noticia(models.Model):
 	titulo = models.CharField('Título', max_length=50)
 	corpo = models.TextField('Corpo')
 	data = models.DateTimeField(auto_now=True)
+	link = models.URLField(blank=True)
 	
 	def __unicode__(self):
 		return u'{0}'.format(self.titulo)
