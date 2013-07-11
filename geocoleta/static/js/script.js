@@ -209,7 +209,26 @@ $(document).ready(function(){
         fillColor: "#FF0000",
         fillOpacity: 0.5   
      });
-     place_quimica.setMap(map);   
+     place_quimica.setMap(map);
+     
+     //Informática
+     var coords_informatica = [
+        new google.maps.LatLng(-21.22746186319244, -43.7638396024704),
+        new google.maps.LatLng(-21.22750436696233, -43.76337558031082),
+        new google.maps.LatLng(-21.2275293691742, -43.76322269439697),
+        new google.maps.LatLng(-21.227346852930143, -43.763185143470764),
+        new google.maps.LatLng(-21.227316850238267, -43.76334339380264),
+        new google.maps.LatLng(-21.227266845738235, -43.76382350921631),
+     ];
+     var place_informatica = new google.maps.Polygon({
+        paths: coords_informatica,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+     });
+     place_informatica.setMap(map);    
 
     /* Eventos no mapa */
 
