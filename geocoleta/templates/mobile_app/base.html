@@ -36,8 +36,8 @@
                     <li data-icon="false">
                         <a id="opt_locais" href="#">
                             <img class="ui-li-icon" src="/static/img/trash-icon.png" />
-                            Locais de Coleta
-                            <span class="ui-li-count">27</span>
+                            Coletores
+                            <span class="ui-li-count">{{ qtd_coletores }}</span>
                         </a>
                     </li>
 
@@ -108,5 +108,12 @@
         <script src="/static/js/jquery.mobile-1.3.1.min.js"></script>
         <script src="http://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&sensor=true"></script>
         <script src="/static/js/script.js"></script>
+        <script>
+            coletores = [
+                {% for coletor in coletores %}
+                    new google.maps.LatLng({{ coletor.latitude }}, {{ coletor.longitude }}),
+                {% endfor %}
+            ];
+        </script>
     </body>
 </html>

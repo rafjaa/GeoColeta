@@ -8,16 +8,21 @@ from mobile_app import models
 
 def home(request):
     return render_to_response('mobile_app/home.html',
-    			{'qtd_noticias': models.Noticia.objects.count()},
-                context_instance=RequestContext(request))
+    		{
+    			'qtd_noticias': models.Noticia.objects.count(),
+    			'qtd_coletores': models.Coletor.objects.count(),
+    			'coletores': models.Coletor.objects.all(),
+    		},
+            context_instance=RequestContext(request))
 
 
 def ajax_infraestrutura(request):
 	return render_to_response('mobile_app/ajax_infraestrutura.html')
 
 def ajax_locais_coleta(request):
-	return render_to_response('mobile_app/ajax_locais_coleta.html')
+	return render_to_response('mobile_app/ajax_locais_coleta.html',
+			{'coletores': models.Coletor.objects.all()})
 
 def ajax_noticias(request):
 	return render_to_response('mobile_app/ajax_noticias.html',
-				{'noticias': models.Noticia.objects.all()})
+			{'noticias': models.Noticia.objects.all()})

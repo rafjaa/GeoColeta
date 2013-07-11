@@ -168,5 +168,14 @@ $(document).ready(function(){
         alert('PRÉDIO SEDE');
     });
 
+    /* Carrega os coletores */
+    for(i=0; i < coletores.length; i++) {  
+        var marker = new google.maps.Marker({
+            position: coletores[i],
+            map: map,
+            icon: new google.maps.MarkerImage("/static/img/lixeira.png")
+        });
+    }
+
     //$("#panel").panel("open");
 });

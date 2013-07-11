@@ -4,21 +4,23 @@
 
 <div id="my-wrapper" class="dynamic">
 	<ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar">
-		<li>
-			<a href="">
-				Próximo ao almoxarifado
-			</a>
-		</li>
-		<li>
-			<a href="">
-				Ao lado do anexo
-			</a>
-		</li>
-		<li>
-			<a href="">
-				Em frente à FAPE
-			</a>
-		</li>
+
+		{% for coletor in coletores %}
+			<li>
+				<a href="#"
+					onclick="map.setCenter(new google.maps.LatLng({{ coletor.latitude }}, {{ coletor.longitude }}));">
+					<h2>{{ coletor.descricao }}</h2>
+					<p>
+						{% for tipo in coletor.tipo.all %}
+							<span class="tipo_lixo">
+								{{ tipo.tipo }}
+							</span>
+						{% endfor %}
+					</p>
+				</a>
+			</li>
+		{% endfor %}
+
 	</ul>
 </div>
 
