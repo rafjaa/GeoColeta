@@ -182,9 +182,7 @@ $(document).ready(function(){
         new google.maps.LatLng(-21.227616876882365, -43.76525044441223),
         new google.maps.LatLng(-21.227576873365074, -43.76527726650238),
         new google.maps.LatLng(-21.227679382356396, -43.76548647880554),
-        new google.maps.LatLng(-21.22770188432058, -43.76548111438751),
-        
-        
+        new google.maps.LatLng(-21.22770188432058, -43.76548111438751),    
      ];
      var place_enfermaria = new google.maps.Polygon({
         paths: coords_enfermaria,
@@ -195,6 +193,23 @@ $(document).ready(function(){
         fillOpacity: 0.5
      });
      place_enfermaria.setMap(map);
+     
+     //Química
+     var coords_quimica = [
+        new google.maps.LatLng(-21.2274293603013, -43.764177560806274),
+        new google.maps.LatLng(-21.22745686274811, -43.76384228467941),
+        new google.maps.LatLng(-21.227266845738235, -43.76382619142532),
+        new google.maps.LatLng(-21.227236843030102, -43.764161467552185),
+     ];
+     var place_quimica = new google.maps.Polygon({
+        paths: coords_quimica,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5   
+     });
+     place_quimica.setMap(map);   
 
     /* Eventos no mapa */
 
