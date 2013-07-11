@@ -171,6 +171,30 @@ $(document).ready(function(){
      
      place_dap.setMap(map);
    
+     //Enfermaria
+     var coords_enfermaria = [
+        new google.maps.LatLng(-21.227711885192434, -43.76549184322357),
+        new google.maps.LatLng(-21.22783689603352, -43.76541942358017),
+        new google.maps.LatLng(-21.227721886063627, -43.76520484685898),
+        new google.maps.LatLng(-21.22766938148233, -43.76522362232208),
+        new google.maps.LatLng(-21.22763437841776, -43.765148520469666),
+        new google.maps.LatLng(-21.227581873805317, -43.76516729593277),
+        new google.maps.LatLng(-21.227616876882365, -43.76525044441223),
+        new google.maps.LatLng(-21.227576873365074, -43.76527726650238),
+        new google.maps.LatLng(-21.227679382356396, -43.76548647880554),
+        new google.maps.LatLng(-21.22770188432058, -43.76548111438751),
+        
+        
+     ];
+     var place_enfermaria = new google.maps.Polygon({
+        paths: coords_enfermaria,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+     });
+     place_enfermaria.setMap(map);
 
     /* Eventos no mapa */
 
