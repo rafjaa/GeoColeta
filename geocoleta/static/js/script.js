@@ -130,11 +130,9 @@ $(document).ready(function(){
     var coords_biblioteca = [
         new google.maps.LatLng(-21.228526953969734, -43.76678466796875),
         new google.maps.LatLng(-21.228569457432723, -43.766787350177765), 
-        new google.maps.LatLng(-21.22866696533096, -43.76673638820648), 
-        new google.maps.LatLng(-21.22853195437778, -43.766414523124695),
-        
-        
-        new google.maps.LatLng(-21.228424445567434, -43.76645743846893), 
+        new google.maps.LatLng(-21.22867946633889, -43.7667390704155), 
+        new google.maps.LatLng(-21.22853445458175, -43.766409158706665),
+        new google.maps.LatLng(-21.228416944949828, -43.76647084951401), 
         new google.maps.LatLng(-21.228424445567434, -43.766540586948395),     
    ];
    
@@ -148,8 +146,31 @@ $(document).ready(function(){
     });
     
     place_biblioteca.setMap(map);
-  
-
+    
+    //DAP
+    var coords_dap = [
+        new google.maps.LatLng(-21.227881899910372, -43.76578688621521),
+        new google.maps.LatLng(-21.22799940996853, -43.76571714878082),
+        new google.maps.LatLng(-21.22784189646495, -43.76546770334244),
+        new google.maps.LatLng(-21.2278018930087, -43.76547574996948),
+        new google.maps.LatLng(-21.227799392792335, -43.76547306776047),
+        new google.maps.LatLng(-21.227704384538598, -43.76553475856781),
+        new google.maps.LatLng(-21.22785689775826, -43.765778839588165),
+          
+        
+    ];
+    
+    var place_dap = new google.maps.Polygon({
+         paths: coords_dap,
+         strokeColor: "#FF0000",
+         strokeOpacity: 0.8,
+         strokeWeight: 0.5,
+         fillColor: "#FF0000",
+         fillOpacity: 0.5
+     });
+     
+     place_dap.setMap(map);
+   
 
     /* Eventos no mapa */
 
