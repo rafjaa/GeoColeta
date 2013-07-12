@@ -268,6 +268,28 @@ $(document).ready(function(){
        });
        place_labSolos.setMap(map);
        
+       //Garagem
+       var coords_garagem = [
+        new google.maps.LatLng(-21.230764619634144, -43.76743108034134),
+        new google.maps.LatLng(-21.23078462096185, -43.767313063144684),
+        new google.maps.LatLng(-21.23078462096185, -43.76721650362015),
+        new google.maps.LatLng(-21.230519603149492, -43.7672084569931),
+        new google.maps.LatLng(-21.230504602127013, -43.76734793186188),
+        new google.maps.LatLng(-21.230467099564127, -43.76735061407089),
+        new google.maps.LatLng(-21.2304595990504, -43.76741498708725),
+       ];
+       var place_garagem = new google.maps.Polygon({
+        paths: coords_garagem,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5      
+       });
+       place_garagem.setMap(map);
+       
+       
+       
       
       
       
