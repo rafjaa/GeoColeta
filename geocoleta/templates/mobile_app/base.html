@@ -54,14 +54,23 @@
                     </li>
 
                     <li>
+                        <a id="opt_panorama" href="#">
+                            <h2>Panorama</h2>
+                            <p>Visão geral das requisições</p>
+                        </a>
+                    </li>
+
+                    <li>
                         <a id="opt_descartes" href="#">
-                            <h2>Descartes</h2><p>Requisições realizadas no GeoColeta</p>
+                            <h2>Descartes</h2>
+                            <p>Requisições realizadas no GeoColeta</p>
                         </a>                        
                     </li>
 
                     <li>
                         <a id="opt_coletores" href="#">
-                            <h2>Coletores</h2><p>Utilização dos pontos de coleta seletiva</p>
+                            <h2>Coletores</h2>
+                            <p>Utilização dos pontos de coleta seletiva</p>
                         </a>
                     </li>
 
@@ -106,7 +115,7 @@
 
         <script src="/static/js/jquery-1.9.1.min.js"></script>
         <script src="/static/js/jquery.mobile-1.3.1.min.js"></script>
-        <script src="http://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&sensor=true"></script>
+        <script src="http://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&sensor=true&libraries=visualization"></script>
         <script src="/static/js/script.js"></script>
         <script>
             coletores = [
