@@ -155,7 +155,9 @@ $(document).ready(function(){
         new google.maps.LatLng(-21.2278018930087, -43.76547574996948),
         new google.maps.LatLng(-21.227799392792335, -43.76547306776047),
         new google.maps.LatLng(-21.227704384538598, -43.76553475856781),
-        new google.maps.LatLng(-21.22785689775826, -43.765778839588165),       
+        new google.maps.LatLng(-21.22785689775826, -43.765778839588165),
+          
+        
     ];
     
     var place_dap = new google.maps.Polygon({
@@ -248,6 +250,27 @@ $(document).ready(function(){
       });
       place_auditorioII.setMap(map);
       
+
+      //Laboratório de Solos
+       var coords_labSolos = [
+        new google.maps.LatLng(-21.228011911033043, -43.76661032438278),
+        new google.maps.LatLng(-21.227989409116176, -43.766419887542725),
+        new google.maps.LatLng(-21.227876899480304, -43.7664332985878),
+        new google.maps.LatLng(-21.22789190077003, -43.766623735427856),
+       ];
+       var place_labSolos = new google.maps.Polygon({
+        paths: coords_labSolos,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5     
+       });
+       place_labSolos.setMap(map);
+       
+      
+      
+      
         
 
     /* Eventos no mapa */
@@ -275,34 +298,6 @@ $(document).ready(function(){
             icon: new google.maps.MarkerImage("/static/img/lixeira.png")
         });
     }
-
-    // Mapa de utilização
-    var h_map = [
-        new google.maps.LatLng(-21.228569457432723, -43.766787350177765), 
-        new google.maps.LatLng(-21.228416944949828, -43.76647084951401), 
-        new google.maps.LatLng(-21.228416944949828, -43.76647084951401), 
-        new google.maps.LatLng(-21.228416944949828, -43.76647084951401), 
-        new google.maps.LatLng(-21.228416944949828, -43.76647084951401), 
-        new google.maps.LatLng(-21.228416944949828, -43.76647084951401), 
-        new google.maps.LatLng(-21.228416944949828, -43.76647084951401),  
-   ];
-
-   var gradient = [
-    'rgba(255, 255, 255, 0)', // Exterior
-    '#ff0000',
-    '#00ff00',
-    '#0000ff',
-  ];
-
-    var heatmap = new google.maps.visualization.HeatmapLayer({
-        data: h_map,
-        dissipating: true,
-        radius: 30,
-        //maxIntensity: 10,
-        opacity: 0.9,
-        gradient: gradient,
-        map: map,
-    });
 
     //$("#panel").panel("open");
 });
