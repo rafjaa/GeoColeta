@@ -211,6 +211,7 @@ $(document).ready(function(){
      });
      place_quimica.setMap(map);
      
+     
      //Informática
      var coords_informatica = [
         new google.maps.LatLng(-21.22746186319244, -43.7638396024704),
@@ -228,7 +229,28 @@ $(document).ready(function(){
         fillColor: "#FF0000",
         fillOpacity: 0.5
      });
-     place_informatica.setMap(map);    
+     place_informatica.setMap(map); 
+     
+     
+     //auditorioII
+      var coords_auditorioII = [
+        new google.maps.LatLng(-21.227629377979284, -43.76554548740387),
+        new google.maps.LatLng(-21.227521868511086, -43.765317499637604),
+        new google.maps.LatLng(-21.227446861858965, -43.7653523683548),
+        new google.maps.LatLng(-21.227556871602356, -43.76558572053909),
+      ];
+      var place_auditorioII = new google.maps.Polygon({
+        paths: coords_auditorioII,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+        
+      });
+      place_auditorioII.setMap(map);
+      
+        
 
     /* Eventos no mapa */
 
