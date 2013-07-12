@@ -321,5 +321,34 @@ $(document).ready(function(){
         });
     }
 
+
+    // Mapa de utilização
+    var h_map = [
+        new google.maps.LatLng(-21.228569457432723, -43.766787350177765), 
+        new google.maps.LatLng(-21.228416944949828, -43.76647084951401), 
+        new google.maps.LatLng(-21.228416944949828, -43.76647084951401), 
+        new google.maps.LatLng(-21.228416944949828, -43.76647084951401), 
+        new google.maps.LatLng(-21.228416944949828, -43.76647084951401), 
+        new google.maps.LatLng(-21.228416944949828, -43.76647084951401), 
+        new google.maps.LatLng(-21.228416944949828, -43.76647084951401),  
+   ];
+
+   var gradient = [
+    'rgba(255, 255, 255, 0)', // Exterior
+    '#ff0000',
+    '#00ff00',
+    '#0000ff',
+  ];
+
+    var heatmap = new google.maps.visualization.HeatmapLayer({
+        data: h_map,
+        dissipating: true,
+        radius: 30,
+        //maxIntensity: 10,
+        opacity: 0.9,
+        gradient: gradient,
+        map: map,
+    });
+
     //$("#panel").panel("open");
 });
