@@ -1,9 +1,5 @@
-from models import TipoColetor
-from models import Coletor
-from models import Local
-from models import Noticia
-
 from django.contrib import admin
+from models import *
 
 class PostAdmin(admin.ModelAdmin):
 	class Media:
@@ -12,4 +8,5 @@ class PostAdmin(admin.ModelAdmin):
 admin.site.register(Coletor)
 admin.site.register(TipoColetor)
 admin.site.register(Local)
+admin.site.register(Registro)
 admin.site.register(Noticia, PostAdmin)

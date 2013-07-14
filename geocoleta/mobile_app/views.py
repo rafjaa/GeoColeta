@@ -1,6 +1,8 @@
 # coding: utf-8
 
-#from django.http import HttpResponse
+import json
+
+from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
@@ -26,3 +28,7 @@ def ajax_locais_coleta(request):
 def ajax_noticias(request):
 	return render_to_response('mobile_app/ajax_noticias.html',
 			{'noticias': models.Noticia.objects.all()})
+
+def ajax_panorama(request):
+    coordenadas = models.Registro.objects.values_list('latitude', 'longitude')
+    return HttpResponse(json.dumps(tuple(coordenadas)), mimetype='application/json')

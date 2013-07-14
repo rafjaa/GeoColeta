@@ -3,6 +3,7 @@ $(document).ready(function(){
     var lat = -21.228686966943123;
     var lng = -43.767511546611786;
     var accuracy = 999999;
+    heatmap = null;
    
 
     geolocation = function(){
@@ -59,6 +60,41 @@ $(document).ready(function(){
             $('#panel').trigger('updatelayout');
         });
     });
+
+
+    $('#opt_panorama').click(function(){
+
+        if(heatmap && heatmap.getMap()){
+            heatmap.setMap(null);
+            return;
+        }
+
+        var gradient = [
+            'rgba(255, 255, 255, 0)', // Exterior
+            '#ff0000',
+            '#00ff00',
+            '#0000ff',
+        ];
+
+        $.get('ajax_panorama', function(data){
+            
+            var heat_map = [];
+            for (var i=0; i < data.length; i++){
+                heat_map.push(new google.maps.LatLng(data[i][0], data[i][1]))
+            };   
+
+            heatmap = new google.maps.visualization.HeatmapLayer({
+                data: heat_map,
+                dissipating: true,
+                radius: 30,
+                //maxIntensity: 10,
+                opacity: 0.9,
+                gradient: gradient,
+                map: map,
+            });
+        });
+    });
+
 
     $('#opt_descartes').click(function(){
         alert('descartes');
@@ -319,36 +355,7 @@ $(document).ready(function(){
             map: map,
             icon: new google.maps.MarkerImage("/static/img/lixeira.png")
         });
-    }
+    }    
 
-
-    // Mapa de utilização
-    var h_map = [
-        new google.maps.LatLng(-21.228569457432723, -43.766787350177765), 
-        new google.maps.LatLng(-21.228416944949828, -43.76647084951401), 
-        new google.maps.LatLng(-21.228416944949828, -43.76647084951401), 
-        new google.maps.LatLng(-21.228416944949828, -43.76647084951401), 
-        new google.maps.LatLng(-21.228416944949828, -43.76647084951401), 
-        new google.maps.LatLng(-21.228416944949828, -43.76647084951401), 
-        new google.maps.LatLng(-21.228416944949828, -43.76647084951401),  
-   ];
-
-   var gradient = [
-    'rgba(255, 255, 255, 0)', // Exterior
-    '#ff0000',
-    '#00ff00',
-    '#0000ff',
-  ];
-
-    var heatmap = new google.maps.visualization.HeatmapLayer({
-        data: h_map,
-        dissipating: true,
-        radius: 30,
-        //maxIntensity: 10,
-        opacity: 0.9,
-        gradient: gradient,
-        map: map,
-    });
-
-    //$("#panel").panel("open");
+    $("#panel").panel("open");
 });

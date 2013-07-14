@@ -36,7 +36,7 @@ class Registro(models.Model):
 	tipo_usado = models.ForeignKey('TipoColetor')
 	
 	def __unicode__(self):
-		return u'{0} - {1}'.format(self.local.descricao, self.data)
+		return u'{0} - {1}'.format(self.coletor.descricao, self.data)
 		
 	class Meta():
 		verbose_name = u'Registro'
