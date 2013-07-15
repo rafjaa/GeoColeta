@@ -8,4 +8,5 @@ urlpatterns = patterns('',
     url(r'^ajax_locais_coleta$', 'geocoleta.mobile_app.views.ajax_locais_coleta'),
     url(r'^ajax_noticias$', 'geocoleta.mobile_app.views.ajax_noticias'),
     url(r'^ajax_panorama$', 'geocoleta.mobile_app.views.ajax_panorama'),
+    url(r'^ajax_estatisticas_coletor$', 'geocoleta.mobile_app.views.ajax_estatisticas_coletor'),
 )

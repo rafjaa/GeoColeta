@@ -32,3 +32,7 @@ def ajax_noticias(request):
 def ajax_panorama(request):
     coordenadas = models.Registro.objects.values_list('latitude', 'longitude')
     return HttpResponse(json.dumps(tuple(coordenadas)), mimetype='application/json')
+
+def ajax_estatisticas_coletor(request):
+    return render_to_response('mobile_app/ajax_estatisticas_coletor.html',
+            {'coletores': models.Coletor.objects.all()})

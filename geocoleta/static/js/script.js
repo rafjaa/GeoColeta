@@ -64,10 +64,14 @@ $(document).ready(function(){
 
     $('#opt_panorama').click(function(){
 
+        $("#panel").panel("close");
+
         if(heatmap && heatmap.getMap()){
             heatmap.setMap(null);
+            $("#txt_panorama").html("Panorama");
             return;
         }
+        $("#txt_panorama").html("Ocultar panorama");
 
         var gradient = [
             'rgba(255, 255, 255, 0)', // Exterior
@@ -101,7 +105,11 @@ $(document).ready(function(){
     });
 
     $('#opt_coletores').click(function(){
-        alert('coletores');
+        $.get("ajax_estatisticas_coletor", function(data){
+            $('#main_list').hide();
+            $('#panel').prepend(data).trigger('create');
+            $('#panel').trigger('updatelayout');         
+        });
     });
 
 

@@ -1,0 +1,48 @@
+{% extends "mobile_app/ajax_base.html" %}
+
+{% block content %}
+
+<script type="text/javascript">
+	
+	var ctx = document.getElementById("myChart").getContext("2d");
+	var data = {
+		labels: ["Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado"],
+		datasets: [
+			{
+				fillColor : "rgba(220,220,220,0.5)",
+				strokeColor : "rgba(220,220,220,1)",
+				pointColor : "rgba(220,220,220,1)",
+				pointStrokeColor : "#fff",
+				data : [65,59,90,81,56,55,40]
+			},
+			{
+				fillColor : "rgba(151,187,205,0.5)",
+				strokeColor : "rgba(151,187,205,1)",
+				pointColor : "rgba(151,187,205,1)",
+				pointStrokeColor : "#fff",
+				data : [28,48,40,19,96,27,100]
+			},
+			{
+				fillColor : "rgba(0,220,220,0.5)",
+				strokeColor : "rgba(0,220,220,1)",
+				pointColor : "rgba(0,220,220,1)",
+				pointStrokeColor : "#fff",
+				data : [20,12,90,45,11,23,14]
+			},
+			{
+				fillColor : "rgba(151,187,0,0.5)",
+				strokeColor : "rgba(151,187,0,1)",
+				pointColor : "rgba(151,187,0,1)",
+				pointStrokeColor : "#fff",
+				data : [50,10,10,0,0,13,120]
+			}
+		]
+	};
+
+	new Chart(ctx).Radar(data);
+	
+</script>
+
+<canvas id="myChart" width="285px" height="285px"></canvas>
+
+{% endblock %}
