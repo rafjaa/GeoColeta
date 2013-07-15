@@ -3,7 +3,6 @@ $(document).ready(function(){
     var lat = -21.228686966943123;
     var lng = -43.767511546611786;
     var accuracy = 999999;
-    heatmap = null;
    
 
     geolocation = function(){
@@ -60,41 +59,6 @@ $(document).ready(function(){
             $('#panel').trigger('updatelayout');
         });
     });
-
-
-    $('#opt_panorama').click(function(){
-
-        if(heatmap && heatmap.getMap()){
-            heatmap.setMap(null);
-            return;
-        }
-
-        var gradient = [
-            'rgba(255, 255, 255, 0)', // Exterior
-            '#ff0000',
-            '#00ff00',
-            '#0000ff',
-        ];
-
-        $.get('ajax_panorama', function(data){
-            
-            var heat_map = [];
-            for (var i=0; i < data.length; i++){
-                heat_map.push(new google.maps.LatLng(data[i][0], data[i][1]))
-            };   
-
-            heatmap = new google.maps.visualization.HeatmapLayer({
-                data: heat_map,
-                dissipating: true,
-                radius: 30,
-                //maxIntensity: 10,
-                opacity: 0.9,
-                gradient: gradient,
-                map: map,
-            });
-        });
-    });
-
 
     $('#opt_descartes').click(function(){
         alert('descartes');
@@ -153,7 +117,7 @@ $(document).ready(function(){
 
     var place_sede = new google.maps.Polygon({
         paths: coords_sede,
-        //strokeColor: "#FF0000",
+        strokeColor: "#FF0000",
         strokeOpacity: 0.8,
         strokeWeight: 0.5,
         fillColor: "#FF0000",
@@ -323,13 +287,50 @@ $(document).ready(function(){
         fillOpacity: 0.5      
        });
        place_garagem.setMap(map);
-       
-       
-       
+ 
+      //Refeitório
+      var coords_refeitorio = [
+        new google.maps.LatLng(-21.228099418454935, -43.7666317820549),
+        new google.maps.LatLng(-21.228334438131057, -43.7666130065918),
+        new google.maps.LatLng(-21.22834693916719, -43.7666130065918),
+        new google.maps.LatLng(-21.228356939995304, -43.76661032438278),
+        new google.maps.LatLng(-21.228369441029507, -43.76659959554672),
+        new google.maps.LatLng(-21.228371941236226, -43.76659154891968),
+        new google.maps.LatLng(-21.228369441029507, -43.7665781378746),
+        new google.maps.LatLng(-21.22835944020223, -43.766567409038544),
+        new google.maps.LatLng(-21.22834693916719, -43.76656472682953),
+        new google.maps.LatLng(-21.228336938338362, -43.766556680202484),
+        new google.maps.LatLng(-21.22831943688633, -43.766540586948395),
+        new google.maps.LatLng(-21.228309436055657, -43.76652717590332),
+        new google.maps.LatLng(-21.22829943522431, -43.766513764858246),
+        new google.maps.LatLng(-21.228289434392288, -43.7665057182312),
+        new google.maps.LatLng(-21.22827443314297, -43.7664869427681),
+        new google.maps.LatLng(-21.228254431474856, -43.76646280288696),
+        new google.maps.LatLng(-21.228221928758355, -43.76643866300583),
+        new google.maps.LatLng(-21.22819942687352, -43.76642256975174),
+        new google.maps.LatLng(-21.228174424775247, -43.76640111207962),
+        new google.maps.LatLng(-21.228156923303917, -43.766387701034546),
+        new google.maps.LatLng(-21.22813192119842, -43.7663796544075),
+        new google.maps.LatLng(-21.22811191951097, -43.766376972198486),
+        new google.maps.LatLng(-21.228076916551412, -43.7663796544075),
+        new google.maps.LatLng(-21.228061915280477, -43.766382336616516),
+        new google.maps.LatLng(-21.22804191358355, -43.76639038324356),
+        new google.maps.LatLng(-21.228036913158885, -43.766403794288635),
+        new google.maps.LatLng(-21.228036913158885, -43.76641720533371),
+        new google.maps.LatLng(-21.228034412946492, -43.7664520740509),
+        new google.maps.LatLng(-21.228051914432353, -43.7666317820549),
+      ];
+      var place_refeitorio = new google.maps.Polygon({
+        paths: coords_refeitorio,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5  
+      });
+      place_refeitorio.setMap(map);
       
-      
-      
-        
+           
 
     /* Eventos no mapa */
 
@@ -355,7 +356,7 @@ $(document).ready(function(){
             map: map,
             icon: new google.maps.MarkerImage("/static/img/lixeira.png")
         });
-    }    
+    }
 
-    $("#panel").panel("open");
+    //$("#panel").panel("open");
 });
