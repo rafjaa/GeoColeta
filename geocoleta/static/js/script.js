@@ -413,6 +413,104 @@ $(document).ready(function(){
       });
       place_CampoFutebol.setMap(map);
       
+      //Pista para Corrida
+      var coords_pistaCorrida = [
+        
+      
+        new google.maps.LatLng(-21.233437273013184, -43.7651726603508),
+        new google.maps.LatLng(-21.2337272867435, -43.76465767621994),
+        new google.maps.LatLng(-21.233757288131333, -43.7645959854126),
+        new google.maps.LatLng(-21.233772288822944, -43.764550387859344),
+        new google.maps.LatLng(-21.233779789168192, -43.76453161239624),
+        new google.maps.LatLng(-21.233782289283187, -43.76449406147003),
+        new google.maps.LatLng(-21.233787289513057, -43.76446455717087),
+        new google.maps.LatLng(-21.233787289513057, -43.76444309949875),
+        new google.maps.LatLng(-21.233787289513057, -43.76441091299057),
+        new google.maps.LatLng(-21.233782289283187, -43.76437336206436),
+        new google.maps.LatLng(-21.23377728905316, -43.76433581113815),
+        new google.maps.LatLng(-21.23376478847733, -43.764303624629974),
+        new google.maps.LatLng(-21.23374978778495, -43.76425266265869),
+        new google.maps.LatLng(-21.2337272867435, -43.76420170068741),
+        new google.maps.LatLng(-21.233702285582318, -43.764166831970215),
+        new google.maps.LatLng(-21.233674784300128, -43.764129281044006),
+        new google.maps.LatLng(-21.233644782895517, -43.76410245895386),
+        new google.maps.LatLng(-21.233619781720343, -43.76408100128174),
+        new google.maps.LatLng(-21.233579779831253, -43.764051496982574),
+        new google.maps.LatLng(-21.233547278288377, -43.764030039310455),
+        new google.maps.LatLng(-21.23350727637962, -43.764019310474396),
+        new google.maps.LatLng(-21.233464774339673, -43.76400053501129),
+        new google.maps.LatLng(-21.233422272287473, -43.76399517059326),
+        new google.maps.LatLng(-21.23335476900293, -43.76399248838425),
+        new google.maps.LatLng(-21.233307266673034, -43.76400589942932),
+        new google.maps.LatLng(-21.23327476507011, -43.76401126384735),
+        new google.maps.LatLng(-21.233239763335856, -43.76402735710144),
+        new google.maps.LatLng(-21.233189760843935, -43.764040768146515),
+        new google.maps.LatLng(-21.233164759591613, -43.76405417919159),
+        new google.maps.LatLng(-21.233164759591613, -43.76405417919159),
+        new google.maps.LatLng(-21.233127257705195, -43.76408904790878),
+        new google.maps.LatLng(-21.23307225492119, -43.76416951417923),
+        new google.maps.LatLng(-21.233027252628112, -43.76424193382263),
+        new google.maps.LatLng(-21.23284724331844, -43.764550387859344),
+        new google.maps.LatLng(-21.23261723110299, -43.764939308166504),
+        new google.maps.LatLng(-21.23257722894194, -43.765017092227936),
+        new google.maps.LatLng(-21.232557227857342, -43.76508951187134),
+        new google.maps.LatLng(-21.232557227857342, -43.765137791633606),
+        new google.maps.LatLng(-21.232554727721585, -43.765196800231934),
+        new google.maps.LatLng(-21.232554727721585, -43.7652263045311),
+        new google.maps.LatLng(-21.23255972799307, -43.76526653766632),
+        new google.maps.LatLng(-21.232567228399983, -43.7652987241745),
+        new google.maps.LatLng(-21.23258222921266, -43.76533895730972),
+        new google.maps.LatLng(-21.232599730158867, -43.76537650823593),
+        new google.maps.LatLng(-21.232609730698623, -43.765411376953125),
+        new google.maps.LatLng(-21.23263223191058, -43.765443563461304),
+        new google.maps.LatLng(-21.23266723378904, -43.76548379659653),
+        new google.maps.LatLng(-21.232697235392525, -43.765510618686676),
+        new google.maps.LatLng(-21.23272723698992, -43.76553475856781),
+        new google.maps.LatLng(-21.232769739242443, -43.765564262866974),
+        new google.maps.LatLng(-21.232804741088255, -43.76557767391205),
+        new google.maps.LatLng(-21.232829742401606, -43.76558572053909),
+        new google.maps.LatLng(-21.2328672443637, -43.76559913158417),
+        new google.maps.LatLng(-21.232912246705602, -43.76560181379318),
+        new google.maps.LatLng(-21.23295224877578, -43.76560717821121),
+        new google.maps.LatLng(-21.2330122518607, -43.76560181379318),
+        new google.maps.LatLng(-21.23303725313887, -43.76559644937515),
+        new google.maps.LatLng(-21.233079755302033, -43.76558572053909),
+        new google.maps.LatLng(-21.233094756062577, -43.76557767391205),
+        new google.maps.LatLng(-21.233122257452944, -43.76556694507599),
+        new google.maps.LatLng(-21.233147258712478, -43.765553534030914),
+        new google.maps.LatLng(-21.233164759591613, -43.765542805194855),
+        new google.maps.LatLng(-21.233182260468677, -43.76552939414978),
+        new google.maps.LatLng(-21.23319976134368, -43.765515983104706),
+        new google.maps.LatLng(-21.23321976234113, -43.76549988985062),
+        new google.maps.LatLng(-21.233232262963156, -43.76548379659653),
+        new google.maps.LatLng(-21.23324226346001, -43.76547306776047),
+        new google.maps.LatLng(-21.233262264451685, -43.76545161008835),
+        new google.maps.LatLng(-21.233284765564076, -43.765422105789185),
+        new google.maps.LatLng(-21.23335976924729, -43.765301406383514),
+        new google.maps.LatLng(-21.233377270101197, -43.765269219875336),
+        new google.maps.LatLng(-21.233392270831477, -43.7652450799942),
+        new google.maps.LatLng(-21.233399771196048, -43.76522898674011),
+        new google.maps.LatLng(-21.23341227180282, -43.76520752906799),
+        new google.maps.LatLng(-21.233409771681554, -43.76521557569504),
+        new google.maps.LatLng(-21.233417272045234, -43.765196800231934),
+        new google.maps.LatLng(-21.23343227277144, -43.76517802476883),
+           
+        
+  
+        
+      ];
+      var place_pistaCorrida = new google.maps.Polygon({
+        paths: coords_pistaCorrida,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+      });
+      place_pistaCorrida.setMap(map);
+      
+      
+      
       
       
       
