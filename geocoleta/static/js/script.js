@@ -330,6 +330,92 @@ $(document).ready(function(){
       });
       place_refeitorio.setMap(map);
       
+      // Campo de Futebol
+      var coords_CampoFutebol = [
+        new google.maps.LatLng(-21.232904746316247, -43.764628171920776),
+        new google.maps.LatLng(-21.233127257705195, -43.764255344867706),
+        new google.maps.LatLng(-21.233142258460916, -43.76422584056854),
+        new google.maps.LatLng(-21.233154759089505, -43.76421242952347),
+        new google.maps.LatLng(-21.233169759842415, -43.764193654060364),
+        new google.maps.LatLng(-21.233182260468677, -43.76418024301529),
+        new google.maps.LatLng(-21.23320476159328, -43.7641641497612),
+        new google.maps.LatLng(-21.23322726271447, -43.764150738716125),
+        new google.maps.LatLng(-21.2332497638322, -43.76413732767105),
+        new google.maps.LatLng(-21.23327476507011, -43.76412391662598),
+        new google.maps.LatLng(-21.233307266673034, -43.76411318778992),
+        new google.maps.LatLng(-21.233307266673034, -43.76411318778992),
+        new google.maps.LatLng(-21.23335226888067, -43.76410782337189),
+        new google.maps.LatLng(-21.233382270344798, -43.76410782337189),
+        new google.maps.LatLng(-21.233404771438884, -43.76410245895386),
+        new google.maps.LatLng(-21.233444773375464, -43.76410514116287),
+        new google.maps.LatLng(-21.233477274940935, -43.76411318778992),
+        new google.maps.LatLng(-21.23351477673834, -43.76412659883499),
+        new google.maps.LatLng(-21.233542278050376, -43.764145374298096),
+        new google.maps.LatLng(-21.23356727923869, -43.764161467552185),
+        new google.maps.LatLng(-21.23359228042276, -43.764182925224304),
+        new google.maps.LatLng(-21.233612281366966, -43.76420438289642),
+        new google.maps.LatLng(-21.233632282308463, -43.76422852277756),
+        new google.maps.LatLng(-21.2336472830128, -43.764260709285736),
+        new google.maps.LatLng(-21.233659783598593, -43.764287531375885),
+        new google.maps.LatLng(-21.233677284416903, -43.76433044672012),
+        new google.maps.LatLng(-21.233687284883583, -43.764381408691406),
+        new google.maps.LatLng(-21.233689785000138, -43.76441091299057),
+        new google.maps.LatLng(-21.233687284883583, -43.76443773508072),
+        new google.maps.LatLng(-21.233689785000138, -43.76448601484299),
+        new google.maps.LatLng(-21.233689785000138, -43.76448601484299),
+        new google.maps.LatLng(-21.233672284183303, -43.76454770565033),
+        new google.maps.LatLng(-21.233654783364393, -43.76457720994949),
+        new google.maps.LatLng(-21.233637282543413, -43.76461207866669),
+        new google.maps.LatLng(-21.233604781013206, -43.76467376947403),
+        new google.maps.LatLng(-21.23342977265052, -43.76497149467468),
+        new google.maps.LatLng(-21.233182260468677, -43.76538723707199),
+        new google.maps.LatLng(-21.233164759591613, -43.765411376953125),
+        new google.maps.LatLng(-21.233137258209172, -43.76543551683426),
+        new google.maps.LatLng(-21.233112256947948, -43.76545429229736),
+        new google.maps.LatLng(-21.233079755302033, -43.76547306776047),
+        new google.maps.LatLng(-21.233049753776367, -43.76548647880554),
+        new google.maps.LatLng(-21.233022252372464, -43.76549452543259),
+        new google.maps.LatLng(-21.232989750706718, -43.76550257205963),
+        new google.maps.LatLng(-21.23296224929163, -43.76550257205963),
+        new google.maps.LatLng(-21.232922247224177, -43.76550257205963),
+        new google.maps.LatLng(-21.232897245926488, -43.76550257205963),
+        new google.maps.LatLng(-21.232869744494163, -43.76549452543259),
+        new google.maps.LatLng(-21.23283224253272, -43.76548111438751),
+        new google.maps.LatLng(-21.232809741351257, -43.76546770334244),
+        new google.maps.LatLng(-21.23278474003451, -43.76545697450638),
+        new google.maps.LatLng(-21.23276473897808, -43.76544088125229),
+        new google.maps.LatLng(-21.2327397376537, -43.76541942358017),
+        new google.maps.LatLng(-21.23271723645813, -43.765395283699036),
+        new google.maps.LatLng(-21.232699735525877, -43.76537382602692),
+        new google.maps.LatLng(-21.232684734725144, -43.76534968614578),
+        new google.maps.LatLng(-21.23267473419048, -43.76533091068268),
+        new google.maps.LatLng(-21.23266473365514, -43.76530408859253),
+        new google.maps.LatLng(-21.232657233253178, -43.76528263092041),
+        new google.maps.LatLng(-21.232642232448132, -43.76524776220322),
+        new google.maps.LatLng(-21.232642232448132, -43.76522362232208),
+        new google.maps.LatLng(-21.232639732313814, -43.76517802476883),
+        new google.maps.LatLng(-21.232642232448132, -43.76515656709671),
+        new google.maps.LatLng(-21.232649732850845, -43.765132427215576),
+        new google.maps.LatLng(-21.232647232716655, -43.76510828733444),
+        new google.maps.LatLng(-21.232657233253178, -43.76507341861725),
+        new google.maps.LatLng(-21.2326697339229, -43.76504123210907),
+        new google.maps.LatLng(-21.232682234591554, -43.76500904560089),
+        new google.maps.LatLng(-21.232704735792453, -43.76497954130173),
+        new google.maps.LatLng(-21.23272973712276, -43.764933943748474),  
+      ];
+      var place_CampoFutebol = new google.maps.Polygon({
+        paths: coords_CampoFutebol,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+      });
+      place_CampoFutebol.setMap(map);
+      
+      
+      
+      
            
 
     /* Eventos no mapa */
