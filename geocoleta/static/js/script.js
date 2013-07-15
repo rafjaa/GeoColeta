@@ -153,7 +153,7 @@ $(document).ready(function(){
 
     var place_sede = new google.maps.Polygon({
         paths: coords_sede,
-        strokeColor: "#FF0000",
+        //strokeColor: "#FF0000",
         strokeOpacity: 0.8,
         strokeWeight: 0.5,
         fillColor: "#FF0000",
