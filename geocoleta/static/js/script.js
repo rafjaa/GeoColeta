@@ -594,6 +594,26 @@ $(document).ready(function(){
       });
       place_ginasio.setMap(map);
       
+      //laticínios
+      var coords_laticinio = [
+        new google.maps.LatLng(-21.231467164644393, -43.76763492822647),
+        new google.maps.LatLng(-21.231367158441522, -43.767538368701935),
+        new google.maps.LatLng(-21.231224649485277, -43.767675161361694),
+        new google.maps.LatLng(-21.231322155628117, -43.76778244972229),
+
+      ];
+      var place_laticinio = new google.maps.Polygon({
+        paths: coords_laticinio,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+      });
+      place_laticinio.setMap(map);
+      
+      
+      
       
       
       
