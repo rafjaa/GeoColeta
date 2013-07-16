@@ -415,8 +415,6 @@ $(document).ready(function(){
       
       //Pista para Corrida
       var coords_pistaCorrida = [
-        
-      
         new google.maps.LatLng(-21.233437273013184, -43.7651726603508),
         new google.maps.LatLng(-21.2337272867435, -43.76465767621994),
         new google.maps.LatLng(-21.233757288131333, -43.7645959854126),
@@ -493,11 +491,7 @@ $(document).ready(function(){
         new google.maps.LatLng(-21.23341227180282, -43.76520752906799),
         new google.maps.LatLng(-21.233409771681554, -43.76521557569504),
         new google.maps.LatLng(-21.233417272045234, -43.765196800231934),
-        new google.maps.LatLng(-21.23343227277144, -43.76517802476883),
-           
-        
-  
-        
+        new google.maps.LatLng(-21.23343227277144, -43.76517802476883),       
       ];
       var place_pistaCorrida = new google.maps.Polygon({
         paths: coords_pistaCorrida,
@@ -508,6 +502,26 @@ $(document).ready(function(){
         fillOpacity: 0.5
       });
       place_pistaCorrida.setMap(map);
+      
+      //Quadra
+      var coords_quadra = [
+        new google.maps.LatLng(-21.232884745276063, -43.765679597854614),
+        new google.maps.LatLng(-21.2324872240399, -43.765443563461304),
+        new google.maps.LatLng(-21.232367217418414, -43.7656769156456),
+        new google.maps.LatLng(-21.232754738448822, -43.76591295003891),
+      ];
+      var place_quadra = new google.maps.Polygon({
+        paths: coords_quadra,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+      });
+      place_quadra.setMap(map);
+      
+      
+      
       
       
       
