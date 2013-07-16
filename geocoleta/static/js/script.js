@@ -545,6 +545,28 @@ $(document).ready(function(){
       place_quadraCoberta.setMap(map);
 
       
+      //Piscina
+      var coords_piscina = [
+        new google.maps.LatLng(-21.23238971866738, -43.76645475625992),
+        new google.maps.LatLng(-21.232462222668488, -43.76633942127228),
+        new google.maps.LatLng(-21.23250472499738, -43.76624017953873),
+        new google.maps.LatLng(-21.232197207870787, -43.76604974269867),
+        new google.maps.LatLng(-21.232159705738304, -43.76606047153473),
+        new google.maps.LatLng(-21.232059700005074, -43.766256272792816),
+        new google.maps.LatLng(-21.23208970173217, -43.76626431941986),
+
+      ];
+      var place_piscina = new google.maps.Polygon({
+        paths: coords_piscina,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+      });
+      place_piscina.setMap(map);
+      
+      
       
       
       
