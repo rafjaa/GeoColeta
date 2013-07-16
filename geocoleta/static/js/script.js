@@ -689,6 +689,56 @@ $(document).ready(function(){
       });
       place_oficina.setMap(map);
      
+     //equinocultura
+     var coords_equinocultura = [
+        new google.maps.LatLng(-21.239429940845564, -43.76363307237625),
+        new google.maps.LatLng(-21.23941244071005, -43.76354455947876),
+        new google.maps.LatLng(-21.239197438875856, -43.76360356807709),
+        new google.maps.LatLng(-21.239159938523823, -43.76360088586807),
+        new google.maps.LatLng(-21.23911993813781, -43.76359283924103),
+        new google.maps.LatLng(-21.239059937538435, -43.76358479261398),
+        new google.maps.LatLng(-21.239002436941103, -43.76356601715088),
+        new google.maps.LatLng(-21.23896993659357, -43.76354992389679),
+        new google.maps.LatLng(-21.238794934599063, -43.76348555088043),
+        new google.maps.LatLng(-21.23867993317526, -43.76346409320831),
+        new google.maps.LatLng(-21.238604932198367, -43.763431906700134),
+        new google.maps.LatLng(-21.23852243107972, -43.763399720191956),
+        new google.maps.LatLng(-21.2383924292233, -43.76334607601166),
+        new google.maps.LatLng(-21.238364928815916, -43.7633353471756),
+        new google.maps.LatLng(-21.23833492836562, -43.76332998275757),
+        new google.maps.LatLng(-21.23830992798573, -43.76333266496658),
+        new google.maps.LatLng(-21.23828742764019, -43.7633353471756),
+        new google.maps.LatLng(-21.23826242725224, -43.76334607601166),
+        new google.maps.LatLng(-21.238247427017434, -43.76335948705673),
+        new google.maps.LatLng(-21.238232426781096, -43.76337558031082),
+        new google.maps.LatLng(-21.238212426463623, -43.763399720191956),
+        new google.maps.LatLng(-21.238197426223714, -43.763431906700134),
+        new google.maps.LatLng(-21.238192426143417, -43.7634614109993),
+        new google.maps.LatLng(-21.238189926103203, -43.76350164413452),
+        new google.maps.LatLng(-21.238202426303857, -43.76352846622467),
+        new google.maps.LatLng(-21.238212426463623, -43.763552606105804),
+        new google.maps.LatLng(-21.238237426860046, -43.763574063777924),
+        new google.maps.LatLng(-21.238264927291223, -43.76359283924103),
+        new google.maps.LatLng(-21.238604932198367, -43.76374036073685),
+        new google.maps.LatLng(-21.238649932789098, -43.76376450061798),
+        new google.maps.LatLng(-21.238669933047223, -43.763772547245026),
+        new google.maps.LatLng(-21.2387174336494, -43.7637859582901),
+        new google.maps.LatLng(-21.238762434205782, -43.7637859582901),
+
+
+     ];
+     var place_equinocultura = new google.maps.Polygon({
+        paths: coords_equinocultura,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+     });
+     place_equinocultura.setMap(map);
+     
+     
+     
 
     /* Eventos no mapa */
 
