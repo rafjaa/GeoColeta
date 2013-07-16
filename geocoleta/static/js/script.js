@@ -612,6 +612,31 @@ $(document).ready(function(){
       });
       place_laticinio.setMap(map);
       
+      //Alojamento
+      var coords_alojamento = [
+        new google.maps.LatLng(-21.22877197376464, -43.768503963947296),
+        new google.maps.LatLng(-21.228844479544275, -43.76849591732025),
+        new google.maps.LatLng(-21.22888948311371, -43.76849591732025),
+        new google.maps.LatLng(-21.22920700790781, -43.76845568418503),
+        new google.maps.LatLng(-21.229197007137326, -43.76840740442276),
+        new google.maps.LatLng(-21.229169505014973, -43.768404722213745),
+        new google.maps.LatLng(-21.229162004435256, -43.76832693815231),
+        new google.maps.LatLng(-21.22887698212358, -43.76835644245148),
+        new google.maps.LatLng(-21.228759472764562, -43.76836985349655),  
+      ];
+      var place_alojamento = new google.maps.Polygon({
+        paths: coords_alojamento,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+      });
+      place_alojamento.setMap(map);
+      
+      
+      
+      
       
       
       
