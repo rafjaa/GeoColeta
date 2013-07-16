@@ -566,6 +566,37 @@ $(document).ready(function(){
       });
       place_piscina.setMap(map);
       
+      //Ginásio
+      var coords_ginasio = [
+        new google.maps.LatLng(-21.232194707728926, -43.76684904098511),
+        new google.maps.LatLng(-21.232394718944466, -43.76647084951401),
+        new google.maps.LatLng(-21.232069700581444, -43.766267001628876),
+        new google.maps.LatLng(-21.23205219957235, -43.76630187034607),
+        new google.maps.LatLng(-21.23203469856117, -43.76630187034607),
+        new google.maps.LatLng(-21.232012197258033, -43.76635015010834),
+        new google.maps.LatLng(-21.232032198416547, -43.76637160778046),
+        new google.maps.LatLng(-21.231989695951462, -43.76646012067795),
+        new google.maps.LatLng(-21.231954693912193, -43.7664520740509),
+        new google.maps.LatLng(-21.23193469274317, -43.76650035381317),
+        new google.maps.LatLng(-21.231954693912193, -43.76652181148529),
+        new google.maps.LatLng(-21.231907191131324, -43.76660764217377),
+        new google.maps.LatLng(-21.23187968951436, -43.7666130065918),
+        new google.maps.LatLng(-21.23185968833516, -43.76665860414505),
+        new google.maps.LatLng(-21.231907191131324, -43.76667469739914),
+      ];
+      var place_ginasio = new google.maps.Polygon({
+        paths: coords_ginasio,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5      
+      });
+      place_ginasio.setMap(map);
+      
+      
+      
+      
       
       
       
