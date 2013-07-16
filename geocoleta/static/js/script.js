@@ -521,6 +521,35 @@ $(document).ready(function(){
       place_quadra.setMap(map);
       
       
+      // Quadra Coberta
+      var coords_quadraCoberta = [
+      new google.maps.LatLng(-21.232569728535534, -43.76624822616577),
+      new google.maps.LatLng(-21.232684734725144, -43.76607924699783),
+      new google.maps.LatLng(-21.232749738183962, -43.765920996665955),
+      new google.maps.LatLng(-21.232377217973934, -43.765690326690674),
+      new google.maps.LatLng(-21.232372217696252, -43.76570373773575),
+      new google.maps.LatLng(-21.232344716166004, -43.76571446657181),
+      new google.maps.LatLng(-21.232189707445045, -43.76601219177246),
+      new google.maps.LatLng(-21.232212208721112, -43.76601219177246),
+      new google.maps.LatLng(-21.23220720843783, -43.76602292060852),
+      
+      ];
+      var place_quadraCoberta = new google.maps.Polygon({
+        paths: coords_quadraCoberta,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+      });
+      place_quadraCoberta.setMap(map);
+
+      
+      
+      
+      
+      
+      
       
       
       
