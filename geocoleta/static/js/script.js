@@ -672,6 +672,23 @@ $(document).ready(function(){
       });
       place_fape.setMap(map);
       
+      //Oficina
+      var coords_oficina = [
+        new google.maps.LatLng(-21.228519453357357, -43.768750727176666),
+        new google.maps.LatLng(-21.228521953561522, -43.7686488032341),
+        new google.maps.LatLng(-21.228324437301413, -43.76863270998001),
+        new google.maps.LatLng(-21.22832943771632, -43.76873463392258),
+      ];
+      var place_oficina = new google.maps.Polygon({
+        paths: coords_oficina,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+      });
+      place_oficina.setMap(map);
+     
 
     /* Eventos no mapa */
 
