@@ -8,7 +8,7 @@
 		{% for coletor in coletores %}
 			<li>
 				<a href="#"
-					onclick="map.setCenter(new google.maps.LatLng({{ coletor.latitude }}, {{ coletor.longitude }}));">
+					onclick="map.setCenter(new google.maps.LatLng({{ coletor.latitude }}, {{ coletor.longitude }})); $('#panel').panel('close');">
 					<h2>{{ coletor.descricao }}</h2>
 					<p>
 						{% for tipo in coletor.tipo.all %}
