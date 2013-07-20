@@ -14,6 +14,10 @@ $(document).ready(function(){
         lat = position.coords.latitude;
         lng = position.coords.longitude;
         accuracy = position.coords.accuracy;
+
+        // if coordenadas estiverem dentro dos limites do IF
+        user.setPosition(new google.maps.LatLng(lat, lng));
+        map.setCenter(new google.maps.LatLng(lat, lng));
     }
    
     handle_error = function(error){
@@ -116,7 +120,6 @@ $(document).ready(function(){
 
     // Inicia a detecção da localização do usuário
     geolocation();
-    
 
     var mapOptions = {
         center: new google.maps.LatLng(lat, lng),
