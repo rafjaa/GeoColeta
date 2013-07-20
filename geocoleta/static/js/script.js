@@ -456,8 +456,6 @@ $(document).ready(function(){
       
       //Pista para Corrida
       var coords_pistaCorrida = [
-        
-      
         new google.maps.LatLng(-21.233437273013184, -43.7651726603508),
         new google.maps.LatLng(-21.2337272867435, -43.76465767621994),
         new google.maps.LatLng(-21.233757288131333, -43.7645959854126),
@@ -534,11 +532,7 @@ $(document).ready(function(){
         new google.maps.LatLng(-21.23341227180282, -43.76520752906799),
         new google.maps.LatLng(-21.233409771681554, -43.76521557569504),
         new google.maps.LatLng(-21.233417272045234, -43.765196800231934),
-        new google.maps.LatLng(-21.23343227277144, -43.76517802476883),
-           
-        
-  
-        
+        new google.maps.LatLng(-21.23343227277144, -43.76517802476883),       
       ];
       var place_pistaCorrida = new google.maps.Polygon({
         paths: coords_pistaCorrida,
@@ -550,12 +544,242 @@ $(document).ready(function(){
       });
       place_pistaCorrida.setMap(map);
       
+      //Quadra
+      var coords_quadra = [
+        new google.maps.LatLng(-21.232884745276063, -43.765679597854614),
+        new google.maps.LatLng(-21.2324872240399, -43.765443563461304),
+        new google.maps.LatLng(-21.232367217418414, -43.7656769156456),
+        new google.maps.LatLng(-21.232754738448822, -43.76591295003891),
+      ];
+      var place_quadra = new google.maps.Polygon({
+        paths: coords_quadra,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+      });
+      place_quadra.setMap(map);
       
       
+      // Quadra Coberta
+      var coords_quadraCoberta = [
+      new google.maps.LatLng(-21.232569728535534, -43.76624822616577),
+      new google.maps.LatLng(-21.232684734725144, -43.76607924699783),
+      new google.maps.LatLng(-21.232749738183962, -43.765920996665955),
+      new google.maps.LatLng(-21.232377217973934, -43.765690326690674),
+      new google.maps.LatLng(-21.232372217696252, -43.76570373773575),
+      new google.maps.LatLng(-21.232344716166004, -43.76571446657181),
+      new google.maps.LatLng(-21.232189707445045, -43.76601219177246),
+      new google.maps.LatLng(-21.232212208721112, -43.76601219177246),
+      new google.maps.LatLng(-21.23220720843783, -43.76602292060852),
       
+      ];
+      var place_quadraCoberta = new google.maps.Polygon({
+        paths: coords_quadraCoberta,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+      });
+      place_quadraCoberta.setMap(map);
+
       
+      //Piscina
+      var coords_piscina = [
+        new google.maps.LatLng(-21.23238971866738, -43.76645475625992),
+        new google.maps.LatLng(-21.232462222668488, -43.76633942127228),
+        new google.maps.LatLng(-21.23250472499738, -43.76624017953873),
+        new google.maps.LatLng(-21.232197207870787, -43.76604974269867),
+        new google.maps.LatLng(-21.232159705738304, -43.76606047153473),
+        new google.maps.LatLng(-21.232059700005074, -43.766256272792816),
+        new google.maps.LatLng(-21.23208970173217, -43.76626431941986),
+
+      ];
+      var place_piscina = new google.maps.Polygon({
+        paths: coords_piscina,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+      });
+      place_piscina.setMap(map);
       
-           
+      //Ginásio
+      var coords_ginasio = [
+        new google.maps.LatLng(-21.232194707728926, -43.76684904098511),
+        new google.maps.LatLng(-21.232394718944466, -43.76647084951401),
+        new google.maps.LatLng(-21.232069700581444, -43.766267001628876),
+        new google.maps.LatLng(-21.23205219957235, -43.76630187034607),
+        new google.maps.LatLng(-21.23203469856117, -43.76630187034607),
+        new google.maps.LatLng(-21.232012197258033, -43.76635015010834),
+        new google.maps.LatLng(-21.232032198416547, -43.76637160778046),
+        new google.maps.LatLng(-21.231989695951462, -43.76646012067795),
+        new google.maps.LatLng(-21.231954693912193, -43.7664520740509),
+        new google.maps.LatLng(-21.23193469274317, -43.76650035381317),
+        new google.maps.LatLng(-21.231954693912193, -43.76652181148529),
+        new google.maps.LatLng(-21.231907191131324, -43.76660764217377),
+        new google.maps.LatLng(-21.23187968951436, -43.7666130065918),
+        new google.maps.LatLng(-21.23185968833516, -43.76665860414505),
+        new google.maps.LatLng(-21.231907191131324, -43.76667469739914),
+      ];
+      var place_ginasio = new google.maps.Polygon({
+        paths: coords_ginasio,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5      
+      });
+      place_ginasio.setMap(map);
+      
+      //laticínios
+      var coords_laticinio = [
+        new google.maps.LatLng(-21.231467164644393, -43.76763492822647),
+        new google.maps.LatLng(-21.231367158441522, -43.767538368701935),
+        new google.maps.LatLng(-21.231224649485277, -43.767675161361694),
+        new google.maps.LatLng(-21.231322155628117, -43.76778244972229),
+
+      ];
+      var place_laticinio = new google.maps.Polygon({
+        paths: coords_laticinio,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+      });
+      place_laticinio.setMap(map);
+      
+      //Alojamento
+      var coords_alojamento = [
+        new google.maps.LatLng(-21.22877197376464, -43.768503963947296),
+        new google.maps.LatLng(-21.228844479544275, -43.76849591732025),
+        new google.maps.LatLng(-21.22888948311371, -43.76849591732025),
+        new google.maps.LatLng(-21.22920700790781, -43.76845568418503),
+        new google.maps.LatLng(-21.229197007137326, -43.76840740442276),
+        new google.maps.LatLng(-21.229169505014973, -43.768404722213745),
+        new google.maps.LatLng(-21.229162004435256, -43.76832693815231),
+        new google.maps.LatLng(-21.22887698212358, -43.76835644245148),
+        new google.maps.LatLng(-21.228759472764562, -43.76836985349655),  
+      ];
+      var place_alojamento = new google.maps.Polygon({
+        paths: coords_alojamento,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+      });
+      place_alojamento.setMap(map);
+      
+      //EAD
+      var coords_ead = [
+        new google.maps.LatLng(-21.229064496864297, -43.768316209316254),
+        new google.maps.LatLng(-21.229387021660692, -43.76828670501709),
+        new google.maps.LatLng(-21.229372020522998, -43.7682169675827),
+        new google.maps.LatLng(-21.229357019383794, -43.7682169675827),
+        new google.maps.LatLng(-21.229352019003723, -43.76821160316467),
+        new google.maps.LatLng(-21.229059496474303, -43.76824378967285),        
+      ];
+      var place_ead = new google.maps.Polygon({
+        paths: coords_ead,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+      });
+      place_ead.setMap(map);
+      
+      //FAPE
+      var coords_fape = [
+        new google.maps.LatLng(-21.22958453649788, -43.768152594566345),
+        new google.maps.LatLng(-21.229569535380293, -43.76812309026718),
+        new google.maps.LatLng(-21.229587036683995, -43.76810699701309),
+        new google.maps.LatLng(-21.229524532018342, -43.768015801906586),
+        new google.maps.LatLng(-21.229337017862466, -43.768125772476196),
+        new google.maps.LatLng(-21.22941702393147, -43.76825451850891),       
+      ];
+      var place_fape = new google.maps.Polygon({
+        paths: coords_fape,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+      });
+      place_fape.setMap(map);
+      
+      //Oficina
+      var coords_oficina = [
+        new google.maps.LatLng(-21.228519453357357, -43.768750727176666),
+        new google.maps.LatLng(-21.228521953561522, -43.7686488032341),
+        new google.maps.LatLng(-21.228324437301413, -43.76863270998001),
+        new google.maps.LatLng(-21.22832943771632, -43.76873463392258),
+      ];
+      var place_oficina = new google.maps.Polygon({
+        paths: coords_oficina,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+      });
+      place_oficina.setMap(map);
+     
+     //equinocultura
+     var coords_equinocultura = [
+        new google.maps.LatLng(-21.239429940845564, -43.76363307237625),
+        new google.maps.LatLng(-21.23941244071005, -43.76354455947876),
+        new google.maps.LatLng(-21.239197438875856, -43.76360356807709),
+        new google.maps.LatLng(-21.239159938523823, -43.76360088586807),
+        new google.maps.LatLng(-21.23911993813781, -43.76359283924103),
+        new google.maps.LatLng(-21.239059937538435, -43.76358479261398),
+        new google.maps.LatLng(-21.239002436941103, -43.76356601715088),
+        new google.maps.LatLng(-21.23896993659357, -43.76354992389679),
+        new google.maps.LatLng(-21.238794934599063, -43.76348555088043),
+        new google.maps.LatLng(-21.23867993317526, -43.76346409320831),
+        new google.maps.LatLng(-21.238604932198367, -43.763431906700134),
+        new google.maps.LatLng(-21.23852243107972, -43.763399720191956),
+        new google.maps.LatLng(-21.2383924292233, -43.76334607601166),
+        new google.maps.LatLng(-21.238364928815916, -43.7633353471756),
+        new google.maps.LatLng(-21.23833492836562, -43.76332998275757),
+        new google.maps.LatLng(-21.23830992798573, -43.76333266496658),
+        new google.maps.LatLng(-21.23828742764019, -43.7633353471756),
+        new google.maps.LatLng(-21.23826242725224, -43.76334607601166),
+        new google.maps.LatLng(-21.238247427017434, -43.76335948705673),
+        new google.maps.LatLng(-21.238232426781096, -43.76337558031082),
+        new google.maps.LatLng(-21.238212426463623, -43.763399720191956),
+        new google.maps.LatLng(-21.238197426223714, -43.763431906700134),
+        new google.maps.LatLng(-21.238192426143417, -43.7634614109993),
+        new google.maps.LatLng(-21.238189926103203, -43.76350164413452),
+        new google.maps.LatLng(-21.238202426303857, -43.76352846622467),
+        new google.maps.LatLng(-21.238212426463623, -43.763552606105804),
+        new google.maps.LatLng(-21.238237426860046, -43.763574063777924),
+        new google.maps.LatLng(-21.238264927291223, -43.76359283924103),
+        new google.maps.LatLng(-21.238604932198367, -43.76374036073685),
+        new google.maps.LatLng(-21.238649932789098, -43.76376450061798),
+        new google.maps.LatLng(-21.238669933047223, -43.763772547245026),
+        new google.maps.LatLng(-21.2387174336494, -43.7637859582901),
+        new google.maps.LatLng(-21.238762434205782, -43.7637859582901),
+
+
+     ];
+     var place_equinocultura = new google.maps.Polygon({
+        paths: coords_equinocultura,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+     });
+     place_equinocultura.setMap(map);
+     
+     
+     
 
     /* Eventos no mapa */
 
