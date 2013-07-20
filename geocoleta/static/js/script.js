@@ -120,7 +120,7 @@ $(document).ready(function(){
 
     var mapOptions = {
         center: new google.maps.LatLng(lat, lng),
-        zoom: 22,
+        zoom: 18,
         mapTypeId: google.maps.MapTypeId.SATELLITE
     };
 
@@ -808,5 +808,5 @@ $(document).ready(function(){
         });
     }
 
-    //$("#panel").panel("open");
+    $("#panel").panel("open");
 });
