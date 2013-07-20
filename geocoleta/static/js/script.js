@@ -3,6 +3,7 @@ $(document).ready(function(){
     var lat = -21.228686966943123;
     var lng = -43.767511546611786;
     var accuracy = 999999;
+    var heatmap = null;
    
 
     geolocation = function(){
@@ -61,7 +62,7 @@ $(document).ready(function(){
     });
 
     $('#opt_panorama').click(function(){
-
+        
         $("#panel").panel("close");
 
         if(heatmap && heatmap.getMap()){
