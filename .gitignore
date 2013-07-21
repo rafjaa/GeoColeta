@@ -7,7 +7,7 @@ pip-log.txt
 build
 
 # virtualenv
-bin
-include
-lib
-local
+/bin
+/include
+/lib
+/local
