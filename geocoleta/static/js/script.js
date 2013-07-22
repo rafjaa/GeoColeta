@@ -783,7 +783,23 @@ $(document).ready(function(){
      place_equinocultura.setMap(map);
      
      
-     
+     //Usina de Triagem e Compostagem
+     var coords_usinaTriagemCompostagem = [
+        new google.maps.LatLng(-21.236775127002893, -43.760823120601685),
+        new google.maps.LatLng(-21.236800127643058, -43.76076679421237),
+        new google.maps.LatLng(-21.236940131149613, -43.760817756183656),
+        new google.maps.LatLng(-21.236925130780268, -43.76087408257297),
+     ];
+     var place_usinaTriagemCompostagem = new google.maps.Polygon({
+        paths: coords_usinaTriagemCompostagem,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+     });
+     place_usinaTriagemCompostagem.setMap(map);
+      
 
     /* Eventos no mapa */
 
