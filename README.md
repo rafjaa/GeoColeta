@@ -24,3 +24,4 @@ __Sistema de Informação Geográfica para gerência e incentivo ao Processo de 
 
 ## Protótipo
 Para instalar a versão anterior do projeto (protótipo), acesse o link https://github.com/rafjaa/GeoColeta/tree/prototipo
+
