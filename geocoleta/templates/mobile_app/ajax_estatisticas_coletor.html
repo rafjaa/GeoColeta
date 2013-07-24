@@ -2,47 +2,98 @@
 
 {% block content %}
 
+<div data-role="controlgroup" data-type="horizontal" style="margin-left: 20px">
+	<a href="#" data-role="button">Mês</a>
+	<a href="#" data-role="button">Ano</a>
+	<a href="#" data-role="button" class="ui-btn-active">Total</a>
+</div>
+
+<div id="container" style="min-width: 260px; height: 400px; margin: 0 auto;"></div>
+
 <script type="text/javascript">
-	
-	var ctx = document.getElementById("myChart").getContext("2d");
-	var data = {
-		labels: ["Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado"],
-		datasets: [
-			{
-				fillColor : "rgba(220,220,220,0.5)",
-				strokeColor : "rgba(220,220,220,1)",
-				pointColor : "rgba(220,220,220,1)",
-				pointStrokeColor : "#fff",
-				data : [65,59,90,81,56,55,40]
-			},
-			{
-				fillColor : "rgba(151,187,205,0.5)",
-				strokeColor : "rgba(151,187,205,1)",
-				pointColor : "rgba(151,187,205,1)",
-				pointStrokeColor : "#fff",
-				data : [28,48,40,19,96,27,100]
-			},
-			{
-				fillColor : "rgba(0,220,220,0.5)",
-				strokeColor : "rgba(0,220,220,1)",
-				pointColor : "rgba(0,220,220,1)",
-				pointStrokeColor : "#fff",
-				data : [20,12,90,45,11,23,14]
-			},
-			{
-				fillColor : "rgba(151,187,0,0.5)",
-				strokeColor : "rgba(151,187,0,1)",
-				pointColor : "rgba(151,187,0,1)",
-				pointStrokeColor : "#fff",
-				data : [50,10,10,0,0,13,120]
-			}
-		]
-	};
+$(function () {
+        $('#container').highcharts({
+            chart: {
+                type: 'bar',
+                backgroundColor: ''
+            },
+            title: {
+                text: '634 requisições'
+            },
 
-	new Chart(ctx).Radar(data);
-	
+            xAxis: {
+                categories: ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB'],
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                //min: 0,
+                /*title: {
+                    text: 'Requisições',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }*/
+            },
+            tooltip: {
+                valueSuffix: ' requisições'
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                layout: 'horizontal',
+                verticalAlign: 'bottom',
+                y: 25,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: '#FFFFFF',
+                shadow: true
+            },
+            /*
+			legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -100,
+                y: 100,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: '#FFFFFF',
+                shadow: true
+            },
+            */
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'Papel',
+                data: [107, 31, 635, 203, 2, 100, 10]
+            }, {
+                name: 'Plástico',
+                data: [133, 156, 947, 408, 6, 5, 10]
+            }, {
+                name: 'Metal/Vidro',
+                data: [973, 914, 50, 732, 34, 100, 350]
+            }, {
+                name: 'Orgânico',
+                data: [973, 914, 50, 732, 34, 100, 350]
+            }, {
+                name: 'Não-Reciclável',
+                data: [973, 914, 50, 732, 34, 100, 350]
+            }
+
+            ]
+        });
+    });
+    
+
 </script>
-
-<canvas id="myChart" width="285px" height="285px"></canvas>
 
 {% endblock %}
