@@ -3,93 +3,94 @@
 {% block content %}
 
 <div data-role="controlgroup" data-type="horizontal" style="margin-left: 20px">
-	<a href="#" data-role="button">Mês</a>
-	<a href="#" data-role="button">Ano</a>
-	<a href="#" data-role="button" class="ui-btn-active">Total</a>
+    <a href="#" data-role="button">Mês</a>
+    <a href="#" data-role="button">Ano</a>
+    <a href="#" data-role="button" class="ui-btn-active">Total</a>
 </div>
 
-<div id="container" style="min-width: 260px; height: 400px; margin: 0 auto;"></div>
+<div id="container" style="min-width: 275px; height: 400px; margin: 0 auto;"></div>
 
 <script type="text/javascript">
 $(function () {
         $('#container').highcharts({
             chart: {
-                type: 'bar',
-                backgroundColor: ''
+                type: 'column',
+                backgroundColor: '',
             },
+            exporting: { enabled: false },
             title: {
-                text: '634 requisições'
+                text: '86 requisições'
             },
-
             xAxis: {
-                categories: ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB'],
-                title: {
-                    text: null
-                }
+                categories: ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB']
             },
             yAxis: {
-                //min: 0,
-                /*title: {
-                    text: 'Requisições',
-                    align: 'high'
+                min: 0,
+                title: {
+                    text: false
                 },
+                stackLabels: {
+                    enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        //color: ''
+                    }
+                },
+                lineWidth: 0,
+                minorGridLineWidth: 0,
+                lineColor: 'transparent',
                 labels: {
-                    overflow: 'justify'
-                }*/
+                    enabled: false
+                },
+                minorTickLength: 0,
+                tickLength: 0,
+            },
+            legend: {
+                align: '',
+                //x: -100,
+                verticalAlign: 'bottom',
+                align: 'center',
+                //y: 20,
+                //floating: true,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+                borderColor: '#CCC',
+                borderWidth: 1,
+                shadow: false
             },
             tooltip: {
-                valueSuffix: ' requisições'
+                formatter: function() {
+                    return false
+                }
             },
             plotOptions: {
-                bar: {
+                column: {
+                    stacking: 'normal',
                     dataLabels: {
-                        enabled: true
+                        enabled: true,
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
                     }
                 }
             },
-            legend: {
-                layout: 'horizontal',
-                verticalAlign: 'bottom',
-                y: 25,
-                floating: true,
-                borderWidth: 1,
-                backgroundColor: '#FFFFFF',
-                shadow: true
-            },
-            /*
-			legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'top',
-                x: -100,
-                y: 100,
-                floating: true,
-                borderWidth: 1,
-                backgroundColor: '#FFFFFF',
-                shadow: true
-            },
-            */
             credits: {
                 enabled: false
             },
+            colors: ['#9d2c29', '#0014ba', '#056d00', '#703e00', '#666666'],
             series: [{
-                name: 'Papel',
-                data: [107, 31, 635, 203, 2, 100, 10]
-            }, {
                 name: 'Plástico',
-                data: [133, 156, 947, 408, 6, 5, 10]
+                data: [5, 3, 4, 7, 2, 3]
             }, {
-                name: 'Metal/Vidro',
-                data: [973, 914, 50, 732, 34, 100, 350]
+                name: 'Papel',
+                data: [2, 2, 3, 2, 1, 8, 1]
+            }, {
+                name: 'Vidro/Metal',
+                data: [2, 2, 3, 2, 1, 1, 3]
             }, {
                 name: 'Orgânico',
-                data: [973, 914, 50, 732, 34, 100, 350]
+                data: [2, 2, 3, 2, 1, 2, 4]
             }, {
-                name: 'Não-Reciclável',
-                data: [973, 914, 50, 732, 34, 100, 350]
-            }
-
-            ]
+                name: 'Não-reciclável',
+                data: [3, 4, 4, 2, 5, 1, 5]
+            }]
         });
     });
     
