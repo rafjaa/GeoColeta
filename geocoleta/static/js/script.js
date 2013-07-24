@@ -50,7 +50,7 @@ $(document).ready(function(){
     });
 
     $('#opt_locais').click(function(){
-        $.get('ajax_locais_coleta', function(data){
+        $.get('ajax_coletores', function(data){
             $('#main_list').hide();
             $('#panel').prepend(data).trigger('create');
             $('#panel').trigger('updatelayout');
@@ -113,8 +113,6 @@ $(document).ready(function(){
             $('#panel').trigger('updatelayout');         
         });
     });
-
-
 
     /* Inicialização das funcionalidades */
 

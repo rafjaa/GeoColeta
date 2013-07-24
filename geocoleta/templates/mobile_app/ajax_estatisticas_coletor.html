@@ -1,6 +1,12 @@
 {% extends "mobile_app/ajax_base.html" %}
 
 {% block content %}
+<ul id="ajax_content" data-role="listview" data-theme="d">
+    <li><a hrf="#">
+        <h2>Em frente ao DAP</h2>
+        <p>Papel, Plástico, Orgânico</p>
+    </a></li>
+</ul>
 
 <div data-role="controlgroup" data-type="horizontal" style="margin-left: 20px">
     <a href="#" data-role="button">Mês</a>
@@ -22,7 +28,7 @@ $(function () {
                 text: '86 requisições'
             },
             xAxis: {
-                categories: ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB']
+                categories: ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB'],
             },
             yAxis: {
                 min: 0,
@@ -36,14 +42,10 @@ $(function () {
                         //color: ''
                     }
                 },
-                lineWidth: 0,
-                minorGridLineWidth: 0,
-                lineColor: 'transparent',
                 labels: {
                     enabled: false
                 },
-                minorTickLength: 0,
-                tickLength: 0,
+                gridLineWidth: 0,
             },
             legend: {
                 align: '',

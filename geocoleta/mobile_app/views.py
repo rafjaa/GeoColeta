@@ -21,8 +21,8 @@ def home(request):
 def ajax_infraestrutura(request):
 	return render_to_response('mobile_app/ajax_infraestrutura.html')
 
-def ajax_locais_coleta(request):
-	return render_to_response('mobile_app/ajax_locais_coleta.html',
+def ajax_coletores(request):
+	return render_to_response('mobile_app/ajax_coletores.html',
 			{'coletores': models.Coletor.objects.all()})
 
 def ajax_noticias(request):
