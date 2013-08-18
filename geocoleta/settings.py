@@ -8,6 +8,9 @@ ROOT = os.path.dirname(os.path.realpath(__file__))
 # Adicione aqui sua chave de API do Google
 GOOGLE_API_KEY = 'AIzaSyC8YFOu-ZL-r76HHRIvLUuH1exVo9t25rA'
 
+# Nome da instituição
+INSTITUTION = 'Câmpus Barbacena'
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -121,6 +124,7 @@ TEMPLATE_DIRS = (
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'geocoleta.mobile_app.context_processors.google_api_key',
+    'geocoleta.mobile_app.context_processors.institution',
 )
 
 INSTALLED_APPS = (
