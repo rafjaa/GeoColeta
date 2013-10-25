@@ -637,7 +637,7 @@ $(document).ready(function(){
       });
       place_ginasio.setMap(map);
       
-      //laticínios
+      //Laticínios
       var coords_laticinio = [
         new google.maps.LatLng(-21.231467164644393, -43.76763492822647),
         new google.maps.LatLng(-21.231367158441522, -43.767538368701935),
@@ -797,8 +797,114 @@ $(document).ready(function(){
         fillOpacity: 0.5
      });
      place_usinaTriagemCompostagem.setMap(map);
-      
+     
+     //Salas Anexo
+     var coords_salasAnexo = [
+        new google.maps.LatLng(-21.22607923388095, -43.769271075725555),
+        new google.maps.LatLng(-21.226176743425317, -43.76893311738968),
+        new google.maps.LatLng(-21.226211746835784, -43.7688472867012 ),
+        new google.maps.LatLng(-21.22624925048062, -43.76880168914795 ),
+        new google.maps.LatLng(-21.226304255809143, -43.76873463392258 ),
+        new google.maps.LatLng(-21.226371762320667, -43.768651485443115),
+        new google.maps.LatLng(-21.22645427023724, -43.768568336963654),
+        new google.maps.LatLng(-21.226509275489317, -43.768546879291534),
+        new google.maps.LatLng(-21.226536778107686, -43.76863807439804),
+        new google.maps.LatLng(-21.226459270715555, -43.768672943115234 ),
+        new google.maps.LatLng(-21.226494274058975, -43.7687212228775 ),
+        new google.maps.LatLng(-21.226336758948175, -43.76892238855362),
+        new google.maps.LatLng(-21.226269252420646, -43.769145011901855 ),
+        new google.maps.LatLng(-21.22628925435795, -43.76915842294693 ),
+        new google.maps.LatLng(-21.226294254841832, -43.76920133829117),
+        new google.maps.LatLng(-21.226661789944625, -43.76934081315994 ),
+        new google.maps.LatLng(-21.226716795119327, -43.76936495304108), 
+        new google.maps.LatLng(-21.226689292534534, -43.7694776058197 ),
+        new google.maps.LatLng(-21.226676791357946, -43.76948297023773 ),
 
+     ];
+     var place_salasAnexo = new google.maps.Polygon({
+        paths: coords_salasAnexo,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+     });
+     place_salasAnexo.setMap(map);
+     
+     //CIEC
+     var coords_ciec = [
+        new google.maps.LatLng(-21.226656789473186, -43.76856029033661),
+        new google.maps.LatLng(-21.22664178805783, -43.76848787069321),
+        new google.maps.LatLng(-21.22651677620393, -43.76854419708252),
+        new google.maps.LatLng(-21.226541778583186, -43.76861661672592),
+
+     ];
+     var place_ciec = new google.maps.Polygon({
+        paths: coords_ciec,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+     });
+     place_ciec.setMap(map);
+     
+     //Quadra Anexo
+     var coords_quadraAnexo = [
+        new google.maps.LatLng(-21.22658428261819, -43.76971632242203),
+        new google.maps.LatLng(-21.226634287349594, -43.76952052116394),
+        new google.maps.LatLng(-21.226306756050864, -43.7694051861763),
+        new google.maps.LatLng(-21.22625675120845, -43.76957952976227),
+
+     ];
+     var place_quadraAnexo = new google.maps.Polygon({
+        paths: coords_quadraAnexo,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+     });
+     place_quadraAnexo.setMap(map);
+     
+     //Prédio Anexo
+     var coords_predioAnexo = [
+        new google.maps.LatLng(-21.226779300974773, -43.76931130886078),
+        new google.maps.LatLng(-21.226704293945065, -43.76930058002472),
+        new google.maps.LatLng(-21.226706794180007, -43.769271075725555),
+        new google.maps.LatLng(-21.226669290651476, -43.76926839351654),
+        new google.maps.LatLng(-21.226664290180288, -43.769249618053436),
+        new google.maps.LatLng(-21.226621786168323, -43.76924693584442),
+        new google.maps.LatLng(-21.226634287349594, -43.76920133829117),
+        new google.maps.LatLng(-21.226524276918145, -43.769187927246094),
+        new google.maps.LatLng(-21.22653927834545, -43.76909673213959),
+        new google.maps.LatLng(-21.226434268322315, -43.76908332109451),
+        new google.maps.LatLng(-21.226434268322315, -43.76896262168884),
+        new google.maps.LatLng(-21.226459270715555, -43.7689545750618),
+        new google.maps.LatLng(-21.226524276918145, -43.76893311738968),
+        new google.maps.LatLng(-21.22653927834545, -43.768882155418396),
+        new google.maps.LatLng(-21.226606784749418, -43.768876791000366),
+        new google.maps.LatLng(-21.226604284512774, -43.76882046461105),
+        new google.maps.LatLng(-21.226644288293823, -43.76881778240204),
+        new google.maps.LatLng(-21.226654289237405, -43.76872658729553),
+        new google.maps.LatLng(-21.22675429863577, -43.76872658729553),        
+        new google.maps.LatLng(-21.22675429863577, -43.768640756607056),
+        new google.maps.LatLng(-21.22679430237613, -43.768630027770996),
+        new google.maps.LatLng(-21.226859308431095, -43.768630027770996),
+        new google.maps.LatLng(-21.226829305640067, -43.76919865608215),
+        new google.maps.LatLng(-21.22679930284293, -43.76920133829117),
+     ];
+     var place_predioAnexo = new google.maps.Polygon({
+        paths: coords_predioAnexo,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 0.5,
+        fillColor: "#FF0000",
+        fillOpacity: 0.5
+     });
+     place_predioAnexo.setMap(map);
+     
+     
     /* Eventos no mapa */
 
     google.maps.event.addListener(user, 'dragend', function(){
@@ -809,7 +915,7 @@ $(document).ready(function(){
     });
 
     google.maps.event.addListener(map, 'click', function(ev){
-        //alert(ev.latLng.lat() + ', ' + ev.latLng.lng());
+        alert(ev.latLng.lat() + ', ' + ev.latLng.lng());
     });
 
     google.maps.event.addListener(place_sede, 'click', function(){
