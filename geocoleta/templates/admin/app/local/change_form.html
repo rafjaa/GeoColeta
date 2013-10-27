@@ -1,0 +1,211 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_modify adminmedia %}
+{% load url from future %}
+
+{% block extrahead %}{{ block.super }}
+{% url 'admin:jsi18n' as jsi18nurl %}
+<script type="text/javascript" src="{{ jsi18nurl|default:"../../../jsi18n/" }}"></script>
+{{ media }}
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+<script>
+    $(document).ready(function(){
+
+        var poligono = null;
+
+        $('#limpar').click(function(){
+            for (var i = 0; i < markers.length; i++){
+                markers[i].setMap(null);
+            }
+
+            if(poligono != null){
+                poligono.setMap(null);
+            }
+
+            poly.setPath([]);
+            markers = [];
+            isClosed = false;
+
+            $('#id_coordenadas').val("");
+
+        });
+
+        var json_markers = [];
+
+        var map = new google.maps.Map(document.getElementById('map_canvas'),
+            {
+                center: new google.maps.LatLng(-21.22801200707805, -43.76713433479956),
+                zoom: 18,
+                mapTypeId: google.maps.MapTypeId.SATELLITE,
+                scaleControl: true
+            });
+
+        // Se o polígono já existir, desenha o mesmo no mapa
+        if($('#id_coordenadas').val() != ""){
+            var json_local = JSON.parse($('#id_coordenadas').val());
+
+            var coords = [];
+            for(var i=0; i<json_local.length; i++){
+                coords.push(new google.maps.LatLng(json_local[i][0], json_local[i][1]));
+            }
+
+            poligono = new google.maps.Polygon({
+              paths: coords,
+              strokeColor: "#FF0000",
+              strokeOpacity: 0.8,
+              strokeWeight: 2,
+              fillColor: "#FF0000",
+              fillOpacity: 0.35
+            });
+
+            poligono.setMap(map);
+            map.setCenter(coords[0]);
+        }
+
+        var markers = [];
+
+        var isClosed = false;
+
+        var poly = new google.maps.Polyline({
+                map: map,
+                path: [],
+                strokeColor: "#FF0000",
+                strokeOpacity: 1.0,
+                strokeWeight: 2
+            });
+
+        google.maps.event.addListener(map, 'click', function (clickEvent){
+            if(poligono != null){
+                poligono.setMap(null);
+            }
+
+            if (isClosed)
+                return;
+
+            var markerIndex = poly.getPath().length;
+            var isFirstMarker = markerIndex === 0;
+            var marker = new google.maps.Marker({
+                    map: map,
+                    position: clickEvent.latLng,
+                    draggable: true
+                });
+            markers.push(marker);
+
+            if (isFirstMarker){
+                google.maps.event.addListener(marker, 'click', function (){
+                    if (isClosed)
+                        return;
+
+                    var path = poly.getPath();
+
+                    poly.setMap(null);
+                    poly = new google.maps.Polygon({
+                          map: map,
+                          path: path,
+                          strokeColor: "#FF0000",
+                          strokeOpacity: 0.8,
+                          strokeWeight: 2,
+                          fillColor: "#FF0000",
+                          fillOpacity: 0.35
+                      });
+
+                    isClosed = true;
+                    json_markers = [];
+
+                    for(i=0; i < markers.length; i++){
+                        json_markers.push(
+                            [markers[i].getPosition().lat(), markers[i].getPosition().lng()]
+                        );
+                    }
+                    $('#id_coordenadas').val(JSON.stringify(json_markers));
+
+                });
+          }
+
+          google.maps.event.addListener(marker, 'drag', function (dragEvent){
+              poly.getPath().setAt(markerIndex, dragEvent.latLng);
+          });
+
+          google.maps.event.addListener(marker, 'dragend', function (dragEvent){
+              poly.getPath().setAt(markerIndex, dragEvent.latLng);
+
+              json_markers = [];
+              for(i=0; i < markers.length; i++){
+                  json_markers.push(
+                      [markers[i].getPosition().lat(), markers[i].getPosition().lng()]
+                  );
+              }
+              $('#id_coordenadas').val(JSON.stringify(json_markers));
+          });
+
+          poly.getPath().push(clickEvent.latLng);
+        });
+    });
+</script>
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% admin_media_prefix %}css/forms.css" />{% endblock %}
+
+{% block coltype %}{% if ordered_objects %}colMS{% else %}colM{% endif %}{% endblock %}
+
+{% block bodyclass %}{{ opts.app_label }}-{{ opts.object_name.lower }} change-form{% endblock %}
+
+{% block breadcrumbs %}{% if not is_popup %}
+<div class="breadcrumbs">
+     <a href="../../../">{% trans "Home" %}</a> &rsaquo;
+     <a href="../../">{{ app_label|capfirst|escape }}</a> &rsaquo;
+     {% if has_change_permission %}<a href="../">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %} &rsaquo;
+     {% if add %}{% trans "Add" %} {{ opts.verbose_name }}{% else %}{{ original|truncatewords:"18" }}{% endif %}
+</div>
+{% endif %}{% endblock %}
+
+{% block content %}<div id="content-main">
+
+{% block object-tools %}
+{% if change %}{% if not is_popup %}
+  <ul class="object-tools">
+    {% block object-tools-items %}
+    <li><a href="history/" class="historylink">{% trans "History" %}</a></li>
+    {% if has_absolute_url %}<li><a href="../../../r/{{ content_type_id }}/{{ object_id }}/" class="viewsitelink">{% trans "View on site" %}</a></li>{% endif%}
+    {% endblock %}
+  </ul>
+{% endif %}{% endif %}
+{% endblock %}
+<form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% csrf_token %}{% block form_top %}{% endblock %}
+<div>
+{% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
+{% if save_on_top %}{% submit_row %}{% endif %}
+{% if errors %}
+    <p class="errornote">
+    {% blocktrans count errors|length as counter %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+    </p>
+    {{ adminform.form.non_field_errors }}
+{% endif %}
+
+{% for fieldset in adminform %}
+  <div id="map_canvas" style="width: 100%; height: 300px;"></div>
+  <strong style="display: block; padding: 10px 0">
+    <a href="#" id="limpar">Limpar coordenadas</a>
+  </strong>
+  {% include "admin/includes/fieldset.html" %}
+{% endfor %}
+{% block after_field_sets %}{% endblock %}
+
+{% for inline_admin_formset in inline_admin_formsets %}
+    {% include inline_admin_formset.opts.template %}
+{% endfor %}
+
+{% block after_related_objects %}{% endblock %}
+
+{% submit_row %}
+
+{% if adminform and add %}
+   <script type="text/javascript">document.getElementById("{{ adminform.first_field.id_for_label }}").focus();</script>
+{% endif %}
+
+{# JavaScript for prepopulated fields #}
+{% prepopulated_fields_js %}
+
+</div>
+</form></div>
+{% endblock %}

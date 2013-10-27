@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>GeoColeta</title>
+    <meta name="description" content="GeoColeta: um Sistema de Informação Geográfica para gerência e incentivo ao Processo de Coleta Seletiva">
+    <meta name="keywords" content="geocoleta, coleta seletiva, geolocalização, instituto federal, barbacena">
+    <meta property="og:image" content="/static/img/ti.jpg" />
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="cleartype" content="on">   
+
+    <link rel="stylesheet" href="/static/css/lungo/lungo.css">
+    <link rel="stylesheet" href="/static/css/lungo/lungo.theme.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/lungo/lungo.icon.css">
+    <link rel="icon" href="/static/img/favicon.ico" />
+</head>
+
+<body>
+
+    <aside id="main_menu">
+        <header id="header_menu" data-title="Ferramentas"></header>
+        <article id="article_menu" class="list scroll active">
+            <ul>
+                <a href="#" id="opt_centralizar">
+                    <li data-icon="circle-blank">                    
+                        <strong>Centralizar posição</strong>
+                        <small>Ou arraste para alterar</small>                    
+                    </li>
+                </a>
+
+                <a href="#" id="opt_infra">
+                    <li data-icon="building">
+                        <div class="tag on-right">{{ locais|length|default:0 }}</div>
+                        <strong>Infraestrutura</strong>
+                    </li>
+                </a>
+
+                <a href="#" id="opt_coletores">
+                    <li data-icon="trash">
+                        <div class="tag on-right">{{ coletores|length|default:0 }}</div>
+                        <strong>Coletores</strong>
+                    </li>
+                </a>
+                
+                <li data-view-article="anchor" id="sep">
+                    <small>Estatísticas do aplicativo</small>
+                </li>
+
+                <a href="#" id="opt_rel_descartes">
+                    <li data-icon="map-marker">                    
+                        <strong id="txt_desc">Descartes</strong>
+                        <small>Requisições realizadas</small>                    
+                    </li>
+                </a>
+
+                <a href="#" id="opt_rel_coletores">
+                    <li data-icon="bar-chart">                    
+                        <strong>Coleta Seletiva</strong>
+                        <small>Utilização dos coletores</small>                    
+                    </li>
+                </a>
+                
+                <li data-view-article="anchor" id="sep">
+                    <small>Compartilhar</small>
+                </li>
+                
+                <a href="http://www.facebook.com/sharer.php?u=http://geocoleta.org" target="_blank">
+                    <li data-icon="facebook-sign">                    
+                        Facebook                    
+                    </li>
+                </a>
+                
+                <a href="https://twitter.com/intent/tweet?source=tweetbutton&text=Estou contribuindo com o processo de coleta seletiva no IF Barbacena&url=http://geocoleta.org" target="_blank">
+                    <li data-icon="twitter-sign">
+                        Twitter
+                    </li>
+                </a>
+                
+                <a href="https://plus.google.com/share?url=geocoleta.org" target="_blank">
+                    <li data-icon="google-plus-sign">
+                        Google+
+                    </li>
+                </a>
+
+                <a href="http://www.barbacena.ifsudestemg.edu.br/conteudo/geocoleta" target="_blank">
+                    <li style="margin-top: 20px" data-view-article="anchor" data-icon="info-sign">                    
+                        Sobre o projeto                    
+                    </li>
+                </a>
+            </ul>
+        </article>
+    </aside>
+
+    <section id="main" data-transition="slide" data-aside="main_menu" class="drag">
+        <header>
+            <nav>
+                <a href="#" data-view-aside="main_menu" data-icon="menu"></a>
+            </nav>
+            <h1 class="title centered"><span style="font-weight: bold">Geo</span>Coleta</h1>
+            <nav class="on-right">
+                <a href="http://www.barbacena.ifsudestemg.edu.br/conteudo/geocoleta" target="_blank"><abbr class="text tiny">v0.1.1</abbr></a>
+            </nav>
+        </header>
+
+        <article id="main-article" class="list indenteds">
+                
+            <div class="form ocultar_h">
+                <fieldset id="fieldset_infra">
+                    <label for="btn_infra" class="anchor">
+                        <strong>Infraestrutura do</strong> <span style="font-weight: bold">{{ instituicao }}</span>
+                    </label>
+                    <input id="btn_infra" type="checkbox" class="inline right" checked="checked" />
+                </fieldset>
+            </div>         
+            
+            <div id="map-canvas"></div>
+
+        </article>
+               
+        <footer id="main_footer">
+            <nav id="descarte">
+                {% for tipo in tipos %}
+                    <a href="#" id="res_{{ tipo.id }}" class="res_{{ tipo.id }}">{{ tipo.tipo }}</a>
+                {% endfor %}
+            </nav>
+        </footer>
+    </section>
+
+
+    <script src="/static/js/quo.js"></script>
+    <script src="/static/js/lungo.js"></script>
+
+    <script>
+        Lungo.init({
+            name: 'GeoColeta',
+            version: '0.1.1',
+            history: false
+        });
+    </script>
+
+    <script src="http://maps.googleapis.com/maps/api/js?key={{ api_key }}&sensor=true"></script>
+
+    <script>
+        coletores = {
+            {% for coletor in coletores|dictsort:"descricao" %}
+                '{{ coletor.id }}': [{{ coletor.latitude|floatformat:6 }}, {{ coletor.longitude|floatformat:6 }}, '{{ coletor.descricao }}',
+                    [{% for tipo in coletor.tipo.all %}
+                        '{{ tipo.tipo }}',
+                    {% endfor %}]
+                ], 
+            {% empty %}
+                'vazio': true
+            {% endfor %}
+        };
+    
+        locais = {
+            {% for local in locais %}
+                '{{ local.id }}': ['{{ local.nome }}', {{ local.coordenadas }}],
+            {% empty %}
+                'vazio': true
+            {% endfor %}
+        };
+    </script>
+
+    <script src="/static/js/jquery-1.10.2.min.js"></script>
+    <script src="/static/js/highcharts.js"></script>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
