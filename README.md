@@ -12,12 +12,10 @@ __Sistema de Informação Geográfica para gerência e incentivo ao Processo de 
 
 - Em fase de implantação no Câmpus por meio do projeto __"Implantação de um Sistema de Informação Geográfica para gerência e incentivo ao Processo de Coleta Seletiva no Instituto Federal do Sudeste de Minas Gerais, Câmpus Barbacena"__, aprovado no Edital 01/2013 - Nível Técnico.
 
+- Projeto apresentado no VI Congresso de Pesquisa e Extensão da UEMG Barbacena - 2013, pela aluna bolsista Déborah Fonseca.
+
 ## Screenshot
 
 <p align="center">
   <img src="https://raw.github.com/rafjaa/GeoColeta/master/samples/GeoColeta-0.1.0.jpg" alt="Aplicação móvel" />
 </p>
-
-## Protótipo
-Para instalar a versão anterior do projeto (protótipo), acesse o link https://github.com/rafjaa/GeoColeta/tree/prototipo
-
