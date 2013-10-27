@@ -17,5 +17,5 @@ __Sistema de Informação Geográfica para gerência e incentivo ao Processo de 
 ## Screenshot
 
 <p align="center">
-  <img src="https://raw.github.com/rafjaa/GeoColeta/master/samples/GeoColeta-0.1.0.jpg" alt="Aplicação móvel" />
+  <img src="https://raw.github.com/rafjaa/GeoColeta/master/samples/geocoleta011.png" alt="Aplicação móvel" />
 </p>
