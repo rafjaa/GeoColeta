@@ -17,3 +17,6 @@ urlpatterns = patterns('',
     # Django Admin
     url(r'^admin/', include(admin.site.urls)),
 )
+
+handler404 = 'app.views.not_found_404'
+handler500 = 'app.views.server_error_500'

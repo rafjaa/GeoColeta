@@ -46,8 +46,7 @@ def ajax_descartes(request):
         for r  in Registro.objects.order_by('-data')[:LIMITE]
     ]
     
-    return HttpResponse(json.dumps(resp), mimetype='application/json')
-    
+    return HttpResponse(json.dumps(resp), mimetype='application/json')    
 
 
 def ajax_descarte(request, lat, lng, residuo, confirma):
@@ -107,3 +106,11 @@ def ajax_grafico(request, id_coletor):
         ['Não-reciclável', porcentagem_residuo(5)]
     ]
     return HttpResponse(json.dumps(dados_grafico), mimetype='application/json')
+
+
+def not_found_404(request):
+    return redirect('/')
+
+
+def server_error_500(request):
+    return redirect('/')

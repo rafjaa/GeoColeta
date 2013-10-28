@@ -98,10 +98,19 @@ a li strong, li a strong{
 }
 
 aside .list li small {
-color: #717171;
+  color: #717171;
 }
 
 .link-social{
   text-decoration: underline;
   margin-left: 3px;
+}
+
+.descricao{
+  display: block;
+  text-align: justify;
+}
+
+.descricao a{
+  text-decoration: underline;;
 }
