@@ -50,11 +50,8 @@ def ajax_local(request, id_local):
     
     desc_local = Local.objects.get(id=id_local).descricao.replace('<', '')
     desc_local_processada = re.sub(r'\[(.*?)]', '<a href="\g<1>" target="_blank">\g<1></a>', desc_local).replace('\n', '<br>')
-    print desc_local_processada
+
     return HttpResponse(desc_local_processada)
-    '''
-    desc_local = Local.objects.get(id=id_local).descricao
-    return HttpResponse(json.dumps(desc_local), mimetype='application/json')'''
 
 
 def ajax_descartes(request):
