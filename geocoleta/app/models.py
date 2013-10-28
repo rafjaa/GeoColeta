@@ -45,7 +45,7 @@ class Registro(models.Model):
 class Local(models.Model):
 	nome = models.CharField('Nome', max_length=100)
 	coordenadas = models.TextField('Coordenadas', help_text="Clique no mapa para definir o polígono")
-	descricao = models.TextField('Descrição', help_text="HTML habilitado")
+	descricao = models.TextField('Descrição', help_text="Utilize [link] para inserir links")
 	
 	def __unicode__(self):
 		return u'{0}'.format(self.nome)

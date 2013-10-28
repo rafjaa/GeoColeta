@@ -45,7 +45,7 @@ function info_local(id, pos){
 
     info_window.setPosition(pos);
     Lungo.Aside.hide();
-    
+  
     if(cache_texto_locais[id]){
         info_window.setContent('<h2 class="titulo_window">' + local[0] + '</h2><span class="descricao">' + cache_texto_locais[id]) + '</span>';
         info_window.open(map);
@@ -54,11 +54,11 @@ function info_local(id, pos){
 
         Lungo.Service.get('ajax_local/' + id, '',
             function(texto){
-                cache_texto_locais[id] = texto;
+                cache_texto_locais[id] = texto
                 info_window.setPosition(pos);
-                info_window.setContent('<h2 class="titulo_window">' + local[0] + '</h2><span class="descricao">' + texto + '</span>');
+                info_window.setContent('<h2 class="titulo_window">' + local[0] + '</h2><span class="descricao">' + cache_texto_locais[id] + '</span>');
                 info_window.open(map);
-            }, 'json');
+            }, 'text');
     }
 
     map.setCenter(pos);
