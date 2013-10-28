@@ -61,7 +61,7 @@ def ajax_descartes(request):
         for r  in Registro.objects.order_by('-data')[:LIMITE]
     ]
     
-    return HttpResponse(json.dumps(resp), mimetype='application/json')    
+    return HttpResponse(json.dumps(resp).replace(', ', ','), mimetype='application/json')    
 
 
 def ajax_descarte(request, lat, lng, residuo, confirma):
@@ -113,14 +113,9 @@ def ajax_grafico(request, id_coletor):
     def porcentagem_residuo(id_res):
         return registros_coletor.count(id_res) * 100 / total_registros
 
-    dados_grafico = [
-        ['Papel', porcentagem_residuo(1)],
-        ['Plástico', porcentagem_residuo(2)],
-        ['Metal/Vidro', porcentagem_residuo(3)],
-        ['Orgânico', porcentagem_residuo(4)],
-        ['Não-reciclável', porcentagem_residuo(5)]
-    ]
-    return HttpResponse(json.dumps(dados_grafico), mimetype='application/json')
+    dados_grafico = [(t.tipo, porcentagem_residuo(t.id)) for t in TipoColetor.objects.all()]
+
+    return HttpResponse(json.dumps(dados_grafico).replace(', ', ','), mimetype='application/json')
 
 
 def not_found_404(request):
