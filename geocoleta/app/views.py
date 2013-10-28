@@ -1,6 +1,7 @@
 # coding: utf-8
 
 import json
+import re
 
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, redirect
@@ -10,6 +11,20 @@ from app.models import *
 
 from haversine import haversine
 
+
+def minify_html(view):
+    def _view(request, *args, **kwargs):
+        response = view(request, *args, **kwargs)
+        html = response.content
+        html = re.sub(r'\n', '', html)
+        html = re.sub(r' +', ' ', html)
+        html = re.sub(r'> <', '><', html)
+        response.content = html
+        return response
+    return _view
+
+
+@minify_html
 def home(request):
 
     # Otimiza as coordenadas do polígono de cada local
