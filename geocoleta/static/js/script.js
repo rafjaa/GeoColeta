@@ -47,7 +47,7 @@ function info_local(id, pos){
     Lungo.Aside.hide();
     
     if(cache_texto_locais[id]){
-        info_window.setContent('<h2 class="titulo_window">' + local[0] + '</h2>' + cache_texto_locais[id]);
+        info_window.setContent('<h2 class="titulo_window">' + local[0] + '</h2><div style="width: 98%">' + cache_texto_locais[id] + '</div>');
         info_window.open(map);
     } else{
         msg_carregando();
@@ -56,12 +56,12 @@ function info_local(id, pos){
             function(texto){
                 cache_texto_locais[id] = texto;
                 info_window.setPosition(pos);
-                info_window.setContent('<h2 class="titulo_window">' + local[0] + '</h2>' + texto );
+                info_window.setContent('<h2 class="titulo_window">' + local[0] + '</h2><div style="width: 98%">' + texto + '</div>');
                 info_window.open(map);
             }, 'json');
     }
 
-    map.setCenter(info_window.getPosition());  
+    map.setCenter(pos);
 }
 
 function confirmar_descarte(url){
