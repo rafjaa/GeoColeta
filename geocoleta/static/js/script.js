@@ -361,9 +361,10 @@ Lungo.ready(function(){
 
         Lungo.Service.get('ajax_descartes', '',
             function(reg){
-                
+
+                var obj;
                 for(i in reg){
-                    var obj = reg[i];
+                    obj = reg[i];
                     var r = new google.maps.Marker({
                         position: new google.maps.LatLng(obj[0], obj[1]),
                         map: map,
@@ -385,6 +386,7 @@ Lungo.ready(function(){
                     });
                 }
 
+                map.setCenter(new google.maps.LatLng(obj[0], obj[1]));
                 info_window.setMap(null);
                 
             }, 'json');
