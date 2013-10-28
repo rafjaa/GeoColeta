@@ -96,11 +96,14 @@ def ajax_grafico(request, id_coletor):
     if not total_registros:
         return HttpResponse(json.dumps([]), mimetype='application/json')
 
+    def porcentagem_residuo(id_res):
+        return registros_coletor.count(id_res) * 100 / total_registros
+
     dados_grafico = [
-        ['Papel', registros_coletor.count(1) * 100 / total_registros],
-        ['Plástico', registros_coletor.count(2) * 100 / total_registros],
-        ['Metal/Vidro', registros_coletor.count(3) * 100 / total_registros],
-        ['Orgânico', registros_coletor.count(4) * 100 / total_registros],
-        ['Não-reciclável', registros_coletor.count(5) * 100 / total_registros]
+        ['Papel', porcentagem_residuo(1)],
+        ['Plástico', porcentagem_residuo(2)],
+        ['Metal/Vidro', porcentagem_residuo(3)],
+        ['Orgânico', porcentagem_residuo(4)],
+        ['Não-reciclável', porcentagem_residuo(5)]
     ]
     return HttpResponse(json.dumps(dados_grafico), mimetype='application/json')
