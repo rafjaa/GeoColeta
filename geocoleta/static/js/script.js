@@ -12,7 +12,7 @@ var lista_desc = [];
 var cache_texto_locais = {}
 
 var info_window = new google.maps.InfoWindow(
-    { maxWidth: window.innerWidth <= 350 ? 240 : 320 }
+    { maxWidth: window.innerWidth <= 350 ? 230 : 310 }
 );
 
 // Cache para os menus dinâmicos
@@ -47,7 +47,7 @@ function info_local(id, pos){
     Lungo.Aside.hide();
     
     if(cache_texto_locais[id]){
-        info_window.setContent('<h2 class="titulo_window">' + local[0] + '</h2><div style="width: 98%">' + cache_texto_locais[id] + '</div>');
+        info_window.setContent('<h2 class="titulo_window">' + local[0] + '</h2><span class="descricao">' + cache_texto_locais[id]) + '</span>';
         info_window.open(map);
     } else{
         msg_carregando();
@@ -56,7 +56,7 @@ function info_local(id, pos){
             function(texto){
                 cache_texto_locais[id] = texto;
                 info_window.setPosition(pos);
-                info_window.setContent('<h2 class="titulo_window">' + local[0] + '</h2><div style="width: 98%">' + texto + '</div>');
+                info_window.setContent('<h2 class="titulo_window">' + local[0] + '</h2><span class="descricao">' + texto + '</span>');
                 info_window.open(map);
             }, 'json');
     }
@@ -361,6 +361,11 @@ Lungo.ready(function(){
 
         Lungo.Service.get('ajax_descartes', '',
             function(reg){
+
+                if(!reg.length){
+                    info_window.setContent('Não há registros de descartes!');
+                    return;
+                }
 
                 var obj;
                 for(i in reg){
