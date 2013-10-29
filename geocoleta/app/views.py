@@ -30,7 +30,7 @@ def home(request):
     # Otimiza as coordenadas do polígono de cada local
     locais_otim = []
     for local in Local.objects.all():
-        local.coordenadas = str([[round(c[0], 6), round(c[1], 6)] for c in json.loads(local.coordenadas)]).replace(' ', '')
+        local.coordenadas = re.sub(r'(\.\d{6})(\d*)', r'\1', local.coordenadas).replace(' ', '')
         locais_otim.append(local)
 
     return render_to_response('app/index.html',{
