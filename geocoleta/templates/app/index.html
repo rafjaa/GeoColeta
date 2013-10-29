@@ -149,9 +149,9 @@
             {% for coletor in coletores|dictsort:"descricao" %}
                 '{{ coletor.id }}': [{{ coletor.latitude|floatformat:6 }}, {{ coletor.longitude|floatformat:6 }}, '{{ coletor.descricao }}',
                     [{% for tipo in coletor.tipo.all %}
-                        '{{ tipo.tipo }}',
+                        '{{ tipo.tipo }}'{% if not forloop.last %}, {% endif %}
                     {% endfor %}]
-                ], 
+                ]{% if not forloop.last %}, {% endif %}
             {% empty %}
                 'vazio': true
             {% endfor %}
@@ -159,7 +159,7 @@
     
         locais = {
             {% for local in locais %}
-                '{{ local.id }}': ['{{ local.nome }}', {{ local.coordenadas }}],
+                '{{ local.id }}': ['{{ local.nome }}', {{ local.coordenadas }}]{% if not forloop.last %}, {% endif %}
             {% empty %}
                 'vazio': true
             {% endfor %}
