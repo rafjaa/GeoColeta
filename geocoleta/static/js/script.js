@@ -50,7 +50,6 @@ function info_local(id, pos){
         info_window.setContent('<h2 class="titulo_window">' + local[0] + '</h2><span class="descricao">' + cache_texto_locais[id]) + '</span>';
         info_window.open(map);
     } else{
-        msg_carregando();
 
         Lungo.Service.get('ajax_local/' + id, '',
             function(texto){
@@ -65,7 +64,6 @@ function info_local(id, pos){
 }
 
 function confirmar_descarte(url){
-    msg_carregando();
 
     Lungo.Service.get(url, '', function(r){
             info_window.setContent('<strong>Obrigado por colaborar com o estudo do processo de coleta seletiva no Câmpus!</strong><br><br>Compartilhe no <a class="link-social" data-icon="facebook-sign" target="_blank" href="http://www.facebook.com/sharer.php?u=http://geocoleta.org" target="_blank">Facebook</a>, <a class="link-social" href="https://twitter.com/intent/tweet?source=tweetbutton&text=Estou contribuindo com o processo de coleta seletiva no IF Barbacena&url=http://geocoleta.org" target="_blank">Twitter</a> ou <a class="link-social" href="https://plus.google.com/share?url=geocoleta.org" target="_blank">G+</a>!');
@@ -75,7 +73,6 @@ function confirmar_descarte(url){
 }
 
 function gerar_grafico(id_coletor){
-    msg_carregando();
 
     Lungo.Service.get('ajax_grafico/' + id_coletor,
             '', function(data){
@@ -129,13 +126,6 @@ function gerar_grafico(id_coletor){
                 });
 
             }, 'json');
-}
-
-function msg_carregando(){
-    info_window.setPosition(new google.maps.LatLng(lat + 0.0002, lng));
-    info_window.setContent('<img src="/static/img/loading.gif">');
-    info_window.open(map);
-    map.setCenter(info_window.getPosition());
 }
 
 Lungo.ready(function(){
@@ -356,7 +346,6 @@ Lungo.ready(function(){
             return;
         }
 
-        msg_carregando();
         desc_menu.text(msg);
 
         Lungo.Service.get('ajax_descartes', '',
@@ -428,7 +417,6 @@ Lungo.ready(function(){
     Lungo.dom("nav#descarte a").tap(function(){
     
         Lungo.Aside.hide();
-        msg_carregando();
         
         var url_base = 'ajax_descarte/' + lat + '/' + lng + '/' + Lungo.dom(this)[0].id;
         
