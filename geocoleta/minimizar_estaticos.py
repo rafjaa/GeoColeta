@@ -2,10 +2,14 @@
 
 '''
 	"Minimiza" e une automaticamente os arquivos estáticos:
+
 		jquery.min.js + script.js -> jquery.script.min.js
 		lungo.theme.css + style.css -> lungo.theme.style.min.css
+
+		python minimizar_estaticos.py [js|css]
 '''
 
+from sys import argv
 import urllib
 
 
@@ -26,30 +30,36 @@ if __name__ == '__main__':
 	STATIC = './static'
 
 	# Arquivos JavaScript
+	if len(argv) == 1 or 'js' in argv:
 
-	src_jquery_min = open(STATIC + '/js/jquery-1.10.2.min.js').read()
-	src_script = open(STATIC + '/js/script.js').read()
-	
-	src_script_min = minify(src_script, 'js')
+		print 'Comprimindo arquivos JavaScript'
 
-	with open(STATIC + '/js/jquery.script.min.js', 'w') as f:
-		f.write(src_jquery_min + '\n\n' + src_script_min)
+		src_jquery_min = open(STATIC + '/js/jquery-1.10.2.min.js').read()
+		src_script = open(STATIC + '/js/script.js').read()
+		
+		src_script_min = minify(src_script, 'js')
+
+		with open(STATIC + '/js/jquery.script.min.js', 'w') as f:
+			f.write(src_jquery_min + '\n\n' + src_script_min)
 
 
 	# Arquivos css
+	if len(argv) == 1 or 'css' in argv:
 
-	src_lungo_theme = open(STATIC + '/css/lungo/lungo.theme.css').read()
-	src_style = open(STATIC + '/css/style.css').read()
-	
-	src_lungo_theme_min = minify(src_lungo_theme, 'css')
-	src_style_min = minify(src_style, 'css')
+		print 'Comprimindo arquivos CSS'
 
-	with open(STATIC + '/css/lungo.theme.style.min.css', 'w') as f:
-		f.write(src_lungo_theme_min + '\n\n' + src_style_min)
+		src_lungo_theme = open(STATIC + '/css/lungo/lungo.theme.css').read()
+		src_style = open(STATIC + '/css/style.css').read()
+		
+		src_lungo_theme_min = minify(src_lungo_theme, 'css')
+		src_style_min = minify(src_style, 'css')
+
+		with open(STATIC + '/css/lungo.theme.style.min.css', 'w') as f:
+			f.write(src_lungo_theme_min + '\n\n' + src_style_min)
 
 
-	src_lungo = open(STATIC + '/css/lungo/lungo.css').read()
-	src_lungo_min = minify(src_lungo, 'css')
+		src_lungo = open(STATIC + '/css/lungo/lungo.css').read()
+		src_lungo_min = minify(src_lungo, 'css')
 
-	with open(STATIC + '/css/lungo/lungo.min.css', 'w') as f:
-		f.write(src_lungo_min)
+		with open(STATIC + '/css/lungo/lungo.min.css', 'w') as f:
+			f.write(src_lungo_min)
