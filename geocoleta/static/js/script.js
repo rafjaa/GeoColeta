@@ -91,7 +91,7 @@ function gerar_grafico(id_coletor){
                 Lungo.Aside.hide();
 
                 if(!data.length){
-                    info_window.setContent('<h2 class="titulo_window" style="width: 95%">' + coletor[2] + '</h2>Não há registros de descarte para este coletor.');
+                    info_window.setContent('<h2 class="titulo_window" style="width: 95%">' + coletor[2] + '</h2><div style="width: 95%">Não há registros de descarte para este coletor.</div>');
                     return;
                 }
                 
