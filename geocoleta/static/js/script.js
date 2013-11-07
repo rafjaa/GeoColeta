@@ -32,7 +32,7 @@ function info_coletor(id){
     var coletor = coletores[id];
     
     info_window.setPosition(new google.maps.LatLng(coletor[0] + 0.00015, coletor[1]));
-    info_window.setContent('<h2 class="titulo_window">' + coletor[2] + '</h2><strong>Resíduos: </strong> <span>' + coletor[3].join('</span>, <span>') + '.</span><a style="display:block;margin-top:15px;text-decoration:underline" href="#" onclick="gerar_grafico(' + id + ')">Visualizar gráfico de uso</a>');
+    info_window.setContent('<h2 class="titulo_window">' + coletor[2] + '</h2><strong>Resíduos: </strong> <span>' + coletor[3].join('</span>, <span>') + '.</span><div style="text-align:center;margin:12px 0 5px"><button onclick="gerar_grafico(' + id + ')">Visualizar gráfico de uso</button></div>');
        
     Lungo.Aside.hide();
     info_window.open(map);
@@ -404,11 +404,11 @@ Lungo.ready(function(){
             
         if(html_menu_relatorios == ''){
             var html_lista_relatorios = '';
-            
+
             for(var i in coletores){
                 html_lista_relatorios += '<li><a href="#" onclick="gerar_grafico(' + i + ')"><p class="text small">' + coletores[i][2] + '</p><span class="tag blue">' + coletores[i][3].join('</span> <span class="tag blue">') + '</span></a></li>';
             }
-        
+
             html_menu_relatorios = '\
                 <ul>\
                 <li data-view-article="main-article">\
@@ -417,19 +417,19 @@ Lungo.ready(function(){
                     </a>\
                 </li>' + html_lista_relatorios + '</ul>';
         }
-            
+
         Lungo.dom('#article_menu').html(html_menu_relatorios);
     });
         
     
     // Descarte
     Lungo.dom("nav#descarte a").tap(function(){
-    
+
         Lungo.Aside.hide();
         msg_carregando();
-        
+
         var url_base = 'ajax_descarte/' + lat + '/' + lng + '/' + Lungo.dom(this)[0].id;
-        
+
         Lungo.Service.get(url_base + '/0', // Sem confirmação automática de descarte
             '', function(data){
                     // Checa se não há coletores com suporte
@@ -438,7 +438,7 @@ Lungo.ready(function(){
                         info_window.setContent('Não foram encontrados coletores próximos com suporte a este tipo de resíduo.');
                     } else{
                         var coletor = coletores[data['id_coletor']];
-                        var distancia = data['distancia']
+                        var distancia = data['distancia'];
                         info_window.setPosition(new google.maps.LatLng(coletor[0] + 0.00015, coletor[1]));
                         info_window.setContent('<h2 class="titulo_window">' + coletor[2] + '</h2><strong>Resíduos:</strong> <span>' + coletor[3].join('</span>, <span>') + '</span>.<div style="text-align: center"><div style="font-size: 30px; color: #333; text-shadow: 1px 1px #aaa;">' + distancia.toString().replace('.', ',') + '</div><div style="letter-spacing: 1px">METROS</div><button style="margin-top: 15px;" onclick="confirmar_descarte(\'' + url_base + '/' + data['id_coletor'] + '\')">Confirmar descarte</button></div>');
                     }
