@@ -32,7 +32,7 @@ function info_coletor(id){
     var coletor = coletores[id];
     
     info_window.setPosition(new google.maps.LatLng(coletor[0] + 0.00015, coletor[1]));
-    info_window.setContent('<h2 class="titulo_window">' + coletor[2] + '</h2><strong>Resíduos: </strong> <span>' + coletor[3].join('</span>, <span>') + '.</span>');
+    info_window.setContent('<h2 class="titulo_window">' + coletor[2] + '</h2><strong>Resíduos: </strong> <span>' + coletor[3].join('</span>, <span>') + '.</span><a style="display:block;margin-top:15px;text-decoration:underline" href="#" onclick="gerar_grafico(' + id + ')">Visualizar gráfico de uso</a>');
        
     Lungo.Aside.hide();
     info_window.open(map);
