@@ -11,7 +11,6 @@ from app.models import *
 
 from haversine import haversine
 
-
 def minify_html(view):
     def _view(request, *args, **kwargs):
         response = view(request, *args, **kwargs)
@@ -47,7 +46,7 @@ def projeto(request):
 
 
 def ajax_local(request, id_local):
-    
+
     desc_local = Local.objects.get(id=id_local).descricao.replace('<', '')
     desc_local_processada = re.sub(r'\[(.*?)]', '<a href="\g<1>" target="_blank">\g<1></a>', desc_local).replace('\n', '<br>')
 
@@ -106,7 +105,7 @@ def ajax_descarte(request, lat, lng, residuo, confirma):
     
 
 def ajax_grafico(request, id_coletor):
-    
+
     registros_coletor = [reg.tipo_usado.id for reg in Registro.objects.filter(coletor__id=id_coletor)]
     total_registros = len(registros_coletor)
 
