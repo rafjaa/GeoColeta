@@ -20,6 +20,15 @@ var html_menu_coletores = '';
 var html_menu_relatorios = '';
 var html_menu_locais = '';
 
+function restricao_poligonal(){
+    var lat1 = -21.226079;
+    var lng1 = -43.769629;
+    var lat2 = -21.250200;
+    var lng2 = -43.757055;
+
+    return lat < lat1 && lat > lat2 && lng > lng1 && lng < lng2;
+}
+
 function limpar_registros(){
     info_window.setMap(null);
     for (var r in lista_desc){
@@ -190,10 +199,20 @@ Lungo.ready(function(){
             
             if(localizado == 1){
 
-                info_window.setContent('<h2 class="titulo_window">Sua localização foi detectada:</h2><strong>Latitude: </strong>' +
+                // Checa se o usuário se encontra nos limites do câmpus
+                if(!restricao_poligonal()){
+                    lat = -21.227959;
+                    lng = -43.766270;
+                    map.setCenter(new google.maps.LatLng(lat, lng));
+                    user.setPosition(new google.maps.LatLng(lat, lng));
+                    info_window.setPosition(new google.maps.LatLng(lat + 0.0002, lng));
+                    info_window.setContent('Sua localização não se encontra nos limites do Câmpus Barbacena!');
+                } else{
+
+                    info_window.setContent('<h2 class="titulo_window">Sua localização foi detectada:</h2><strong>Latitude: </strong>' +
                     lat.toFixed(6) + ' Sul<br><strong>Longitude: </strong>' + lng.toFixed(6) +
                     ' Oeste');                
-
+                }
             } else{
 
                 info_window.setContent('<h2 class="titulo_window">Não foi possível determinar sua localização!</h2>Arraste o marcador vermelho para alterá-la manualmente.');
