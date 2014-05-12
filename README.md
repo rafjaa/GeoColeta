@@ -2,6 +2,8 @@
 
 __Sistema de Informação Geográfica para gerência e incentivo ao Processo de Coleta Seletiva__: http://www.barbacena.ifsudestemg.edu.br/conteudo/geocoleta
 
+__Coordenador:__ <a href="http://lattes.cnpq.br/3995585094514614" target="_blank">Prof. Rafael José de Alencar Almeida</a>
+
 <img align="right" src="https://raw.github.com/rafjaa/GeoColeta/master/samples/territorios_informacionais.jpg" />
 
 - Projeto finalista da __Semana Nacional de Ciência e Tecnologia 2012__ do Câmpus Barbacena.
@@ -14,8 +16,15 @@ __Sistema de Informação Geográfica para gerência e incentivo ao Processo de 
 
 - Projeto apresentado no __VI Congresso de Pesquisa e Extensão da Universidade do Estado de Minas Gerais, Unidade Barbacena - 2013__, pela aluna bolsista Déborah Fonseca.
 
-## Screenshot
+### Execução em dispositivo móvel
 
 <p align="center">
-  <img src="https://raw.github.com/rafjaa/GeoColeta/master/samples/geocoleta011.png" alt="Aplicação móvel" />
+  <img src="https://raw.github.com/rafjaa/GeoColeta/master/samples/tela-1.jpg" alt="Aplicação móvel" />
 </p>
+
+### Execução em desktop (navegador)
+
+<p align="center">
+  <img src="https://raw.github.com/rafjaa/GeoColeta/master/samples/geocoleta011.png" alt="Aplicação móvel navegador" />
+</p>
+
