@@ -16,7 +16,9 @@ __Coordenador:__ <a href="http://lattes.cnpq.br/3995585094514614" target="_blank
 
 - Em fase de implantação no Câmpus por meio do projeto __"Implantação de um Sistema de Informação Geográfica para gerência e incentivo ao Processo de Coleta Seletiva no Instituto Federal do Sudeste de Minas Gerais, Câmpus Barbacena"__, aprovado no Edital 01/2013 - Nível Técnico.
 
-- Projeto apresentado no __VI Congresso de Pesquisa e Extensão da Universidade do Estado de Minas Gerais, Unidade Barbacena - 2013__, pela aluna bolsista Déborah Fonseca.
+- Apresentado no __VI Congresso de Pesquisa e Extensão da Universidade do Estado de Minas Gerais, Unidade Barbacena - 2013__, pela aluna bolsista Déborah Fonseca.
+
+- Projeto apresentado no __2º encontro do Google Developer Groups Campo das Vertentes - 2015__, na Universidade Federal de São João del-Rei - UFSJ.
 
 ### Execução em dispositivo móvel
 
