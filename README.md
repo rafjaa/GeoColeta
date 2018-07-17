@@ -2,8 +2,6 @@
 
 __Sistema de Informação Geográfica para gerência e incentivo ao Processo de Coleta Seletiva__: http://www.barbacena.ifsudestemg.edu.br/conteudo/geocoleta
 
-__Acesso:__ <a href="http://www.geocoleta.org" target="_blank">http://www.geocoleta.org</a>
-
 __Coordenador:__ <a href="http://lattes.cnpq.br/3995585094514614" target="_blank">Prof. Rafael José de Alencar Almeida</a>
 
 <img align="right" src="https://raw.github.com/rafjaa/GeoColeta/master/samples/territorios_informacionais.jpg" />
